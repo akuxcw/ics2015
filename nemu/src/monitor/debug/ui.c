@@ -46,6 +46,7 @@ static int cmd_si(char *args) {
 		x=x*10+args[i]-48;
 	}
 //	printf("%d\n",x);
+	if(x==0)x=1;
 	cpu_exec(x);
 	return 0;
 }
