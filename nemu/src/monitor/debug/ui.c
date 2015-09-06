@@ -131,14 +131,14 @@ void ui_mainloop() {
 #endif
 
 		int i;
+		flag=true;
 		for(i = 0; i < NR_CMD; i ++) {
 			if(strstr(cmd_table[i].name, cmd) == cmd_table[i].name) {
-				flag=true;
 				if(cmd_table[i].handler(args) < 0) { return; }
-				if(flag)break;
+				break;
 			}
 		}
-
-		if(i == NR_CMD) { printf("Unknown command '%s'\n", str); }
+		if(!flag) printf("Wrong usage of '%s'\n",cmd);
+		if(i == NR_CMD) { printf("Unknown command '%s'\n", cmd); }
 	}
 }
