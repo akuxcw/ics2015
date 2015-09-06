@@ -67,6 +67,20 @@ static int cmd_si(char *args) {
 }
 
 static int cmd_info(char *args) {
+	int i;
+	if(args==NULL) {
+		flag=false; return 0;
+	}
+	if(strlen(args)!=1) {
+		flag=false; return 0;
+	}
+	if(args[0]=='r') {
+		for(i=R_EAX;i<=R_EDI;++i) {
+			printf("%s:6%d\n", regsl[i], reg_l(i));
+		}
+	}else {
+		flag=false; return 0;
+	}
 	return 0;
 }
 
