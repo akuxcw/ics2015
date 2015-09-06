@@ -88,8 +88,17 @@ static int cmd_info(char *args) {
 }
 
 static int cmd_x(char *args) {
-	int pos=strchr(args, ' ');
-	printf("%d\n",pos);
+	char *pos=strchr(args, ' ');
+	//printf("%d\n",pos);
+	int n=0;
+	char *i;
+	for(i=args;i!=pos;++i) {
+		if(*(i)>'9' || *(i)<'0') {
+			flag=false; return 0;
+		}
+		n=n*10+*(i)-'0';
+	}
+	printf("%d\n",n);
 	return 0;
 }
 
