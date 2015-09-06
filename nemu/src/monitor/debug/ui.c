@@ -75,11 +75,11 @@ static struct {
 	char *description;
 	int (*handler) (char *);
 } cmd_table [] = {
-	{ "help", "Display informations about all supported commands", cmd_help },
-	{ "c", "Continue the execution of the program", cmd_c },
-	{ "q", "Exit NEMU", cmd_q },
-	{ "si [N]", "Run the program by N command,default by one", cmd_si},
-	{ "info SUBCMD", "SUBCMD=r print the value of register\n                    =w print the status of watch point", cmd_info},	
+	{ "help          ", "Display informations about all supported commands", cmd_help },
+	{ "c             ", "Continue the execution of the program", cmd_c },
+	{ "q             ", "Exit NEMU", cmd_q },
+	{ "si [N]        ", "Run the program by N command,default by one", cmd_si},
+	{ "info SUBCMD   ", "SUBCMD=r print the value of register\n                    =w print the status of watch point", cmd_info},	
 	/* TODO: Add more commands */
 
 };
