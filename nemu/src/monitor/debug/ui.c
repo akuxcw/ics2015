@@ -125,6 +125,6 @@ void ui_mainloop() {
 			}
 		}
 
-		if(i == NR_CMD) { printf("Unknown command '%s'\n", cmd); }
+		if(i == NR_CMD) { printf("Unknown command '%s'\n", str); }
 	}
 }
