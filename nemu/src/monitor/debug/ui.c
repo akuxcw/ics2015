@@ -89,6 +89,9 @@ static int cmd_info(char *args) {
 
 static int cmd_x(char *args) {
 	char *pos=strchr(args, ' ');
+	if(pos==NULL) {
+		flag=false; return 0;
+	}
 	//printf("%d\n",pos);
 	int n=0;
 	char *i;
