@@ -76,7 +76,7 @@ static int cmd_info(char *args) {
 	}
 	if(args[0]=='r') {
 		for(i=R_EAX;i<=R_EDI;++i) {
-			printf("%-6s%d\n", regsl[i], reg_l(i));
+			printf("%-6s%x\n", regsl[i], reg_l(i));
 		}
 	}else {
 		flag=false; return 0;
