@@ -42,9 +42,10 @@ static int cmd_si(char *args) {
 	int x=0,i;
 	if(args==NULL)x=1;else
 	for(i=0;i<strlen(args);++i) {
+		if(isspace(args[i]))continue;
 		x=x*10+args[i]-48;
 	}
-	printf("%d\n",x);
+//	printf("%d\n",x);
 	cpu_exec(x);
 	return 0;
 }
