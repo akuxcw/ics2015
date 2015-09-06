@@ -32,6 +32,7 @@ char* rl_gets() {
 		}
 		line_read[i]='\0';
 	}else {
+		printf("***\n");
 		for(i=0;i<strlen(line_read);++i) {
 			last_command[i]=line_read[i];
 		}
