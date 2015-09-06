@@ -40,6 +40,7 @@ static int cmd_help(char *args);
 
 static int cmd_si(char *args) {
 	int x=0,i;
+	printf("***\n");
 	for(i=0;i<strlen(args);++i) {
 		x=x*10+args[i]-48;
 	}
@@ -113,7 +114,6 @@ void ui_mainloop() {
 		int i;
 		for(i = 0; i < NR_CMD; i ++) {
 			if(strcmp(cmd, cmd_table[i].name) == 0) {
-				printf("****\n");
 				if(cmd_table[i].handler(args) < 0) { return; }
 				break;
 			}
