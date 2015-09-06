@@ -104,16 +104,17 @@ static int cmd_x(char *args) {
 		}
 		n=n*10+*(i)-'0';
 	}
-	int add=0;
+	swaddr_t addr=0;
 	if(*(pos+1)=='0' && *(pos+2)=='x') {
 		for(i=pos+3;*(i)!='\0';++i) {
 			if(*(i)>'9' || *(i)<'0') {
 				flag=false; return 0;
 			}
-			add=add*16+*(i)-'0';
+			addr=addr*16+*(i)-'0';
 		}
 	}
-	printf("%d %d\n",n,add);
+	printf("%d\n",swaddr_read(addr,n));
+//	printf("%d %d\n",n,add);
 	return 0;
 }
 
