@@ -40,8 +40,8 @@ static int cmd_help(char *args);
 
 static int cmd_si(char *args) {
 	int x=0,i;
-	printf("***\n");
 	for(i=0;i<strlen(args);++i) {
+		printf("***\n");
 		x=x*10+args[i]-48;
 	}
 	if(x==0)x=1;
