@@ -88,6 +88,9 @@ static int cmd_info(char *args) {
 }
 
 static int cmd_x(char *args) {
+	if(args==NULL) {
+		flag=false; return 0;
+	}
 	char *pos=strchr(args, ' ');
 	if(pos==NULL) {
 		flag=false; return 0;
@@ -101,6 +104,7 @@ static int cmd_x(char *args) {
 		}
 		n=n*10+*(i)-'0';
 	}
+
 	printf("%d\n",n);
 	return 0;
 }
