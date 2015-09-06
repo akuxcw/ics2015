@@ -26,7 +26,7 @@ char* rl_gets() {
 	if (line_read && *line_read) {
 		add_history(line_read);
 	}
-	if(line_read==NULL) {
+	if(strlen(line_read)==0) {
 		for(i=0;i<strlen(last_command);++i) {
 			line_read[i]=last_command[i];
 		}
