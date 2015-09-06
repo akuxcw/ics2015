@@ -78,7 +78,10 @@ static int cmd_info(char *args) {
 		for(i=R_EAX;i<=R_EDI;++i) {
 			printf("%-6s0x%-10x\n", regsl[i], reg_l(i));
 		}
-	}else {
+	}else 
+	if(args[0]=='w') {
+	}
+	else {
 		flag=false; return 0;
 	}
 	return 0;
@@ -93,7 +96,8 @@ static struct {
 	{ "c             ", "Continue the execution of the program", cmd_c },
 	{ "q             ", "Exit NEMU", cmd_q },
 	{ "si [N]        ", "Run the program by N command,default by one", cmd_si},
-	{ "info SUBCMD   ", "SUBCMD=r print the value of register\n                       =w print the status of watch point", cmd_info},	
+	{ "info SUBCMD   ", "SUBCMD=r print the value of register\n                       =w print the status of watch point", cmd_info },
+//	{ "x N EXPR      ", "Calculate the value of EXPR, let "}
 	/* TODO: Add more commands */
 
 };
