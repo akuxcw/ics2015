@@ -87,6 +87,12 @@ static int cmd_info(char *args) {
 	return 0;
 }
 
+static int cmd_x(char *args) {
+	int pos=strchr(args, ' ');
+	printf("%d\n",pos);
+	return 0;
+}
+
 static struct {
 	char *name;
 	char *description;
@@ -97,7 +103,7 @@ static struct {
 	{ "q             ", "Exit NEMU", cmd_q },
 	{ "si [N]        ", "Run the program by N command,default by one", cmd_si},
 	{ "info SUBCMD   ", "SUBCMD=r print the value of register\n                       =w print the status of watch point", cmd_info },
-//	{ "x N EXPR      ", "Calculate the value of EXPR, let "}
+	{ "x N EXPR      ", "Calculate the value of EXPR, let the answer be the beginning of the memory Address and print the value in the following 4N byte with sixteen decimal", cmd_x },
 	/* TODO: Add more commands */
 
 };
