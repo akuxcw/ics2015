@@ -10,7 +10,7 @@
 bool flag;
 
 void cpu_exec(uint32_t);
-char* last_command;
+char last_command[30];
 
 /* We use the ``readline'' library to provide more flexibility to read from stdin. */
 char* rl_gets() {
