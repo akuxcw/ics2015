@@ -7,6 +7,8 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 
+bool flag;
+
 void cpu_exec(uint32_t);
 
 /* We use the ``readline'' library to provide more flexibility to read from stdin. */
@@ -42,9 +44,11 @@ static int cmd_si(char *args) {
 	int x=0,i;
 	if(args==NULL)x=1;else
 	for(i=0;i<strlen(args);++i) {
-		if(isspace(args[i]))continue;
+		if(args[i]>'9'||args[i]<'0')flag=false;
+		if(!flag)break;
 		x=x*10+args[i]-48;
 	}
+	if(!flag)return 0;
 //	printf("%d\n",x);
 	if(x==0)x=1;
 	cpu_exec(x);
@@ -59,7 +63,7 @@ static struct {
 	{ "help", "Display informations about all supported commands", cmd_help },
 	{ "c", "Continue the execution of the program", cmd_c },
 	{ "q", "Exit NEMU", cmd_q },
-	{ "si", " [N] Run the program by N command,default by one", cmd_si},
+	{ "si", "Run the program by N command,default by one", cmd_si},
 	
 	/* TODO: Add more commands */
 
@@ -114,9 +118,10 @@ void ui_mainloop() {
 
 		int i;
 		for(i = 0; i < NR_CMD; i ++) {
-			if(strcmp(cmd, cmd_table[i].name) == 0) {
+			if(strstr(cmd_table[i].name, cmd) == cmd_table[i].name) {
+				flag=true;
 				if(cmd_table[i].handler(args) < 0) { return; }
-				break;
+				if(flag)break;
 			}
 		}
 
