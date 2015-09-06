@@ -66,6 +66,10 @@ static int cmd_si(char *args) {
 	return 0;
 }
 
+static int cmd_info(char *args) {
+	return 0;
+}
+
 static struct {
 	char *name;
 	char *description;
@@ -75,7 +79,7 @@ static struct {
 	{ "c", "Continue the execution of the program", cmd_c },
 	{ "q", "Exit NEMU", cmd_q },
 	{ "si [N]", "Run the program by N command,default by one", cmd_si},
-	
+	{ "info SUBCMD", "SUBCMD=r print the value of register\n=w print the status of watch point", cmd_info},	
 	/* TODO: Add more commands */
 
 };
