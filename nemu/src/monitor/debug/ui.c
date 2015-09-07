@@ -26,17 +26,17 @@ char* rl_gets() {
 	if (line_read && *line_read) {
 		add_history(line_read);
 	}
-	if(strlen(line_read)==0) {
-		for(i=0;i<strlen(last_command);++i) {
-			line_read[i]=last_command[i];
+	if (strlen(line_read) == 0) {
+		for(i = 0; i < strlen(last_command); ++ i) {
+			line_read[i] = last_command[i];
 		}
-		line_read[i]='\0';
+		line_read[i] = '\0';
 	}else {
-		for(i=0;i<strlen(line_read);++i) {
-			if(i>25) break;
-			last_command[i]=line_read[i];
+		for(i = 0; i < strlen(line_read); ++ i) {
+			if (i > 25) break;
+			last_command[i] = line_read[i];
 		}
-		last_command[i]='\0';
+		last_command[i] = '\0';
 	}
 	return line_read;
 }
@@ -54,75 +54,75 @@ static int cmd_help(char *args);
 
 static int cmd_si(char *args) {
 	int x=0,i;
-	if(args==NULL)x=1;else
-	for(i=0;i<strlen(args);++i) {
-		if(args[i]>'9'||args[i]<'0')flag=false;
-		if(!flag)break;
-		x=x*10+args[i]-48;
+	if (args == NULL) x = 1; else
+	for (i = 0; i < strlen(args); ++ i ) {
+		if (args[i] > '9' || args[i] < '0') flag = false;
+		if (! flag) break;
+		x = x * 10 + args[i] - 48;
 	}
-	if(!flag)return 0;
+	if (! flag) return 0;
 //	printf("%d\n",x);
-	if(x==0)x=1;
+	if (x == 0) x = 1;
 	cpu_exec(x);
 	return 0;
 }
 
 static int cmd_info(char *args) {
 	int i;
-	if(args==NULL) {
-		flag=false; return 0;
+	if (args == NULL) {
+		flag = false; return 0;
 	}
-	if(strlen(args)!=1) {
-		flag=false; return 0;
+	if (strlen(args) != 1) {
+		flag = false; return 0;
 	}
-	if(args[0]=='r') {
-		for(i=R_EAX;i<=R_EDI;++i) {
+	if (args[0] == 'r') {
+		for(i = R_EAX; i <= R_EDI; ++ i) {
 			printf("%-6s0x%-10x\n", regsl[i], reg_l(i));
 		}
 		printf("%-6s0x%-10x\n", "eip", cpu.eip);
 	}else 
-	if(args[0]=='w') {
+	if (args[0] == 'w') {
 	}
 	else {
-		flag=false; return 0;
+		flag = false; return 0;
 	}
 	return 0;
 }
 
 static int cmd_x(char *args) {
-	if(args==NULL) {
-		flag=false; return 0;
+	if (args == NULL) {
+		flag = false; return 0;
 	}
-	char *pos=strchr(args, ' ');
-	if(pos==NULL) {
-		flag=false; return 0;
+	char *pos = strchr(args, ' ');
+	if (pos == NULL) {
+		flag = false; return 0;
 	}
 	//printf("%d\n",pos);
-	int n=0;
+	int n = 0;
 	char *i;
-	for(i=args;i!=pos;++i) {
-		if(*(i)>'9' || *(i)<'0') {
-			flag=false; return 0;
+	for(i = args; i != pos; ++ i) {
+		if (*(i)>'9' || *(i)<'0') {
+			flag = false; return 0;
 		}
-		n=n*10+*(i)-'0';
+		n = n * 10 + *(i) - '0';
 	}
-	swaddr_t addr=0;
-	if(*(pos+1)=='0' && *(pos+2)=='x') {
-		for(i=pos+3;*(i)!='\0';++i) {
-			if(*(i)<='9' && *(i)>='0') {
-				addr=addr*16+*(i)-'0';
-			}else if(*(i)>='a' && *(i)<='f') {
-				addr=addr*16+*(i)-'a'+10;
+	swaddr_t addr = 0;
+	if (*(pos+1) == '0' && *(pos+2) == 'x') {
+		for(i = pos + 3; *(i) != '\0'; ++ i) {
+			if (*(i) <= '9' && *(i) >= '0') {
+				addr = addr * 16 + *(i) - '0';
+			}else if(*(i) >= 'a' && *(i) <= 'f') {
+				addr = addr * 16 + *(i) - 'a' + 10;
 			}else {
-				flag=false; return 0;
+				flag = false; return 0;
 			}
 		}
 	}
 	int j;
 	printf("0x");
-	for(j=0;j<4*n;++j) {
-		int value=swaddr_read(addr+j,1);
-		printf(value<16?"0%x":"%x",value);
+	for(j=0 ; j < 4 * n; ++ j) {
+		int value = swaddr_read(addr + j,1);
+		printf(value < 16 ? "0%x" : "%x", value);
 	}
 	printf("\n");
 //	printf("%d %d\n",n,add);
