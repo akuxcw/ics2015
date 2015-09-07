@@ -33,7 +33,7 @@ char* rl_gets() {
 		line_read[i] = '\0';
 	}else {
 		for(i = 0; i < strlen(line_read); ++ i) {
-			if (i > 10) break;
+			if (i > 11) break;
 			last_command[i] = line_read[i];
 		}
 		last_command[i] = '\0';
