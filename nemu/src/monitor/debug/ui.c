@@ -115,7 +115,7 @@ static int cmd_x(char *args) {
 	}
 	int j;
 	printf("0x");
-	for(j=0;j<n;++j) {
+	for(j=0;j<4*n;++j) {
 		int value=swaddr_read(addr+j,1);
 		printf(value<16?"0%x":"%x",value);
 	}
