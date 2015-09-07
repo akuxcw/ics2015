@@ -113,7 +113,10 @@ static int cmd_x(char *args) {
 			addr=addr*16+*(i)-'0';
 		}
 	}
-	printf("%d\n",swaddr_read(addr,n));
+	int j;
+	printf("0x");
+	for(j=0;j<n;++j)printf("%x",swaddr_read(addr+j*4,4));
+	printf("\n");
 //	printf("%d %d\n",n,add);
 	return 0;
 }
