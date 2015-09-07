@@ -107,10 +107,13 @@ static int cmd_x(char *args) {
 	swaddr_t addr=0;
 	if(*(pos+1)=='0' && *(pos+2)=='x') {
 		for(i=pos+3;*(i)!='\0';++i) {
-			if(*(i)>'9' || *(i)<'0') {
+			if(*(i)<='9' && *(i)>='0') {
+				addr=addr*16+*(i)-'0';
+			}else if(*(i)>='a' && *(i)<='f') {
+				addr=addr*16+*(i)-'a'+10;
+			}else {
 				flag=false; return 0;
 			}
-			addr=addr*16+*(i)-'0';
 		}
 	}
 	int j;
