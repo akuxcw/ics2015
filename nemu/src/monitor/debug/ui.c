@@ -78,6 +78,7 @@ static int cmd_info(char *args) {
 		for(i=R_EAX;i<=R_EDI;++i) {
 			printf("%-6s0x%-10x\n", regsl[i], reg_l(i));
 		}
+		printf("%-6s0x%-10x\n", "eip", cpu.eip);
 	}else 
 	if(args[0]=='w') {
 	}
