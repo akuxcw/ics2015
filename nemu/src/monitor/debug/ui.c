@@ -27,6 +27,7 @@ char* rl_gets() {
 		add_history(line_read);
 	}
 	if (strlen(line_read) == 0) {
+		line_read = (char *)realloc(line_read, sizeof(last_command));
 		for(i = 0; i < strlen(last_command); ++ i) {
 			line_read[i] = last_command[i];
 		}
