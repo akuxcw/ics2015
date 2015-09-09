@@ -33,7 +33,7 @@ static struct rule {
 	{"\\(", '(', 10},					// left par
 	{"\\)", ')', 10},					// right par
 	{"-", MS, 9},						// minus sign
-	{"\\*", DR, 8},						// dereference
+	{"\\*", DR, 9},						// dereference
 };
 
 #define NR_REGEX (sizeof(rules) / sizeof(rules[0]) )
@@ -148,7 +148,12 @@ uint32_t select_op(int p, int q) {
 		if (tokens[i].type == '(') in_par ++;
 		if (tokens[i].type == ')') in_par --;		
 		if (in_par) continue;
-		if (tokens[i].level == min_level) return i;
+		if (tokens[i].level == min_level) {
+			if (tokens[i].level == 9) {
+				while(i && tokens[i-1].level == 9) i --;
+			}
+			return i;
+		}
 	}
 //	panic("Can't find op!");
 	flag = false;
