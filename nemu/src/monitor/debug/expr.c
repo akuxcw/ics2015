@@ -7,7 +7,7 @@
 #include <regex.h>
 
 enum {
-	NOTYPE = 256, EQ, NB, MS, DR
+	NOTYPE = 256, EQ, NB, MS, DR, NEQ, AND_L, OR_L ,NOT_L
 
 	/* TODO: Add more token types */
 
@@ -29,7 +29,11 @@ static struct rule {
 	{"\\*", '*', 2},							// multiply
 	{"/", '/', 2},								// devide
 	{"0x[0-9a-fA-F]+|[0-9]+|\\$[a-z]+", NB, 10},	// number
+	{"!=", NEQ, 0},								// not equal
 	{"==", EQ, 0},								// equal
+	{"&&", AND_L, -1},							// logic and
+	{"||", OR_L, -1},							// logic or
+	{"\\!", NOT_L, 0},							// logic not
 	{"\\(", '(', 10},							// left par
 	{"\\)", ')', 10},							// right par
 	{"-", MS, 9},								// minus sign
@@ -89,7 +93,8 @@ static bool make_token(char *e) {
 				tokens[nr_token].level = rules[i].level;
 				switch(rules[i].token_type) {
 					case '+': case '(': case ')': case '/':	
-					case EQ: case MS: case DR: break;
+					case EQ: case MS: case DR: 
+					case AND_L: case OR_L: case NOT_L: break;
 					case '-': 
 						if (nr_token == 0 || tokens[nr_token-1].type != NB) {
 							tokens[nr_token].type = MS;
@@ -249,6 +254,17 @@ uint32_t eval(p, q) {
 			case DR:
 				val1 = eval(op + 1, q);
 				return swaddr_read(val1,4);
+			case AND_L:
+				val1 = eval(p, op - 1); 
+				val2 = eval(op + 1, q);
+				return val1 && val2;
+			case OR_L:
+				val1 = eval(p, op - 1); 
+				val2 = eval(op + 1, q);
+				return val1 || val2;
+			case NOT_L:
+				val1 = eval(op + 1, q);
+				return !val1;
 		default: assert(0);
 		}
 	//	panic("error");
