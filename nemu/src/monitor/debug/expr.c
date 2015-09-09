@@ -32,7 +32,7 @@ static struct rule {
 	{"!=", NEQ, 0},								// not equal
 	{"==", EQ, 0},								// equal
 	{"&&", AND_L, -1},							// logic and
-	{"||", OR_L, -1},							// logic or
+	{"\\|\\|", OR_L, -1},							// logic or
 	{"\\!", NOT_L, 0},							// logic not
 	{"\\(", '(', 10},							// left par
 	{"\\)", ')', 10},							// right par
