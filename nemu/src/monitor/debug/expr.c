@@ -195,6 +195,7 @@ uint32_t eval(p, q) {
 			case '-': return val1 - val2;
 			case '*': return val1 * val2;
 			case '/': return val1 / val2;
+			case EQ: return val1 == val2;
 		default: assert(0);
 		}
 	//	panic("error");
