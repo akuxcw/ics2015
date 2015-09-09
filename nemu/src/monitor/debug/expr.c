@@ -104,6 +104,7 @@ static bool make_token(char *e) {
 						break;
 					case NB: 
 						strncpy(tokens[nr_token].str, substr_start, substr_len);
+						tokens[nr_token].str[substr_len] = '\0';
 						break;
 					case NOTYPE: nr_token --; break;
 					default: panic("please implement me");
