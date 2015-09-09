@@ -185,10 +185,13 @@ uint32_t eval(p, q) {
 			flag = false;
 			return 0;
 		}
-		int value = 0,i;
+		int value = 0,i = 0;
 //		printf("str=%s\n,value=%d\n",tokens[p].str,value);
 		if (tokens[p].str[0] == '$') {
 			char *reg = tokens[p].str + 1;
+			if (strcmp(reg, "eip")) {
+				value = cpu.eip;
+			} else
 			for(i = 0; i < 8; ++ i) {
 				if (strcmp(regsl[i], reg) == 0) {
 					value = cpu.gpr[i]._32;
