@@ -101,7 +101,6 @@ static bool make_token(char *e) {
 				tokens[nr_token].type = rules[i].token_type;
 				tokens[nr_token].level = rules[i].level;
 				switch(rules[i].token_type) {
-					case NOTYPE:
 					case '+': case '(': case ')': case '/':	
 					case EQ: case MS: case DR: break;
 					case '-': 
@@ -119,7 +118,7 @@ static bool make_token(char *e) {
 					case NB: 
 						strncpy(tokens[nr_token].str, substr_start, substr_len);
 						break;
-
+					case NOTYPE: nr_token --;
 					default: panic("please implement me");
 				}
 				printf("***%d\n",tokens[nr_token].type);
@@ -132,7 +131,7 @@ static bool make_token(char *e) {
 			return false;
 		}
 	}
-	earse_NOTYPE();
+//	earse_NOTYPE();
 	return true; 
 }
 
