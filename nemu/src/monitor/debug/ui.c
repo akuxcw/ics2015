@@ -108,8 +108,8 @@ static int cmd_x(char *args) {
 		}
 		n = n * 10 + *(i) - '0';
 	}
-	swaddr_t addr = 0;
-	if (*(pos+1) == '0' && *(pos+2) == 'x') {
+	swaddr_t addr = expr(pos+1, &flag);
+/*	if (*(pos+1) == '0' && *(pos+2) == 'x') {
 	 	for(i = pos + 3; *(i) != '\0'; ++ i) {
 	 		if (*(i) <= '9' && *(i) >= '0') {
 				addr = addr * 16 + *(i) - '0';
@@ -120,7 +120,10 @@ static int cmd_x(char *args) {
 			}
 		}
 	 }
+*/	 
+	if (!flag) return 0;
 	int j;
+	printf("0x%08x: ",addr);
 	printf("0x");
 	for(j=0 ; j < 4 * n; ++ j) {
 		int value = swaddr_read(addr + j,1);
