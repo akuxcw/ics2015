@@ -173,7 +173,7 @@ uint32_t eval(p, q) {
 			return 0;
 		}
 		int value = 0,i;
-		if (tokens[p].str[1] != 'x') {
+		if (strlen(tokens[p].str) < 2 || tokens[p].str[1] != 'x') {
 			for(i = 0; i < strlen(tokens[p].str); ++ i) {
 				value = value * 10 + tokens[p].str[i] - '0';
 			}
