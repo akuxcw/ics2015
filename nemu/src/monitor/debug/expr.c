@@ -151,8 +151,8 @@ uint32_t select_op(int p, int q) {
 		if (in_par) continue;
 		if (tokens[i].level == min_level) return i;
 	}
-	panic("Can't find op!");
-//	flag = false;
+//	panic("Can't find op!");
+	flag = false;
 	return 0;
 
 }
