@@ -38,7 +38,7 @@ void init_regex() {
 	int i;
 	char error_msg[128];
 	int ret;
-
+	
 	for(i = 0; i < NR_REGEX; i ++) {
 		ret = regcomp(&re[i], rules[i].regex, REG_EXTENDED);
 		if(ret != 0) {
@@ -62,7 +62,7 @@ static bool make_token(char *e) {
 	regmatch_t pmatch;
 	
 	nr_token = 0;
-
+	printf("****%d\n",NR_REGEX);
 	while(e[position] != '\0') {
 		/* Try all rules one by one. */
 		for(i = 0; i < NR_REGEX; i ++) {
@@ -100,7 +100,7 @@ uint32_t expr(char *e, bool *success) {
 		*success = false;
 		return 0;
 	}
-
+	
 	/* TODO: Insert codes to evaluate the expression. */
 	panic("please implement me");
 	return 0;
