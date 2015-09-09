@@ -28,12 +28,12 @@ static struct rule {
 	{"-", '-', 1},						// minus
 	{"\\*", '*', 2},					// multiply
 	{"/", '/', 2},						// devide
-	{"[0-9]+", NB, 10},					// number
+	{"0x[0-9a-fA-F]+|[0-9]+", NB, 10},					// number
 	{"==", EQ, 0},						// equal
 	{"\\(", '(', 10},					// left par
 	{"\\)", ')', 10},					// right par
 	{"-", MS, 9},						// minus sign
-	{"\\*", DR, 9},						// dereference
+	{"\\*", DR, 8},						// dereference
 };
 
 #define NR_REGEX (sizeof(rules) / sizeof(rules[0]) )
