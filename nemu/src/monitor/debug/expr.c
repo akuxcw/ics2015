@@ -105,14 +105,14 @@ static bool make_token(char *e) {
 					case EQ: case MS: case DR: break;
 					case '-': 
 						if (nr_token == 0 || tokens[nr_token-1].type != NB) {
-							tokens[nr_token-1].type = MS;
-							tokens[nr_token-1].level = 9;
+							tokens[nr_token].type = MS;
+							tokens[nr_token].level = 9;
 						}
 						break;
 					case '*':
 						if (nr_token == 0 || tokens[nr_token-1].type != NB) {
-							tokens[nr_token-1].type = DR;
-							tokens[nr_token-1].level = 9;
+							tokens[nr_token].type = DR;
+							tokens[nr_token].level = 9;
 						}
 						break;
 					case NB: 
