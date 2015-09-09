@@ -92,26 +92,26 @@ static int cmd_info(char *args) {
 }
 
 static int cmd_x(char *args) {
-	if (args == NULL) {
+ 	if (args == NULL) {
 		flag = false; return 0;
-	}
+ 	}
 	char *pos = strchr(args, ' ');
-	if (pos == NULL) {
+ 	if (pos == NULL) {
 		flag = false; return 0;
 	}
 	//printf("%d\n",pos);
 	int n = 0;
 	char *i;
-	for(i = args; i != pos; ++ i) {
-		if (*(i)>'9' || *(i)<'0') {
+ 	for(i = args; i != pos; ++ i) {
+ 		if (*(i)>'9' || *(i)<'0') {
 			flag = false; return 0;
 		}
 		n = n * 10 + *(i) - '0';
 	}
 	swaddr_t addr = 0;
 	if (*(pos+1) == '0' && *(pos+2) == 'x') {
-		for(i = pos + 3; *(i) != '\0'; ++ i) {
-			if (*(i) <= '9' && *(i) >= '0') {
+	 	for(i = pos + 3; *(i) != '\0'; ++ i) {
+	 		if (*(i) <= '9' && *(i) >= '0') {
 				addr = addr * 16 + *(i) - '0';
 			}else if(*(i) >= 'a' && *(i) <= 'f') {
 				addr = addr * 16 + *(i) - 'a' + 10;
@@ -119,7 +119,7 @@ static int cmd_x(char *args) {
 				flag = false; return 0;
 			}
 		}
-	}
+	 }
 	int j;
 	printf("0x");
 	for(j=0 ; j < 4 * n; ++ j) {
@@ -128,6 +128,13 @@ static int cmd_x(char *args) {
 	}
 	printf("\n");
 //	printf("%d %d\n",n,add);
+	return 0;
+}
+
+static int cmd_p(char *args) {
+	int value=expr(args, &flag);
+	if (!flag) return 0;
+	printf("%d\n", value);
 	return 0;
 }
 
@@ -142,6 +149,7 @@ static struct {
 	{ "si [N]        ", "Run the program by N command,default by one", cmd_si},
 	{ "info SUBCMD   ", "SUBCMD=r print the value of register\n                       =w print the status of watch point", cmd_info },
 	{ "x N EXPR      ", "Calculate the value of EXPR, let the answer be the beginning of the memory Address and print the value in the following 4N byte with sixteen decimal", cmd_x },
+	{ "p EXPR        ", "Show the value of the EXPR", cmd_p },
 	/* TODO: Add more commands */
 
 };
