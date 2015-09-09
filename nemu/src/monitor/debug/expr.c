@@ -85,6 +85,8 @@ static bool make_token(char *e) {
 					case NOTYPE:
 					case '+':
 					case EQ:
+					case '(':
+					case ')':
 					case NB: strncpy(tokens[nr_token].str, substr_start, substr_len);
 							 break;
 
