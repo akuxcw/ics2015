@@ -7,7 +7,7 @@
 #include <regex.h>
 
 enum {
-	NOTYPE = 256, EQ
+	NOTYPE = 256, EQ, NB
 
 	/* TODO: Add more token types */
 
@@ -24,8 +24,8 @@ static struct rule {
 
 	{" +",	NOTYPE},				// spaces
 	{"\\+", '+'},					// plus
-	{"==", EQ}						// equal
-
+	{"==", EQ},						// equal
+	{"[0-9]+", NB}
 };
 
 #define NR_REGEX (sizeof(rules) / sizeof(rules[0]) )
@@ -67,7 +67,7 @@ static bool make_token(char *e) {
 		/* Try all rules one by one. */
 		for(i = 0; i < NR_REGEX; i ++) {
 			if(regexec(&re[i], e + position, 1, &pmatch, 0) == 0 && pmatch.rm_so == 0) {
-				printf("*****\n");
+			//	printf("*****\n");
 				char *substr_start = e + position;
 				int substr_len = pmatch.rm_eo;
 
