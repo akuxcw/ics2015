@@ -187,8 +187,6 @@ uint32_t eval(p, q) {
 	else {
 		int op = select_op(p, q); //the position of dominant operator in the token expression;
 		int val1, val2; 
-		val1 = eval(p, op - 1); 
-		val2 = eval(op + 1, q);
 		if (!flag) return 0;
 		switch(tokens[op].type) {
 			case '+': 
@@ -212,7 +210,6 @@ uint32_t eval(p, q) {
 				val2 = eval(op + 1, q);
 			 	return 	val1 == val2;
 			case MS: 
-				panic("Wrong");
 				val1 = eval(op + 1, q);
 				return - val1;
 			case DR:
