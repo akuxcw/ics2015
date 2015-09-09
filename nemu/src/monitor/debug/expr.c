@@ -111,20 +111,23 @@ static bool make_token(char *e) {
 	return true; 
 }
 
+extern bool flag;
+
 bool check_parentheses(int p, int q) {
 	if (tokens[p].type != '(' || tokens[q].type != ')') return false;
 	int i,num=0;
 	for(i = p + 1; i < q; ++ i) {
 		if (tokens[i].type == '(') num ++;
 		if (tokens[i].type == ')') num --;
-		printf("***%d\n",num);
-		if (num < 0) panic("%d %d",num,i);//return false;
+		if (num < 0) return false;
 	}
 	return num == 0;
 }
 
 uint32_t eval(p, q) {
 	if (p > q) {
+		flag = false;
+		return 0;
 		/* Bad expression */
 	}
 	else if (p == q) {
@@ -142,7 +145,7 @@ uint32_t eval(p, q) {
 		/* The expression is surrounded by a matched pair of parentheses. 
 		 * If that is the case, just throw away the parentheses.
 		 */
-		return eval(p + 1, q - 1); 
+		return eval(p + 1, q - 1);
 	}
 	else {
 //		op = the position of dominant operator in the token expression;
