@@ -105,13 +105,13 @@ static bool make_token(char *e) {
 					case '+': case '(': case ')': case '/':	
 					case EQ: case MS: case DR: break;
 					case '-': 
-						if (tokens[nr_token-1].type != NB) {
+						if (nr_token == 0 || tokens[nr_token-1].type != NB) {
 							tokens[nr_token-1].type = MS;
 							tokens[nr_token-1].level = 9;
 						}
 						break;
 					case '*':
-						if (tokens[nr_token-1].type != NB) {
+						if (nr_token == 0 || tokens[nr_token-1].type != NB) {
 							tokens[nr_token-1].type = DR;
 							tokens[nr_token-1].level = 9;
 						}
