@@ -24,13 +24,13 @@ static struct rule {
 
 	{" +",	NOTYPE},				// spaces
 	{"\\+", '+'},					// plus
-	{"	==", EQ},						// equal
+	{"-", '-'},
+	{"\\*", '*'},
+	{"/", '/'},
 	{"[0-9]+", NB},
+	{"	==", EQ},						// equal
 	{"\\(", '('},
 	{"\\)", ')'},
-	{"-", '-'},
-	{"/", '/'},
-	{"\\*", '*'}
 
 };
 
@@ -84,7 +84,7 @@ static bool make_token(char *e) {
 				 * to record the token in the array ``tokens''. For certain 
 				 * types of tokens, some extra actions should be performed.
 				 */
-				tokens[nr_token].type = i;
+				tokens[nr_token].type = rules[i].token_type;
 				switch(rules[i].token_type) {
 					case NOTYPE:
 					case '+': case '-': case '*': case '/':
@@ -111,12 +111,61 @@ static bool make_token(char *e) {
 	return true; 
 }
 
+bool check_parentheses(int p, int q) {
+	if (tokens[p].type != '(' || tokens[q].type != ')') return false;
+	int i,num=0;
+	for(i = p + 1; i < q; ++ i) {
+		if (tokens[i].type == '(') num ++;
+		if (tokens[i].type == ')') num --;
+		if (num < 0) return false;
+	}
+	return num == 0;
+}
+
+uint32_t eval(p, q) {
+	if (p > q) {
+		/* Bad expression */
+	}
+	else if (p == q) {
+		/* Single token.
+		 * For now this token should be a number. 
+		 * Return the value of the number.
+		 */ 
+		int value = 0,i;
+		for(i = 0; i < strlen(tokens[p].str); ++ i) {
+			value = value * 10 + tokens[p].str[i] - '0';
+		}
+		return value;
+	}
+	else if(check_parentheses(p, q) == true) {
+		/* The expression is surrounded by a matched pair of parentheses. 
+		 * If that is the case, just throw away the parentheses.
+		 */
+		return eval(p + 1, q - 1); 
+	}
+	else {
+//		op = the position of dominant operator in the token expression;
+//		val1 = eval(p, op - 1);
+//		val2 = eval(op + 1, q);
+//		switch(op_type) {
+//			case '+': return val1 + val2;
+//			case '-': /* ... */
+//			case '*': /* ... */
+//			case '/': /* ... */
+//		default: assert(0);
+//		}
+		panic("error");
+		return 0;
+	}
+	return 0;
+}
+
 uint32_t expr(char *e, bool *success) {
 	if(!make_token(e)) {
 		*success = false;
 		return 0;
 	}
-	
+	return eval(0,nr_token-1);
 	/* TODO: Insert codes to evaluate the expression. */
 	panic("please implement me");
 	return 0;
