@@ -16,21 +16,22 @@ enum {
 static struct rule {
 	char *regex;
 	int token_type;
+	int level;
 } rules[] = {
 
 	/* TODO: Add more rules.
 	 * Pay attention to the precedence level of different rules.
 	 */
 
-	{" +",	NOTYPE},				// spaces
-	{"\\+", '+'},					// plus
-	{"-", '-'},
-	{"\\*", '*'},
-	{"/", '/'},
-	{"[0-9]+", NB},
-	{"	==", EQ},						// equal
-	{"\\(", '('},
-	{"\\)", ')'},
+	{" +",	NOTYPE, 10},				// spaces
+	{"\\+", '+', 1},					// plus
+	{"-", '-', 1},
+	{"\\*", '*', 2},
+	{"/", '/', 2},
+	{"[0-9]+", NB, 10},
+	{"	==", EQ, 0},						// equal
+	{"\\(", '(', 10},
+	{"\\)", ')', 10},
 
 };
 
@@ -58,6 +59,7 @@ void init_regex() {
 typedef struct token {
 	int type;
 	char str[32];
+	int level;
 } Token;
 
 Token tokens[32];
@@ -85,6 +87,7 @@ static bool make_token(char *e) {
 				 * types of tokens, some extra actions should be performed.
 				 */
 				tokens[nr_token].type = rules[i].token_type;
+				tokens[nr_token].level = rules[i].level;
 				switch(rules[i].token_type) {
 					case NOTYPE:
 					case '+': case '-': case '*': case '/':
@@ -124,7 +127,26 @@ bool check_parentheses(int p, int q) {
 	return num == 0;
 }
 
+uint32_t select_op(int p, int q) {
+	int i, min_level = 10;
+	for(i = p; i <= q; ++ i) {
+		if (tokens[i].level < min_level) min_level = tokens[i].level;
+	}
+	int in_par = 0;
+	for(i = q; i >= p; -- i) {
+		if (tokens[i].type == '(') in_par ++;
+		if (tokens[i].type == ')') in_par --;		
+		if (in_par) continue;
+		if (tokens[i].level == min_level) return i;
+	}
+	panic("Can't find op!");
+//	flag = false;
+	return 0;
+
+}
+
 uint32_t eval(p, q) {
+	if (!flag) return 0;
 	if (p > q) {
 		flag = false;
 		return 0;
@@ -148,17 +170,18 @@ uint32_t eval(p, q) {
 		return eval(p + 1, q - 1);
 	}
 	else {
-//		op = the position of dominant operator in the token expression;
-//		val1 = eval(p, op - 1);
-//		val2 = eval(op + 1, q);
-//		switch(op_type) {
-//			case '+': return val1 + val2;
-//			case '-': /* ... */
-//			case '*': /* ... */
-//			case '/': /* ... */
-//		default: assert(0);
-//		}
-		panic("error");
+		int op = select_op(p, q); //the position of dominant operator in the token expression;
+		int val1 = eval(p, op - 1);
+		int val2 = eval(op + 1, q);
+		if (!flag) return 0;
+		switch(tokens[op].type) {
+			case '+': return val1 + val2;
+			case '-': return val1 - val2;
+			case '*': return val1 * val2;
+			case '/': return val1 / val2;
+		default: assert(0);
+		}
+	//	panic("error");
 		return 0;
 	}
 	return 0;
