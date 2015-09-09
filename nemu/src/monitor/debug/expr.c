@@ -159,7 +159,7 @@ uint32_t select_op(int p, int q) {
 uint32_t eval(p, q) {
 	if (!flag) return 0;
 	if (p > q) {
-		panic("No number!");
+//		panic("No number!");
 		flag = false;
 		return 0;
 		/* Bad expression */
@@ -174,7 +174,7 @@ uint32_t eval(p, q) {
 			return 0;
 		}
 		int value = 0,i;
-		printf("str=%s\n,value=%d\n",tokens[p].str,value);
+//		printf("str=%s\n,value=%d\n",tokens[p].str,value);
 		if (strlen(tokens[p].str) < 2 || tokens[p].str[1] != 'x') {
 			for(i = 0; i < strlen(tokens[p].str); ++ i) {
 				value = value * 10 + tokens[p].str[i] - '0';
@@ -189,7 +189,7 @@ uint32_t eval(p, q) {
 					value = value * 16 + tokens[p].str[i] - 'a' + 10;
 			}
 		}
-		printf("**********%d************\n",value);
+//		printf("**********%d************\n",value);
 		return value;
 	}
 	else if(check_parentheses(p, q) == true) {
