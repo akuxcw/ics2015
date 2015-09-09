@@ -149,7 +149,7 @@ uint32_t select_op(int p, int q) {
 		if (in_par) continue;
 		if (tokens[i].level == min_level) return i;
 	}
-	panic("Can't find op!");
+//	panic("Can't find op!");
 	flag = false;
 	return 0;
 
@@ -158,6 +158,7 @@ uint32_t select_op(int p, int q) {
 uint32_t eval(p, q) {
 	if (!flag) return 0;
 	if (p > q) {
+		panic("No number!");
 		flag = false;
 		return 0;
 		/* Bad expression */
