@@ -66,19 +66,6 @@ typedef struct token {
 Token tokens[32];
 int nr_token;
 
-void earse_NOTYPE() {
-	int i,j;
-	for(i = 0; i < nr_token; ++i) {
-		if(tokens[i].type == NOTYPE) {
-			for(j = i; j < nr_token; ++j) {
-				tokens[j]=tokens[j+1];
-			}
-			nr_token --;
-			i --;
-		}
-	}
-}
-
 static bool make_token(char *e) {
 	int position = 0;
 	int i;
@@ -121,7 +108,7 @@ static bool make_token(char *e) {
 					case NOTYPE: nr_token --; break;
 					default: panic("please implement me");
 				}
-				printf("***%d\n",tokens[nr_token].type);
+			//	printf("***%d\n",tokens[nr_token].type);
 				nr_token ++;
 				break;
 			}
@@ -131,7 +118,6 @@ static bool make_token(char *e) {
 			return false;
 		}
 	}
-//	earse_NOTYPE();
 	return true; 
 }
 
