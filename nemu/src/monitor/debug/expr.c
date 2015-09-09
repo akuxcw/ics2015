@@ -7,7 +7,7 @@
 #include <regex.h>
 
 enum {
-	NOTYPE = 256, EQ, NB
+	NOTYPE = 256, EQ, NB, MS, DR
 
 	/* TODO: Add more token types */
 
@@ -25,14 +25,15 @@ static struct rule {
 
 	{" +",	NOTYPE, 10},				// spaces
 	{"\\+", '+', 1},					// plus
-	{"-", '-', 1},
-	{"\\*", '*', 2},
-	{"/", '/', 2},
-	{"[0-9]+", NB, 10},
+	{"-", '-', 1},						// minus
+	{"\\*", '*', 2},					// multiply
+	{"/", '/', 2},						// devide
+	{"[0-9]+", NB, 10},					// number
 	{"==", EQ, 0},						// equal
-	{"\\(", '(', 10},
-	{"\\)", ')', 10},
-
+	{"\\(", '(', 10},					// left par
+	{"\\)", ')', 10},					// right par
+	{"-", MS, 9},						// minus sign
+	{"\\*", DR, 9},						// dereference
 };
 
 #define NR_REGEX (sizeof(rules) / sizeof(rules[0]) )
@@ -101,12 +102,23 @@ static bool make_token(char *e) {
 				tokens[nr_token].level = rules[i].level;
 				switch(rules[i].token_type) {
 					case NOTYPE:
-					case '+': case '-': case '*': case '/':
-					case EQ:
-					case '(':
-					case ')':
-					case NB: strncpy(tokens[nr_token].str, substr_start, substr_len);
-							 break;
+					case '+': case '(': case ')': case '/':	
+					case EQ: case MS: case DR: break;
+					case '-': 
+						if (tokens[nr_token-1].type != NB) {
+							tokens[nr_token-1].type = MS;
+							tokens[nr_token-1].level = 9;
+						}
+						break;
+					case '*':
+						if (tokens[nr_token-1].type != NB) {
+							tokens[nr_token-1].type = DR;
+							tokens[nr_token-1].level = 9;
+						}
+						break;
+					case NB: 
+						strncpy(tokens[nr_token].str, substr_start, substr_len);
+						break;
 
 					default: panic("please implement me");
 				}
@@ -187,15 +199,37 @@ uint32_t eval(p, q) {
 	}
 	else {
 		int op = select_op(p, q); //the position of dominant operator in the token expression;
-		int val1 = eval(p, op - 1);
-		int val2 = eval(op + 1, q);
+		int val1, val2; 
+		val1 = eval(p, op - 1); 
+		val2 = eval(op + 1, q);
 		if (!flag) return 0;
 		switch(tokens[op].type) {
-			case '+': return val1 + val2;
-			case '-': return val1 - val2;
-			case '*': return val1 * val2;
-			case '/': return val1 / val2;
-			case EQ: return val1 == val2;
+			case '+': 
+				val1 = eval(p, op - 1); 
+				val2 = eval(op + 1, q);
+				return val1 + val2;
+			case '-': 
+				val1 = eval(p, op - 1); 
+				val2 = eval(op + 1, q);
+				return val1 - val2;
+			case '*': 
+				val1 = eval(p, op - 1); 
+				val2 = eval(op + 1, q);
+				return val1 * val2;
+			case '/': 
+				val1 = eval(p, op - 1); 
+				val2 = eval(op + 1, q);
+				return val1 / val2;
+			case EQ:
+				val1 = eval(p, op - 1); 
+				val2 = eval(op + 1, q);
+			 	return 	val1 == val2;
+			case MS: 
+				val1 = eval(op + 1, q);
+				return - val1;
+			case DR:
+				val1 = eval(op + 1, q);
+				return swaddr_read(val1,4);
 		default: assert(0);
 		}
 	//	panic("error");
