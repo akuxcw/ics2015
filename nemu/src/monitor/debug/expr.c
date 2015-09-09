@@ -196,7 +196,6 @@ uint32_t eval(p, q) {
 				val2 = eval(op + 1, q);
 				return val1 + val2;
 			case '-':
-				panic("Wrong");
 				val1 = eval(p, op - 1); 
 				val2 = eval(op + 1, q);
 				return val1 - val2;
@@ -213,6 +212,7 @@ uint32_t eval(p, q) {
 				val2 = eval(op + 1, q);
 			 	return 	val1 == val2;
 			case MS: 
+				panic("Wrong");
 				val1 = eval(op + 1, q);
 				return - val1;
 			case DR:
