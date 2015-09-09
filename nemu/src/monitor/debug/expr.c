@@ -117,7 +117,7 @@ bool check_parentheses(int p, int q) {
 	for(i = p + 1; i < q; ++ i) {
 		if (tokens[i].type == '(') num ++;
 		if (tokens[i].type == ')') num --;
-		if (num < 0) return false;
+		if (num < 0) panic("HERE");//return false;
 	}
 	return num == 0;
 }
