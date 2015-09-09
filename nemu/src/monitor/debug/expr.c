@@ -186,7 +186,7 @@ uint32_t eval(p, q) {
 			char *reg = tokens[p].str + 1;
 			for(i = 0; i < 8; ++ i) {
 				if (strcmp(regsl[i], reg) == 0) {
-					value = cpu.gpr[i]._32 == 0;
+					value = cpu.gpr[i]._32;
 					break;
 				}
 			}
