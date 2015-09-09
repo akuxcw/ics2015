@@ -151,7 +151,6 @@ uint32_t select_op(int p, int q) {
 		if (tokens[i].level == min_level) {
 			if (tokens[i].level == 9) {
 				while(i > p && tokens[i-1].level == 9) {
-					printf("%d",i);
 					i --;
 				}
 			}
