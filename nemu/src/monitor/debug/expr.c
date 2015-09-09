@@ -283,7 +283,7 @@ uint32_t eval(p, q) {
 				return val1 | val2;
 			case NOT:
 				val1 = eval(op + 1, q);
-			return ~val1;
+				return ~val1;
 			case MOD:
 				val1 = eval(p, op - 1); 
 				val2 = eval(op + 1, q);
