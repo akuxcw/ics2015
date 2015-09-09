@@ -189,7 +189,7 @@ uint32_t eval(p, q) {
 //		printf("str=%s\n,value=%d\n",tokens[p].str,value);
 		if (tokens[p].str[0] == '$') {
 			char *reg = tokens[p].str + 1;
-			if (strcmp(reg, "eip")) {
+			if (strcmp(reg, "eip") == 0) {
 				value = cpu.eip;
 			} else
 			for(i = 0; i < 8; ++ i) {
