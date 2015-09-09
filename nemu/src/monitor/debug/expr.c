@@ -118,7 +118,7 @@ static bool make_token(char *e) {
 					case NB: 
 						strncpy(tokens[nr_token].str, substr_start, substr_len);
 						break;
-					case NOTYPE: nr_token --;
+					case NOTYPE: nr_token --; break;
 					default: panic("please implement me");
 				}
 				printf("***%d\n",tokens[nr_token].type);
