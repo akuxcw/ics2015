@@ -20,4 +20,21 @@ void init_wp_list() {
 
 /* TODO: Implement the functionality of watchpoint */
 
+void new_wp(char *args) {
+	WP *new_ = free_;
+	if (head == NULL) {
+		head = new_;
+		new_->NO = 1;
+	} else {
+		WP *tail = head;
+		while (tail->next) tail = tail->next;
+		tail->next = new_;
+		new_->NO = tail->NO + 1;
+	}
+	free_ = free_->next;
+	new_->next = NULL;
+	strcpy(new_->str, args);
+	new_->str[strlen(args)] = '\0';
+}
+
 
