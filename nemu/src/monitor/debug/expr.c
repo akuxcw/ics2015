@@ -65,6 +65,19 @@ typedef struct token {
 Token tokens[32];
 int nr_token;
 
+void earse_NOTYPE() {
+	int i,j;
+	for(i = 0; i < nr_token; ++i) {
+		if(tokens[i].type == NOTYPE) {
+			for(j = i; j < nr_token; ++j) {
+				tokens[j]=tokens[j+1];
+			}
+			nr_token --;
+			i --;
+		}
+	}
+}
+
 static bool make_token(char *e) {
 	int position = 0;
 	int i;
@@ -110,7 +123,7 @@ static bool make_token(char *e) {
 			return false;
 		}
 	}
-
+	earse_NOTYPE();
 	return true; 
 }
 
@@ -156,7 +169,7 @@ uint32_t eval(p, q) {
 		/* Single token.
 		 * For now this token should be a number. 
 		 * Return the value of the number.
-		 */ 
+		 */
 		int value = 0,i;
 		for(i = 0; i < strlen(tokens[p].str); ++ i) {
 			value = value * 10 + tokens[p].str[i] - '0';
