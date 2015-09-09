@@ -24,8 +24,10 @@ static struct rule {
 
 	{" +",	NOTYPE},				// spaces
 	{"\\+", '+'},					// plus
-	{"==", EQ},						// equal
-	{"[0-9]+", NB}
+	{"	==", EQ},						// equal
+	{"[0-9]+", NB},
+	{"(", '('},
+	{")", ')'}
 };
 
 #define NR_REGEX (sizeof(rules) / sizeof(rules[0]) )
@@ -89,7 +91,7 @@ static bool make_token(char *e) {
 					default: panic("please implement me");
 				}
 				nr_token ++;
-				printf("****************%s****************\n", tokens[nr_token-1].str);
+//				printf("****************%s****************\n", tokens[nr_token-1].str);
 				break;
 			}
 		}
