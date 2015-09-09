@@ -23,17 +23,17 @@ static struct rule {
 	 * Pay attention to the precedence level of different rules.
 	 */
 
-	{" +",	NOTYPE, 10},				// spaces
-	{"\\+", '+', 1},					// plus
-	{"-", '-', 1},						// minus
-	{"\\*", '*', 2},					// multiply
-	{"/", '/', 2},						// devide
-	{"0x[0-9a-fA-F]+|[0-9]+", NB, 10},					// number
-	{"==", EQ, 0},						// equal
-	{"\\(", '(', 10},					// left par
-	{"\\)", ')', 10},					// right par
-	{"-", MS, 9},						// minus sign
-	{"\\*", DR, 9},						// dereference
+	{" +",	NOTYPE, 10},						// spaces
+	{"\\+", '+', 1},							// plus
+	{"-", '-', 1},								// minus
+	{"\\*", '*', 2},							// multiply
+	{"/", '/', 2},								// devide
+	{"0x[0-9a-fA-F]+|[0-9]+|$[a-z]", NB, 10},	// number
+	{"==", EQ, 0},								// equal
+	{"\\(", '(', 10},							// left par
+	{"\\)", ')', 10},							// right par
+	{"-", MS, 9},								// minus sign
+	{"\\*", DR, 9},								// dereference
 };
 
 #define NR_REGEX (sizeof(rules) / sizeof(rules[0]) )
@@ -182,6 +182,19 @@ uint32_t eval(p, q) {
 		}
 		int value = 0,i;
 //		printf("str=%s\n,value=%d\n",tokens[p].str,value);
+		if (tokens[p].str[0] == '$') {
+			char *reg = tokens[p].str + 1;
+			for(i = 0; i < 8; ++ i) {
+				if (strcmp(regsl[i], reg) == 0) {
+					value = cpu.gpr[i]._32 == 0;
+					break;
+				}
+			}
+			if (i == 8) {
+				flag = false;
+				return 0;
+			}
+		} else 
 		if (strlen(tokens[p].str) < 2 || tokens[p].str[1] != 'x') {
 			for(i = 0; i < strlen(tokens[p].str); ++ i) {
 				value = value * 10 + tokens[p].str[i] - '0';
