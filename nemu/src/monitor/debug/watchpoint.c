@@ -37,7 +37,9 @@ void new_wp(char *args) {
 	new_->str[strlen(args)] = '\0';
 }
 
-void free_wp(WP *wp) {
+void free_wp(int n) {
+	WP *wp = head;
+	while (n --) wp = wp->next;
 	WP *tail = free_;
 	if(free_ == NULL) {
 		free_ = wp;
@@ -49,5 +51,10 @@ void free_wp(WP *wp) {
 	while (p->next != wp) p = p->next;
 	p->next = wp->next;
 	wp->next = NULL;
+	p = p->next;
+	while (p != NULL) {
+		p->NO --;
+		p = p->next;
+	}
 }
 

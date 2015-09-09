@@ -142,6 +142,21 @@ static int cmd_p(char *args) {
 	return 0;
 }
 
+extern void new_wp(char *args);
+extern void free_wp(int n);
+
+static int cmd_w(char *args) {
+	new_wp(args);
+	return 0;
+}
+
+static int cmd_d(char *args) {
+	int value = expr(args, &flag) - 1;
+	if (!flag) return 0;
+	free_wp(value);
+	return 0;
+}
+
 static struct {
 	char *name;
 	char *description;
@@ -154,6 +169,8 @@ static struct {
 	{ "info SUBCMD   ", "SUBCMD=r print the value of register\n                       =w print the status of watch point", cmd_info },
 	{ "x N EXPR      ", "Calculate the value of EXPR, let the answer be the beginning of the memory Address and print the value in the following 4N byte with sixteen decimal", cmd_x },
 	{ "p EXPR        ", "Show the value of the EXPR", cmd_p },
+	{ "w EXPR        ", "When the EXPR's value changes, the program will stop", cmd_w },
+	{ "d N           ", "Delete the Nth watchpoint", cmd_d},
 	/* TODO: Add more commands */
 
 };
