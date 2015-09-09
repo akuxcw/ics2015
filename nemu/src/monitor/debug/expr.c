@@ -142,10 +142,13 @@ bool check_parentheses(int p, int q) {
 
 uint32_t select_op(int p, int q) {
 	int i, min_level = 10;
+	int in_par = 0;
 	for(i = p; i <= q; ++ i) {
+		if (tokens[i].type == '(') in_par ++;
+		if (tokens[i].type == ')') in_par --;		
+		if (in_par) continue;
 		if (tokens[i].level < min_level) min_level = tokens[i].level;
 	}
-	int in_par = 0;
 	for(i = q; i >= p; -- i) {
 		if (tokens[i].type == '(') in_par ++;
 		if (tokens[i].type == ')') in_par --;		
