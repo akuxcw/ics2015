@@ -150,7 +150,7 @@ uint32_t select_op(int p, int q) {
 		if (in_par) continue;
 		if (tokens[i].level == min_level) {
 			if (tokens[i].level == 9) {
-				while(i && tokens[i-1].level == 9) i --;
+				while(i > 0 && tokens[i-1].level == 9) i --;
 			}
 			return i;
 		}
