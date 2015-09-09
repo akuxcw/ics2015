@@ -88,7 +88,8 @@ static bool make_token(char *e) {
 
 					default: panic("please implement me");
 				}
-
+				nr_token ++;
+				printf("%s\n", tokens[nr_token-1].str);
 				break;
 			}
 		}
