@@ -27,7 +27,7 @@ void new_wp(char *args) {
 		new_->NO = 1;
 	} else {
 		WP *tail = head;
-		while (tail->next) tail = tail->next;
+		while (tail->next != NULL) tail = tail->next;
 		tail->next = new_;
 		new_->NO = tail->NO + 1;
 	}
@@ -37,4 +37,17 @@ void new_wp(char *args) {
 	new_->str[strlen(args)] = '\0';
 }
 
+void free_wp(WP *wp) {
+	WP *tail = free_;
+	if(free_ == NULL) {
+		free_ = wp;
+	} else {
+		while (tail->next != NULL) tail = tail->next;
+		tail->next = wp;
+	}
+	WP *p = head;
+	while (p->next != wp) p = p->next;
+	p->next = wp->next;
+	wp->next = NULL;
+}
 
