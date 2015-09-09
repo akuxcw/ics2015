@@ -7,7 +7,7 @@
 #include <regex.h>
 
 enum {
-	NOTYPE = 256, EQ, NB, MS, DR, NEQ, AND_L, OR_L ,NOT_L
+	NOTYPE = 256, EQ, NB, MS, DR, NEQ, AND_L, OR_L ,NOT_L, MOD, AND, OR ,NOT
 
 	/* TODO: Add more token types */
 
@@ -24,16 +24,20 @@ static struct rule {
 	 */
 
 	{" +",	NOTYPE, 10},						// spaces
-	{"\\+", '+', 1},							// plus
-	{"-", '-', 1},								// minus
-	{"\\*", '*', 2},							// multiply
-	{"/", '/', 2},								// devide
+	{"\\+", '+', 4},							// plus
+	{"-", '-', 4},								// minus
+	{"\\*", '*', 5},							// multiply
+	{"/", '/', 5},								// devide
+	{"%", MOD, 5},								// mod
 	{"0x[0-9a-fA-F]+|[0-9]+|\\$[a-z]+", NB, 10},	// number
 	{"!=", NEQ, 0},								// not equal
 	{"==", EQ, 0},								// equal
 	{"&&", AND_L, -1},							// logic and
-	{"\\|\\|", OR_L, -1},							// logic or
+	{"\\|\\|", OR_L, -1},						// logic or
 	{"\\!", NOT_L, 0},							// logic not
+	{"&", AND, 2},								// bit and
+	{"\\|", OR, 1},								// bit or
+	{"~", NOT, 3},								// bit not
 	{"\\(", '(', 10},							// left par
 	{"\\)", ')', 10},							// right par
 	{"-", MS, 9},								// minus sign
@@ -94,7 +98,8 @@ static bool make_token(char *e) {
 				switch(rules[i].token_type) {
 					case '+': case '(': case ')': case '/':	
 					case EQ: case MS: case DR: 
-					case AND_L: case OR_L: case NOT_L: break;
+					case AND_L: case OR_L: case NOT_L:
+					case AND: case OR: case NOT: case MOD: break;
 					case '-': 
 						if (nr_token == 0 || tokens[nr_token-1].type != NB) {
 							tokens[nr_token].type = MS;
@@ -268,6 +273,21 @@ uint32_t eval(p, q) {
 			case NOT_L:
 				val1 = eval(op + 1, q);
 				return !val1;
+			case AND:
+				val1 = eval(p, op - 1); 
+				val2 = eval(op + 1, q);
+				return val1 & val2;
+			case OR:
+				val1 = eval(p, op - 1); 
+				val2 = eval(op + 1, q);
+				return val1 | val2;
+			case NOT:
+				val1 = eval(op + 1, q);
+			return ~val1;
+			case MOD:
+				val1 = eval(p, op - 1); 
+				val2 = eval(op + 1, q);
+				return val1 % val2;
 		default: assert(0);
 		}
 	//	panic("error");

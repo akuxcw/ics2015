@@ -125,7 +125,7 @@ static int cmd_x(char *args) {
 	int j;
 	printf("0x%08x: ",addr);
 	printf("0x");
-	for(j=0 ; j < 4 * n; ++ j) {
+	for(j = 0; j < 4 * n; ++ j) {
 		int value = swaddr_read(addr + j,1);
 		printf(value < 16 ? "0%x" : "%x", value);
 		if ((j + 1) % 4 == 0) printf(" ");
@@ -136,7 +136,7 @@ static int cmd_x(char *args) {
 }
 
 static int cmd_p(char *args) {
-	int value=expr(args, &flag);
+	int value = expr(args, &flag);
 	if (!flag) return 0;
 	printf("%d\n", value);
 	return 0;
@@ -205,7 +205,7 @@ void ui_mainloop() {
 #endif
 
 		int i;
-		flag=true;
+		flag = true;
 		for(i = 0; i < NR_CMD; i ++) {
 			if(strstr(cmd_table[i].name, cmd) == cmd_table[i].name) {
 				if(cmd_table[i].handler(args) < 0) { return; }
