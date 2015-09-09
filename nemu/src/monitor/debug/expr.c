@@ -187,6 +187,7 @@ uint32_t eval(p, q) {
 					value = value * 16 + tokens[p].str[i] - 'a' + 10;
 			}
 		}
+		printf("**********%d************\n",value);
 		return value;
 	}
 	else if(check_parentheses(p, q) == true) {
