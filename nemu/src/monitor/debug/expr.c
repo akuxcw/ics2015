@@ -87,7 +87,7 @@ static bool make_token(char *e) {
 				tokens[nr_token].type = i;
 				switch(rules[i].token_type) {
 					case NOTYPE:
-					case '+':
+					case '+': case '-': case '*': case '/':
 					case EQ:
 					case '(':
 					case ')':
