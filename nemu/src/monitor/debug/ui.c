@@ -128,6 +128,7 @@ static int cmd_x(char *args) {
 	for(j=0 ; j < 4 * n; ++ j) {
 		int value = swaddr_read(addr + j,1);
 		printf(value < 16 ? "0%x" : "%x", value);
+		if ((j + 1) % 4 == 0) printf(" ");
 	}
 	printf("\n");
 //	printf("%d %d\n",n,add);
