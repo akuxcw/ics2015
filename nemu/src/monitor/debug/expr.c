@@ -173,8 +173,19 @@ uint32_t eval(p, q) {
 			return 0;
 		}
 		int value = 0,i;
-		for(i = 0; i < strlen(tokens[p].str); ++ i) {
-			value = value * 10 + tokens[p].str[i] - '0';
+		if (tokens[p].str[1] != 'x') {
+			for(i = 0; i < strlen(tokens[p].str); ++ i) {
+				value = value * 10 + tokens[p].str[i] - '0';
+			}
+		} else {
+			for(i = 2; i < strlen(tokens[p].str); ++ i) {
+				if(tokens[p].str[i] >= '0' && tokens[p].str[i] <= '9')
+					value = value * 16 + tokens[p].str[i] - '0';
+				if(tokens[p].str[i] >= 'A' && tokens[p].str[i] <= 'F')
+					value = value * 16 + tokens[p].str[i] - 'A' + 10;
+				if(tokens[p].str[i] >= 'a' && tokens[p].str[i] <= 'f')
+					value = value * 16 + tokens[p].str[i] - 'a' + 10;
+			}
 		}
 		return value;
 	}
