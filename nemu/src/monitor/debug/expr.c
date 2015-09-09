@@ -117,6 +117,7 @@ bool check_parentheses(int p, int q) {
 	for(i = p + 1; i < q; ++ i) {
 		if (tokens[i].type == '(') num ++;
 		if (tokens[i].type == ')') num --;
+		printf("***%d\n",num);
 		if (num < 0) panic("%d %d",num,i);//return false;
 	}
 	return num == 0;
