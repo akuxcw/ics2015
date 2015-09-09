@@ -28,7 +28,7 @@ static struct rule {
 	{"-", '-', 1},								// minus
 	{"\\*", '*', 2},							// multiply
 	{"/", '/', 2},								// devide
-	{"0x[0-9a-fA-F]+|[0-9]+|$[a-z]", NB, 10},	// number
+	{"0x[0-9a-fA-F]+|[0-9]+|$[a-z]+", NB, 10},	// number
 	{"==", EQ, 0},								// equal
 	{"\\(", '(', 10},							// left par
 	{"\\)", ')', 10},							// right par
