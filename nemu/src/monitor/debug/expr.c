@@ -91,10 +91,8 @@ static bool make_token(char *e) {
 			//	printf("*****\n");
 				char *substr_start = e + position;
 				int substr_len = pmatch.rm_eo;
-
-				Log("match rules[%d] = \"%s\" at position %d with len %d: %.*s", i, rules[i].regex, position, substr_len, substr_len, substr_start);
+		//		Log("match rules[%d] = \"%s\" at position %d with len %d: %.*s", i, rules[i].regex, position, substr_len, substr_len, substr_start);
 				position += substr_len;
-
 				/* TODO: Now a new token is recognized with rules[i]. Add codes
 				 * to record the token in the array ``tokens''. For certain 
 				 * types of tokens, some extra actions should be performed.
@@ -113,11 +111,9 @@ static bool make_token(char *e) {
 					default: panic("please implement me");
 				}
 				nr_token ++;
-//				printf("****************%s****************\n", tokens[nr_token-1].str);
 				break;
 			}
 		}
-
 		if(i == NR_REGEX) {
 			printf("no match at position %d\n%s\n%*.s^\n", position, e, position, "");
 			return false;
@@ -173,6 +169,10 @@ uint32_t eval(p, q) {
 		 * For now this token should be a number. 
 		 * Return the value of the number.
 		 */
+		if (tokens[p].type != NB) {
+			flag = false;
+			return 0;
+		}
 		int value = 0,i;
 		for(i = 0; i < strlen(tokens[p].str); ++ i) {
 			value = value * 10 + tokens[p].str[i] - '0';
