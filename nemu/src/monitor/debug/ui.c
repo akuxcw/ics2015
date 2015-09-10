@@ -154,6 +154,7 @@ static int cmd_w(char *args) {
 
 static int cmd_d(char *args) {
 	int value = expr(args, &flag) - 1;
+	printf("***\n");
 	if (!flag) return 0;
 	free_wp(value);
 	return 0;
