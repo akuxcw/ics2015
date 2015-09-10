@@ -88,7 +88,8 @@ void print_wp(int op) {
 	} else {
 		WP *p = head;
 		while (p != NULL) {
-			printf("#%d: %s = %d\n", p->NO, p->str, p->last_value);
+			printf(p->str[0] == '$'?
+					"#%d: %s = 0x%x\n":"#%d: %s = %d\n", p->NO, p->str, p->last_value);
 			p = p->next;
 		}
 	}
