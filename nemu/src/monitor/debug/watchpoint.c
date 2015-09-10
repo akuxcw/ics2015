@@ -85,7 +85,7 @@ void check_wp(int *nemu_state) {
 
 void print_wp(int op) {
 	if (head == NULL) {
-		if(op!=DELETE)printf("There is no watchpoint!\n");
+		if (op != DELETE) printf("There is no watchpoint!\n");
 	} else {
 		WP *p = head;
 		while (p != NULL) {
