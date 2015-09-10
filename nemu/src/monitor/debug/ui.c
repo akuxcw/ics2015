@@ -86,7 +86,7 @@ static int cmd_info(char *args) {
 		printf("%-6s0x%-10x\n", "eip", cpu.eip);
 	}else 
 	if (args[0] == 'w') {
-		print_wp();
+		print_wp(0);
 	}
 	else {
 		flag = false; return 0;
@@ -102,7 +102,6 @@ static int cmd_x(char *args) {
  	if (pos == NULL) {
 		flag = false; return 0;
 	}
-	//printf("%d\n",pos);
 	int n = 0;
 	char *i;
  	for(i = args; i != pos; ++ i) {
@@ -112,18 +111,6 @@ static int cmd_x(char *args) {
 		n = n * 10 + *(i) - '0';
 	}
 	swaddr_t addr = expr(pos+1, &flag);
-/*	if (*(pos+1) == '0' && *(pos+2) == 'x') {
-	 	for(i = pos + 3; *(i) != '\0'; ++ i) {
-	 		if (*(i) <= '9' && *(i) >= '0') {
-				addr = addr * 16 + *(i) - '0';
-			}else if(*(i) >= 'a' && *(i) <= 'f') {
-				addr = addr * 16 + *(i) - 'a' + 10;
-			}else {
-				flag = false; return 0;
-			}
-		}
-	 }
-*/	 
 	if (!flag) return 0;
 	int j;
 	printf("0x%08x: ",addr);
@@ -134,7 +121,6 @@ static int cmd_x(char *args) {
 		if ((j + 1) % 4 == 0) printf(" ");
 	}
 	printf("\n");
-//	printf("%d %d\n",n,add);
 	return 0;
 }
 
@@ -152,7 +138,7 @@ static int cmd_w(char *args) {
 	expr(args, &flag);
 	if (!flag) return 0;
 	new_wp(args);
-	print_wp();
+	print_wp(0);
 	return 0;
 }
 
@@ -160,7 +146,7 @@ static int cmd_d(char *args) {
 	int value = expr(args, &flag) - 1;
 	if (!flag) return 0;
 	free_wp(value);
-	print_wp();
+	print_wp(1);
 	return 0;
 }
 
