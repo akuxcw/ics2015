@@ -20,6 +20,9 @@ void init_wp_list() {
 
 /* TODO: Implement the functionality of watchpoint */
 
+extern bool flag;
+extern int STOP;
+
 void new_wp(char *args) {
 	WP *new_ = free_;
 	if (head == NULL) {
@@ -35,6 +38,7 @@ void new_wp(char *args) {
 	new_->next = NULL;
 	strcpy(new_->str, args);
 	new_->str[strlen(args)] = '\0';
+	new_->last_value = expr(args, &flag);
 }
 
 void free_wp(int n) {
@@ -58,3 +62,16 @@ void free_wp(int n) {
 	}
 }
 
+void check_point(int *nemu_state) {
+	WP *wp = head;
+	int value = 0;
+	while(wp != NULL) {
+		value = expr(wp->str, &flag);
+		if (value != wp->last_value) {
+			printf("The \"%s\"'s value is changed!\n",wp->str);
+//			*nemu_state = STOP;
+		}
+		wp = wp->next;
+	}
+
+}
