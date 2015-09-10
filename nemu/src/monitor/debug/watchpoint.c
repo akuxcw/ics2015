@@ -86,7 +86,7 @@ void print_wp() {
 	} else {
 		WP *p = head;
 		while (p != NULL) {
-			printf("#%d: %s = %d", p->NO, p->str, p->last_value);
+			printf("#%d: %s = %d\n", p->NO, p->str, p->last_value);
 			p = p->next;
 		}
 	}
