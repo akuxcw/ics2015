@@ -69,6 +69,8 @@ static int cmd_si(char *args) {
 	return 0;
 }
 
+extern void print_wp();
+
 static int cmd_info(char *args) {
 	int i;
 	if (args == NULL) {
@@ -84,6 +86,7 @@ static int cmd_info(char *args) {
 		printf("%-6s0x%-10x\n", "eip", cpu.eip);
 	}else 
 	if (args[0] == 'w') {
+		print_wp();
 	}
 	else {
 		flag = false; return 0;
@@ -149,6 +152,7 @@ static int cmd_w(char *args) {
 	expr(args, &flag);
 	if (!flag) return 0;
 	new_wp(args);
+	print_wp();
 	return 0;
 }
 
@@ -156,6 +160,7 @@ static int cmd_d(char *args) {
 	int value = expr(args, &flag) - 1;
 	if (!flag) return 0;
 	free_wp(value);
+	print_wp();
 	return 0;
 }
 
