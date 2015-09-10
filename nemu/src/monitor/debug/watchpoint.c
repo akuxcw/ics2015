@@ -52,11 +52,15 @@ void free_wp(int n) {
 	}
 	printf("%d****\n",wp->NO);
 	WP *p = head;
-	while (p->next != wp) p = p->next;
-	p->next = wp->next;
-	printf("******\n");
-	wp->next = NULL;
-	p = p->next;
+	if (p != wp) {
+		while (p->next != wp) p = p->next;
+		p->next = wp->next;
+		wp->next = NULL;
+		p = p->next;
+	} else {
+		head = head->next;
+		p = head;
+	}
 	while (p != NULL) {
 		p->NO --;
 		p = p->next;
