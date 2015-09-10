@@ -50,10 +50,10 @@ void free_wp(int n) {
 		while (tail->next != NULL) tail = tail->next;
 		tail->next = wp;
 	}
-	printf("******\n");
 	WP *p = head;
 	while (p->next != wp) p = p->next;
 	p->next = wp->next;
+	printf("******\n");
 	wp->next = NULL;
 	p = p->next;
 	while (p != NULL) {
