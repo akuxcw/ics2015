@@ -135,6 +135,10 @@ extern void new_wp(char *args);
 extern void free_wp(int n);
 
 static int cmd_w(char *args) {
+	if(args == NULL) {
+		flag = false;
+		return 0;
+	}
 	expr(args, &flag);
 	if (!flag) return 0;
 	new_wp(args);
@@ -143,6 +147,10 @@ static int cmd_w(char *args) {
 }
 
 static int cmd_d(char *args) {
+	if(args == NULL) {
+		flag = false;
+		return 0;
+	}
 	int value = expr(args, &flag) - 1;
 	if (!flag) return 0;
 	free_wp(value);
