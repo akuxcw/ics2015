@@ -7,7 +7,7 @@
 #include <regex.h>
 
 enum {
-	NOTYPE = 256, EQ, NB, MS, DR, NEQ, AND_L, OR_L ,NOT_L, MOD, AND, OR ,NOT
+	NOTYPE = 256, EQ, NB, MS, DR, NEQ, AND_L, OR_L ,NOT_L, MOD, AND, OR, NOT, LE, BE, L, B,
 
 	/* TODO: Add more token types */
 
@@ -17,31 +17,36 @@ static struct rule {
 	char *regex;
 	int token_type;
 	int level;
+	bool singel;
 } rules[] = {
 
 	/* TODO: Add more rules.
 	 * Pay attention to the precedence level of different rules.
 	 */
 
-	{" +",	NOTYPE, 10},						// spaces
-	{"\\+", '+', 4},							// plus
-	{"-", '-', 4},								// minus
-	{"\\*", '*', 5},							// multiply
-	{"/", '/', 5},								// devide
-	{"%", MOD, 5},								// mod
-	{"0x[0-9a-fA-F]+|[0-9]+|\\$[a-z]+", NB, 10},	// number
-	{"!=", NEQ, 0},								// not equal
-	{"==", EQ, 0},								// equal
-	{"&&", AND_L, -1},							// logic and
-	{"\\|\\|", OR_L, -1},						// logic or
-	{"\\!", NOT_L, 0},							// logic not
-	{"&", AND, 2},								// bit and
-	{"\\|", OR, 1},								// bit or
-	{"~", NOT, 3},								// bit not
-	{"\\(", '(', 10},							// left par
-	{"\\)", ')', 10},							// right par
-	{"-", MS, 9},								// minus sign
-	{"\\*", DR, 9},								// dereference
+	{" +",	NOTYPE, 10, false},							// spaces
+	{"\\+", '+', 4, false},								// plus
+	{"-", '-', 4, false},								// minus
+	{"\\*", '*', 5, false},								// multiply
+	{"/", '/', 5, false},								// devide
+	{"%", MOD, 5, false},								// mod
+	{"0x[0-9a-fA-F]+|[0-9]+|\\$[a-z]+", NB, 10, false},	// number
+	{"!=", NEQ, 0, true},								// not equal
+	{"==", EQ, 0, false},								// equal
+	{"<=", LE, 0, false},								// less or equal
+	{">=", BE, 0, false},								// bigger or equal
+	{"<", L, 0, false},									// less
+	{">", B, 0, false},									// biger
+	{"&&", AND_L, -1, false},							// logic and
+	{"\\|\\|", OR_L, -1, false},						// logic or
+	{"\\!", NOT_L, 0, true},							// logic not
+	{"&", AND, 2, false},								// bit and
+	{"\\|", OR, 1, false},								// bit or
+	{"~", NOT, 3, false},								// bit not
+	{"\\(", '(', 10, false},							// left par
+	{"\\)", ')', 10, false},							// right par
+	{"-", MS, 9, true},									// minus sign
+	{"\\*", DR, 9, true},								// dereference
 };
 
 #define NR_REGEX (sizeof(rules) / sizeof(rules[0]) )
@@ -69,6 +74,7 @@ typedef struct token {
 	int type;
 	char str[32];
 	int level;
+	bool singel;
 } Token;
 
 Token tokens[32];
@@ -95,11 +101,13 @@ static bool make_token(char *e) {
 				 */
 				tokens[nr_token].type = rules[i].token_type;
 				tokens[nr_token].level = rules[i].level;
+				tokens[nr_token].singel = rules[i].singel;
 				switch(rules[i].token_type) {
 					case '+': case '(': case ')': case '/':	
 					case EQ: case MS: case DR: 
 					case AND_L: case OR_L: case NOT_L:
-					case AND: case OR: case NOT: case MOD: break;
+					case AND: case OR: case NOT: case MOD: 
+					case LE: case BE: case L: case B: break;
 					case '-': 
 						if (nr_token == 0 || tokens[nr_token-1].type != NB) {
 							tokens[nr_token].type = MS;
@@ -233,61 +241,33 @@ uint32_t eval(p, q) {
 	}
 	else {
 		int op = select_op(p, q); //the position of dominant operator in the token expression;
-		int val1, val2; 
+		int val1 = 0, val2 = 0; 
 		if (!flag) return 0;
+		if (tokens[op].singel) {
+			val1 = eval(op + 1, q);
+		} else {
+			val1 = eval(p, op - 1); 
+			val2 = eval(op + 1, q);
+		}
 		switch(tokens[op].type) {
-			case '+': 
-				val1 = eval(p, op - 1); 
-				val2 = eval(op + 1, q);
-				return val1 + val2;
-			case '-':
-				val1 = eval(p, op - 1); 
-				val2 = eval(op + 1, q);
-				return val1 - val2;
-			case '*': 
-				val1 = eval(p, op - 1); 
-				val2 = eval(op + 1, q);
-				return val1 * val2;
-			case '/': 
-				val1 = eval(p, op - 1); 
-				val2 = eval(op + 1, q);
-				return val1 / val2;
-			case EQ:
-				val1 = eval(p, op - 1); 
-				val2 = eval(op + 1, q);
-			 	return 	val1 == val2;
-			case MS: 
-				val1 = eval(op + 1, q);
-				return - val1;
-			case DR:
-				val1 = eval(op + 1, q);
-				return swaddr_read(val1,4);
-			case AND_L:
-				val1 = eval(p, op - 1); 
-				val2 = eval(op + 1, q);
-				return val1 && val2;
-			case OR_L:
-				val1 = eval(p, op - 1); 
-				val2 = eval(op + 1, q);
-				return val1 || val2;
-			case NOT_L:
-				val1 = eval(op + 1, q);
-				return !val1;
-			case AND:
-				val1 = eval(p, op - 1); 
-				val2 = eval(op + 1, q);
-				return val1 & val2;
-			case OR:
-				val1 = eval(p, op - 1); 
-				val2 = eval(op + 1, q);
-				return val1 | val2;
-			case NOT:
-				val1 = eval(op + 1, q);
-				return ~val1;
-			case MOD:
-				val1 = eval(p, op - 1); 
-				val2 = eval(op + 1, q);
-				return val1 % val2;
+			case '+': return val1 + val2;
+			case '-': return val1 - val2;
+			case '*': return val1 * val2;
+			case '/': return val1 / val2;
+			case EQ: return val1 == val2;
+			case MS: return - val1;
+			case DR: return swaddr_read(val1,4);
+			case AND_L:	return val1 && val2;
+			case OR_L: return val1 || val2;
+			case NOT_L:	return !val1;
+			case AND: return val1 & val2;
+			case OR: return val1 | val2;
+			case NOT: return ~val1;
+			case MOD: return val1 % val2;
+			case LE: return val1 <= val2;
+			case BE: return val1 >= val2;
+			case L: return val1 < val2;
+			case B: return val1 > val2;
 		default: assert(0);
 		}
 	//	panic("error");
