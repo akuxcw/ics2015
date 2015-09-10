@@ -42,7 +42,7 @@ void new_wp(char *args) {
 
 void free_wp(int n) {
 	WP *wp = head;
-	while (n --) wp = wp->next;
+	while (n -- && wp != NULL) wp = wp->next;
 	WP *tail = free_;
 	if(free_ == NULL) {
 		free_ = wp;
@@ -50,7 +50,6 @@ void free_wp(int n) {
 		while (tail->next != NULL) tail = tail->next;
 		tail->next = wp;
 	}
-	printf("%d****\n",wp->NO);
 	WP *p = head;
 	if (p != wp) {
 		while (p->next != wp) p = p->next;
@@ -67,7 +66,7 @@ void free_wp(int n) {
 	}
 }
 
-void check_point(int *nemu_state) {
+void check_wp(int *nemu_state) {
 	WP *wp = head;
 	int value = 0;
 	while(wp != NULL) {
@@ -80,3 +79,16 @@ void check_point(int *nemu_state) {
 	}
 
 }
+
+void print_wp() {
+	if (head == NULL) {
+		printf("There is no watchpoint!\n");
+	} else {
+		WP *p = head;
+		while (p != NULL) {
+			printf("#%d: %s = %d", p->NO, p->str, p->last_value);
+			p = p->next;
+		}
+	}
+}
+
