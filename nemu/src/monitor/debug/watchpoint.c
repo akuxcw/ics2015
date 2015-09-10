@@ -69,7 +69,7 @@ void check_point(int *nemu_state) {
 		value = expr(wp->str, &flag);
 		if (value != wp->last_value) {
 			printf("The \"%s\"'s value is changed!\n",wp->str);
-//			*nemu_state = STOP;
+			*nemu_state = 0;
 		}
 		wp = wp->next;
 	}

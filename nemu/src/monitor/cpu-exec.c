@@ -75,7 +75,7 @@ void cpu_exec(volatile uint32_t n) {
 		}
 #endif
 
-		printf("%d\n",STOP);
+//		printf("%d\n",STOP);
 		/* TODO: check watchpoints here. */
 		
 		check_point(&nemu_state);
