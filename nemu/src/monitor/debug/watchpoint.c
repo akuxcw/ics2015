@@ -21,7 +21,6 @@ void init_wp_list() {
 /* TODO: Implement the functionality of watchpoint */
 
 extern bool flag;
-extern int STOP;
 
 void new_wp(char *args) {
 	WP *new_ = free_;
@@ -51,6 +50,7 @@ void free_wp(int n) {
 		while (tail->next != NULL) tail = tail->next;
 		tail->next = wp;
 	}
+	printf("******\n");
 	WP *p = head;
 	while (p->next != wp) p = p->next;
 	p->next = wp->next;
