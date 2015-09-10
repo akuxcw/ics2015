@@ -73,6 +73,7 @@ void check_wp(int *nemu_state) {
 		value = expr(wp->str, &flag);
 		if (value != wp->last_value) {
 			printf("The \"%s\"'s value is changed!\n",wp->str);
+			wp->last_value = value;
 			*nemu_state = 0;
 		}
 		wp = wp->next;
