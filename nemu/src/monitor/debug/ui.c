@@ -146,6 +146,8 @@ extern void new_wp(char *args);
 extern void free_wp(int n);
 
 static int cmd_w(char *args) {
+	expr(args, &flag);
+	if (!flag) return 0;
 	new_wp(args);
 	return 0;
 }
