@@ -42,7 +42,7 @@ void new_wp(char *args) {
 
 void free_wp(int n) {
 	WP *wp = head;
-	while (n -- && wp != NULL) wp = wp->next;
+	while (n -- && wp->next != NULL) wp = wp->next;
 	WP *tail = free_;
 	if(free_ == NULL) {
 		free_ = wp;
