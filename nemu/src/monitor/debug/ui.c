@@ -134,7 +134,7 @@ static int cmd_p(char *args) {
 		value = expr(args + 3, &flag);
 	}else value = expr(args, &flag);
 	if (!flag) return 0;
-	printf(args[0] == '/' ? "%x\n" : "%d\n", value);
+	printf(args[0] == '/' ? "0x%x\n" : "%d\n", value);
 	return 0;
 }
 
