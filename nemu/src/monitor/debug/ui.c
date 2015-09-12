@@ -174,9 +174,9 @@ static struct {
 	{ "c             ", "Continue the execution of the program", cmd_c },
 	{ "q             ", "Exit NEMU", cmd_q },
 	{ "si [N]        ", "Run the program by N command,default by one", cmd_si},
-	{ "info SUBCMD   ", "SUBCMD=r print the value of register\n                       =w print the status of watch point", cmd_info },
+	{ "info SUBCMD   ", "SUBCMD = r print the value of register\n                        = w print the status of watch point", cmd_info },
 	{ "x N EXPR      ", "Calculate the value of EXPR, let the answer be the beginning of the memory Address and print the value in the following 4N byte with sixteen decimal", cmd_x },
-	{ "p [/x] EXPR        ", "Show the value of the EXPR in decimal, if \"/x\" print in sixteen decimal", cmd_p },
+	{ "p [/x] EXPR   ", "Show the value of the EXPR in decimal, if \"/x\" print in sixteen decimal", cmd_p },
 	{ "w EXPR        ", "When the EXPR's value changes, the program will stop", cmd_w },
 	{ "d N           ", "Delete the Nth watchpoint", cmd_d},
 	/* TODO: Add more commands */
