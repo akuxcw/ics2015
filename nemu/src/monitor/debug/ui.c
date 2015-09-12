@@ -117,7 +117,7 @@ static int cmd_x(char *args) {
 	printf("0x");
 	for(j = 0; j < 4 * n; ++ j) {
 		int value = swaddr_read(addr + j,1);
-		printf(value < 16 ? "0%x" : "%x", value);
+		printf("02%x", value);
 		if ((j + 1) % 4 == 0) printf(" ");
 	}
 	printf("\n");
@@ -125,9 +125,16 @@ static int cmd_x(char *args) {
 }
 
 static int cmd_p(char *args) {
-	int value = expr(args, &flag);
+	if (args == NULL) {
+		flag = false;
+		return 0;
+	}
+	int value;
+	if (args[0] == '/' && args[1] == 'x') {
+		value = expr(args + 3, &flag);
+	}else value = expr(args, &flag);
 	if (!flag) return 0;
-	printf("%d\n", value);
+	printf(args[0] == '/' ? "%x\n" : "%d\n", value);
 	return 0;
 }
 
@@ -169,7 +176,7 @@ static struct {
 	{ "si [N]        ", "Run the program by N command,default by one", cmd_si},
 	{ "info SUBCMD   ", "SUBCMD=r print the value of register\n                       =w print the status of watch point", cmd_info },
 	{ "x N EXPR      ", "Calculate the value of EXPR, let the answer be the beginning of the memory Address and print the value in the following 4N byte with sixteen decimal", cmd_x },
-	{ "p EXPR        ", "Show the value of the EXPR", cmd_p },
+	{ "p [/x] EXPR        ", "Show the value of the EXPR in decimal, if \"/x\" print in sixteen decimal", cmd_p },
 	{ "w EXPR        ", "When the EXPR's value changes, the program will stop", cmd_w },
 	{ "d N           ", "Delete the Nth watchpoint", cmd_d},
 	/* TODO: Add more commands */
