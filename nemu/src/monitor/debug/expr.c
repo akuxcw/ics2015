@@ -172,7 +172,7 @@ uint32_t select_op(int p, int q) {
 					i --;
 				}
 			}
-			printf("%d\n",i);
+//			printf("%d\n",i);
 			return i;
 		}
 	}
@@ -231,7 +231,7 @@ uint32_t eval(p, q) {
 					value = value * 16 + tokens[p].str[i] - 'a' + 10;
 			}
 		}
-//		printf("**********%d************\n",value);
+		printf("**********%d************\n",value);
 		return value;
 	}
 	else if(check_parentheses(p, q) == true) {
