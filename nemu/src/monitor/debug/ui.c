@@ -9,10 +9,14 @@
 
 bool flag;
 
+extern void new_wp(char *args);
+extern void free_wp(int n);
+extern void print_wp();
+
 void cpu_exec(uint32_t);
-//char last_command[20];
-//char *line_read;
+
 /* We use the ``readline'' library to provide more flexibility to read from stdin. */
+
 char* rl_gets() {
 	static char *line_read = NULL;
 	static char last_command[30];
@@ -69,7 +73,6 @@ static int cmd_si(char *args) {
 	return 0;
 }
 
-extern void print_wp();
 
 static int cmd_info(char *args) {
 	int i;
@@ -137,8 +140,6 @@ static int cmd_p(char *args) {
 	return 0;
 }
 
-extern void new_wp(char *args);
-extern void free_wp(int n);
 
 static int cmd_w(char *args) {
 	if(args == NULL) {
