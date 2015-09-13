@@ -127,7 +127,7 @@ static bool make_token(char *e) {
 					case NOTYPE: nr_token --; break;
 					default: panic("please implement me");
 				}
-				printf("***%d\n",tokens[nr_token].type);
+				//printf("***%d\n",tokens[nr_token].type);
 				nr_token ++;
 				break;
 			}
@@ -175,7 +175,7 @@ uint32_t select_op(int p, int q) {
 			return i;
 		}
 	}
-//	panic("Can't find op!");
+	panic("Can't find op!");
 	flag = false;
 	return 0;
 
