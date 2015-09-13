@@ -246,8 +246,9 @@ uint32_t eval(p, q) {
 		int op = select_op(p, q); //the position of dominant operator in the token expression;
 		int val1 = 0, val2 = 0; 
 		if (!flag) return 0;
-		printf("***\n");
 		if (tokens[op].singel) {
+			
+		printf("***\n");
 			val1 = eval(op + 1, q);
 		} else {
 			val1 = eval(p, op - 1); 
