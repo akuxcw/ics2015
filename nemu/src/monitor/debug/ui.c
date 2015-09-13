@@ -113,12 +113,11 @@ static int cmd_x(char *args) {
 	swaddr_t addr = expr(pos+1, &flag);
 	if (!flag) return 0;
 	int j;
+	int len = 4;
 	printf("0x%08x: ",addr);
-	printf("0x");
-	for(j = 0; j < 4 * n; ++ j) {
-		int value = swaddr_read(addr + j,1);
-		printf("%02x", value);
-		if ((j + 1) % 4 == 0) printf(" ");
+	for(j = 0; j < n; ++ j) {
+		int value = swaddr_read(addr + j,len);
+		printf("0x%08x ", value);
 	}
 	printf("\n");
 	return 0;
