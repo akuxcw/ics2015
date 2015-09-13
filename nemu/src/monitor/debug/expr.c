@@ -196,6 +196,7 @@ uint32_t eval(p, q) {
 		 * Return the value of the number.
 		 */
 		if (tokens[p].type != NB) {
+			printf("***\n");
 			flag = false;
 			return 0;
 		}
@@ -203,7 +204,7 @@ uint32_t eval(p, q) {
 //		printf("str=%s\n,value=%d\n",tokens[p].str,value);
 		if (tokens[p].str[0] == '$') {
 			char *reg = tokens[p].str + 1;
-			printf("%s\n",reg);
+//			printf("%s\n",reg);
 			if (strcmp(reg, "eip") == 0) {
 				value = cpu.eip;
 			} else
