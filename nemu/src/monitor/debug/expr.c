@@ -175,7 +175,7 @@ uint32_t select_op(int p, int q) {
 			return i;
 		}
 	}
-	panic("Can't find op!");
+//	panic("Can't find op!");
 	flag = false;
 	return 0;
 
@@ -230,7 +230,7 @@ uint32_t eval(p, q) {
 					value = value * 16 + tokens[p].str[i] - 'a' + 10;
 			}
 		}
-//		printf("**********%d************\n",value);
+		printf("**********%d************\n",value);
 		return value;
 	}
 	else if(check_parentheses(p, q) == true) {
