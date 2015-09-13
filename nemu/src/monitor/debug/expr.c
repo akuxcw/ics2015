@@ -112,12 +112,14 @@ static bool make_token(char *e) {
 						if (nr_token == 0 || tokens[nr_token-1].type != NB) {
 							tokens[nr_token].type = MS;
 							tokens[nr_token].level = 9;
+							tokens[nr_token].singel = true;
 						}
 						break;
 					case '*':
 						if (nr_token == 0 || tokens[nr_token-1].type != NB) {
 							tokens[nr_token].type = DR;
 							tokens[nr_token].level = 9;
+							tokens[nr_token].singel = true;
 						}
 						break;
 					case NB: 
@@ -247,8 +249,6 @@ uint32_t eval(p, q) {
 		int val1 = 0, val2 = 0; 
 		if (!flag) return 0;
 		if (tokens[op].singel) {
-			
-		printf("***\n");
 			val1 = eval(op + 1, q);
 		} else {
 			val1 = eval(p, op - 1); 
