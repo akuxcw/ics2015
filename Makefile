@@ -71,3 +71,9 @@ test: $(nemu_BIN) $(testcase_BIN) entry
 
 submit: clean
 	cd .. && tar cvj $(shell pwd | grep -o '[^/]*$$') > $(STU_ID).tar.bz2
+
+count: 
+	-find . -name *.[ch] | xargs cat | tr -s '\n' | wc -l > now
+	-git checkout 134a 
+	-find . -name *.[ch] | xargs cat | tr -s '\n' | wc -l > last
+	-git checkout master
