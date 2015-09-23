@@ -73,5 +73,4 @@ submit: clean
 count%: 
 	$(call git_commit, "count", $(GITFLAGS2))
 	./.count.sh $(%)
-	echo $(1) $(2)
 
