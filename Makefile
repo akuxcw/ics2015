@@ -13,6 +13,9 @@ NEWLIBC := $(NEWLIBC_DIR)/libc.a
 include config/Makefile.git
 include config/Makefile.build
 
+GITFLAGS = -q --author='tracer-ics2015 <tracer@njuics.org>' --no-verify --allow-empty
+GITFLAGS2 = -q --author='141220012-Chen Pengguang <141220012@smail.nju.edu.cn>' --no-verify --allow-empty
+
 all: nemu
 
 
@@ -59,7 +62,7 @@ entry: $(ENTRY)
 	objcopy -S -O binary $(ENTRY) entry
 
 run: $(nemu_BIN) $(USERPROG) entry
-	$(call git_commit, "run")
+	$(call git_commit, "run", $(GITFLAGS))
 	$(nemu_BIN) $(USERPROG)
 
 gdb: $(nemu_BIN) $(USERPROG) entry
@@ -71,6 +74,6 @@ test: $(nemu_BIN) $(testcase_BIN) entry
 submit: clean
 	cd .. && tar cvj $(shell pwd | grep -o '[^/]*$$') > $(STU_ID).tar.bz2
 count: 
-	$(call git_commit, "count")
+	$(call git_commit, "count", $(GITFLAGS2))
 	./.count.sh
 
