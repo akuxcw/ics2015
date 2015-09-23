@@ -13,8 +13,8 @@ NEWLIBC := $(NEWLIBC_DIR)/libc.a
 include config/Makefile.git
 include config/Makefile.build
 
-GITFLAGS = -q --author='tracer-ics2015 <tracer@njuics.org>' --no-verify --allow-empty
-GITFLAGS2 = -q --author='141220012-Chen Pengguang <141220012@smail.nju.edu.cn>' --no-verify --allow-empty
+#GITFLAGS = -q --author='tracer-ics2015 <tracer@njuics.org>' --no-verify --allow-empty
+#GITFLAGS2 = -q --author='141220012-Chen Pengguang <141220012@smail.nju.edu.cn>' --no-verify --allow-empty
 
 all: nemu
 

@@ -2,9 +2,10 @@ STU_ID = 141220012
 
 # DO NOT modify the following code!!!
 
-# GITFLAGS = -q --author='tracer-ics2015 <tracer@njuics.org>' --no-verify --allow-empty
+GITFLAGS = -q --author='tracer-ics2015 <tracer@njuics.org>' --no-verify --allow-empty
+GITFLAGS2 = -q --author='141220012-Chen pengguang <141220012@smail.nju.edu.cn>' --no-verify --allow-empty
 
-# prototype: git_commit(msg)
+# prototype: git_commit(msg, flags)
 define git_commit
 	-@git add . -A --ignore-errors
 	-@while (test -e .git/index.lock); do sleep 0.1; done
