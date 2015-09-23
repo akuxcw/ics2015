@@ -1,5 +1,3 @@
-#GITFLAGS = -q --author='tracer-ics2015 <tracer@njuics.org>' --no-verify --allow-empty
-
 nemu_CFLAGS_EXTRA := -ggdb3 -O2
 $(eval $(call make_common_rules,nemu,$(nemu_CFLAGS_EXTRA)))
 
