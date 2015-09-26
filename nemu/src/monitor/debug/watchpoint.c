@@ -52,8 +52,7 @@ void free_wp(int n) {
 		while (tail->next != NULL) tail = tail->next;
 		tail->next = wp;
 	}
-	printf("[[[%s\n",wp->str);
-	printf("**\n");
+	print_wp(4);
 	WP *p = head;
 	if (p != wp) {
 		while (p->next != wp) p = p->next;
@@ -61,7 +60,6 @@ void free_wp(int n) {
 		wp->next = NULL;
 		p = p->next;
 	} else {
-	printf("[[[%s\n",head->next->str);
 		head = head->next;
 		p = head;
 	}
