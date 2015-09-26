@@ -40,6 +40,8 @@ void new_wp(char *args) {
 	new_->last_value = expr(args, &flag);
 }
 
+void print_wp(int op);
+
 void free_wp(int n) {
 	WP *wp = head;
 	while (n -- && wp->next != NULL) wp = wp->next;
@@ -64,6 +66,7 @@ void free_wp(int n) {
 		p->NO --;
 		p = p->next;
 	}
+	print_wp(3);
 }
 
 void check_wp(int *nemu_state) {
