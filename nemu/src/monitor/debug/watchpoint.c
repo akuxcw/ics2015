@@ -61,13 +61,13 @@ void free_wp(int n) {
 		wp->next = NULL;
 		p = p->next;
 	} else {
+	printf("[[[%s\n",head->next->str);
 		head = head->next;
 		p = head;
 	}
 	while (p != NULL) {
 		p->NO --;
 		p = p->next;
-	if(p!=NULL)printf("[[[%s\n",p->str);
 	}
 }
 
