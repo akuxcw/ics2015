@@ -72,10 +72,8 @@ submit: clean
 	cd .. && tar cvj $(shell pwd | grep -o '[^/]*$$') > $(STU_ID).tar.bz2
 
 tar=.
-foo=`find nemu/ -name "*.[ch]" |xargs cat|wc -l`
 
 count: 
 	$(call git_commit, "count", $(GITFLAGS2))
-	echo $(foo) 
 	./.count.sh $(tar)
 
