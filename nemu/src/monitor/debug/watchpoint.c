@@ -67,7 +67,7 @@ void free_wp(int n) {
 	while (p != NULL) {
 		p->NO --;
 		p = p->next;
-	printf("[[[%s\n",p->str);
+	if(p!=NULL)printf("[[[%s\n",p->str);
 	}
 }
 
