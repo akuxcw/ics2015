@@ -76,6 +76,6 @@ foo=`find nemu/ -name "*.[ch]" |xargs cat|wc -l`
 
 count: 
 	$(call git_commit, "count", $(GITFLAGS2))
-	echo foo 
+	echo $(foo) 
 	./.count.sh $(tar)
 
