@@ -66,7 +66,6 @@ void free_wp(int n) {
 		p->NO --;
 		p = p->next;
 	}
-	print_wp(3);
 }
 
 void check_wp(int *nemu_state) {
