@@ -70,7 +70,10 @@ test: $(nemu_BIN) $(testcase_BIN) entry
 
 submit: clean
 	cd .. && tar cvj $(shell pwd | grep -o '[^/]*$$') > $(STU_ID).tar.bz2
-count_*: 
+
+tar=.
+
+count: 
 	$(call git_commit, "count", $(GITFLAGS2))
-	./.count.sh $*
+	./.count.sh $(tar)
 
