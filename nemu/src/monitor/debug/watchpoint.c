@@ -53,7 +53,7 @@ void free_wp(int n) {
 		while (tail->next != NULL) tail = tail->next;
 		tail->next = wp;
 	}
-	print_wp(4);
+//	print_wp(4);
 	WP *p = head;
 	if (p != wp) {
 		while (p->next != wp) p = p->next;
