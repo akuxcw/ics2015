@@ -4,7 +4,11 @@
 
 static void do_execute() {
 	op_dest->reg = R_ESP;
-	strcpy(op_dest->str ,REG_NAME(R_ESP));
+	op_dest->str[0]='%';
+	op_dest->str[1]='e';
+	op_dest->str[2]='s';
+	op_dest->str[3]='p';
+	op_dest->str[4]='\0';
 	op_dest->val = REG(R_ESP);
 //	OPERAND_W(op_dest, op_dest->val - op_src->val);
 	printf("***%d %d\n",R_ESP,cpu.esp);
