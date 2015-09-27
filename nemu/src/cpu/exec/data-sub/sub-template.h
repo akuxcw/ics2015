@@ -4,6 +4,8 @@
 
 static void do_execute() {
 	op_dest->reg = R_ESP;
+	strcpy(op_dest->str ,REG_NAME(R_ESP));
+	op_dest->val = REG(R_ESP);
 	OPERAND_W(op_dest, op_dest->val - op_src->val);
 	print_asm_template2();
 }
