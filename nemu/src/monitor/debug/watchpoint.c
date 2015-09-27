@@ -65,6 +65,7 @@ void free_wp(int n) {
 		p = p->next;
 	} else {
 		head = head->next;
+		wp->next = NULL;
 		p = head;
 	}
 	while (p != NULL) {
