@@ -45,7 +45,10 @@ void print_wp(int op);
 
 void free_wp(int n) {
 	WP *wp = head;
-	if(head == NULL) print_wp(0);
+	if(head == NULL) {
+		print_wp(0);
+		return;
+	}
 	while (n -- && wp->next != NULL) wp = wp->next;
 	WP *tail = free_;
 	if(free_ == NULL) {
