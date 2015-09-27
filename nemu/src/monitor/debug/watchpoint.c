@@ -46,6 +46,7 @@ void free_wp(int n) {
 	WP *wp = head;
 	while (n -- && wp->next != NULL) wp = wp->next;
 	WP *tail = free_;
+	printf("%s\n",wp->str);
 	if(free_ == NULL) {
 		free_ = wp;
 	} else {
