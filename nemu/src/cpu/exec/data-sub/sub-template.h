@@ -8,7 +8,7 @@ static void do_execute() {
 	op_dest->val = REG(R_ESP);
 //	OPERAND_W(op_dest, op_dest->val - op_src->val);
 	printf("***%d %d\n",R_ESP,cpu.esp);
-	REG(R_ESP) = REG(R_ESP) - op_src->val;
+	cpu.esp = cpu.esp - op_src->val;
 	printf("***%d %d\n",R_ESP,cpu.esp);
 	print_asm_template2();
 }
