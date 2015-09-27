@@ -56,7 +56,7 @@ void free_wp(int n) {
 		tail->next = wp;
 	}
 	printf("%d\n",wp==tail);
-//	print_wp(4);
+	print_wp(4);
 	WP *p = head;
 	if (p != wp) {
 		while (p->next != wp) p = p->next;
