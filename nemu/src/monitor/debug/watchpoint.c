@@ -48,15 +48,12 @@ void free_wp(int n) {
 	while (n -- && wp->next != NULL) wp = wp->next;
 	print_wp(4);
 	WP *tail = free_;
-	printf("%s\n",wp->str);
 	if(free_ == NULL) {
 		free_ = wp;
 	} else {
 		while (tail->next != NULL) tail = tail->next;
 		tail->next = wp;
 	}
-	printf("%d\n",wp==tail);
-	print_wp(4);
 	WP *p = head;
 	if (p != wp) {
 		while (p->next != wp) p = p->next;
