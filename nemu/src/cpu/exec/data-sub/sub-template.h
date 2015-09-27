@@ -7,10 +7,10 @@ static void do_execute() {
 	print_asm_template2();
 }
 
-make_instr_helper(i2r)
+//make_instr_helper(i2r)
 make_instr_helper(i2rm)
-make_instr_helper(r2rm)
-make_instr_helper(rm2r)
+//make_instr_helper(r2rm)
+//make_instr_helper(rm2r)
 
 /*
 make_helper(concat(mov_a2moffs_, SUFFIX)) {
