@@ -18,8 +18,6 @@ void init_wp_list() {
 	free_ = wp_list;
 }
 
-/* TODO: Implement the functionality of watchpoint */
-
 extern bool flag;
 
 void new_wp(char *args) {
@@ -40,8 +38,6 @@ void new_wp(char *args) {
 	new_->str[strlen(args)] = '\0';
 	new_->last_value = expr(args, &flag);
 }
-
-void print_wp(int op);
 
 void free_wp(int n) {
 	WP *wp = head;
