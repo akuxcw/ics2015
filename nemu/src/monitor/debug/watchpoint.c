@@ -39,6 +39,8 @@ void new_wp(char *args) {
 	new_->last_value = expr(args, &flag);
 }
 
+void print_wp(int op);
+
 void free_wp(int n) {
 	WP *wp = head;
 	if(head == NULL) {
