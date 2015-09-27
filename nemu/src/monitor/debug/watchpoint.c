@@ -33,8 +33,9 @@ void new_wp(char *args) {
 		tail->next = new_;
 		new_->NO = tail->NO + 1;
 	}
-	free_ = free_->next;
+	WP *nex = free_->next;
 	new_->next = NULL;
+	free_ = nex;
 	strcpy(new_->str, args);
 	new_->str[strlen(args)] = '\0';
 	new_->last_value = expr(args, &flag);
