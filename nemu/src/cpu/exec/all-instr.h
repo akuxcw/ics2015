@@ -5,6 +5,7 @@
 #include "data-sub/sub.h"
 #include "data-call/call.h"
 #include "data-push/push.h"
+#include "data-test/test.h"
 
 #include "arith/dec.h"
 #include "arith/inc.h"
