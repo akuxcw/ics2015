@@ -29,14 +29,14 @@ typedef struct {
 		};
 	};
 	struct {
-		int CF:1;
-		int :0;
-		int PF:1;
-		int ZF:1;
-		int SF:1;
-		int IF:1;
-		int DF:1;
-		int OF:1;		 
+		uint32_t CF:1;
+		uint32_t: 0;
+		uint32_t PF:1;
+		uint32_t ZF:1;
+		uint32_t SF:1;
+		uint32_t IF:1;
+		uint32_t DF:1;
+		uint32_t OF:1;		 
 	};
 	swaddr_t eip;
 
