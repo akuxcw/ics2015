@@ -4,7 +4,6 @@
 
 static void do_execute() {
 	if(cpu.ZF == 1) {
-		printf("%d\n",op_src->val);	
 		cpu.eip += op_src->val;
 	}
 	print_asm_template1();
