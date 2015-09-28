@@ -6,6 +6,7 @@
 #include "data-call/call.h"
 #include "data-push/push.h"
 #include "data-test/test.h"
+#include "data-jcc/jcc.h"
 
 #include "arith/dec.h"
 #include "arith/inc.h"
