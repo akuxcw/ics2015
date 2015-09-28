@@ -16,6 +16,6 @@ make_helper(mov_a2moffs_v);
 make_helper(mov_moffs2a_v);
 */
 
-make_helper(call);
+make_helper(call_i_l);
 
 #endif

@@ -13,4 +13,3 @@
 #undef DATA_BYTE
 
 /* for instruction encoding overloading */
-make_helper(call);
