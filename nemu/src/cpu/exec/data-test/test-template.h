@@ -4,8 +4,8 @@
 
 static void do_execute() {
 	cpu.OF = cpu.CF = 0;
-	cpu.ZF = op_src->val == op_dest->val;
-	printf("%d %d\n" ,op_src->val,op_dest->val);
+	cpu.ZF = (op_src->val == op_dest->val);
+	printf("%d %d %d\n" ,cpu.ZF,op_src->val,op_dest->val);
 	print_asm_template2();
 }
 
