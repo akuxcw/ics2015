@@ -20,11 +20,11 @@ static inline uint32_t instr_fetch(swaddr_t addr, size_t len) {
 /* Instruction Decode and EXecute */
 static inline int idex(swaddr_t eip, int (*decode)(swaddr_t), void (*execute) (void)) {
 	/* eip is pointing to the opcode */
-	printf("%d %s %d %s\n",op_src->val,op_src->str,op_dest->val,op_dest->str);
+//	printf("%d %s %d %s\n",op_src->val,op_src->str,op_dest->val,op_dest->str);
 	int len = decode(eip + 1);
-	printf("%d %s %d %s\n",op_src->val,op_src->str,op_dest->val,op_dest->str);
+//	printf("%d %s %d %s\n",op_src->val,op_src->str,op_dest->val,op_dest->str);
 	execute();
-	printf("%d %s %d %s\n",op_src->val,op_src->str,op_dest->val,op_dest->str);
+//	printf("%d %s %d %s\n",op_src->val,op_src->str,op_dest->val,op_dest->str);
 	return len + 1;	// "1" for opcode
 }
 

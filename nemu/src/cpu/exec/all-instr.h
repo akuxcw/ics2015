@@ -4,6 +4,7 @@
 #include "data-mov/xchg.h"
 #include "data-sub/sub.h"
 #include "data-call/call.h"
+#include "data-push/push.h"
 
 #include "arith/dec.h"
 #include "arith/inc.h"
