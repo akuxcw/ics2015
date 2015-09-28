@@ -1,5 +1,5 @@
-#ifndef __CALL_H__
-#define __CALL_H__
+#ifndef __JCC_H__
+#define __JCC_H__
 /*
 make_helper(mov_i2r_b);
 make_helper(mov_i2rm_b);
