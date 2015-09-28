@@ -28,6 +28,16 @@ typedef struct {
 			uint32_t eax, ecx, edx, ebx, esp, ebp, esi, edi;
 		};
 	};
+	struct {
+		int CF:1;
+		int :0;
+		int PF:1;
+		int ZF:1;
+		int SF:1;
+		int IF:1;
+		int DF:1;
+		int OF:1;		 
+	};
 	swaddr_t eip;
 
 } CPU_state;
