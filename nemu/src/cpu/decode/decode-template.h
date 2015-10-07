@@ -32,8 +32,9 @@ make_helper(concat(decode_si_, SUFFIX)) {
 	 *
 	op_src->simm = ???
 	 */
-	panic("please implement me");
-
+//	panic("please implement me");
+	unsigned int i = instr_fetch(eip, DATA_BYTE);
+	if(i >> 31 == 1) op_src->simm = -((~i) + 1); else op_src->simm = i;
 	op_src->val = op_src->simm;
 
 #ifdef DEBUG
