@@ -11,3 +11,5 @@
 #undef OPERAND_W
 
 #undef MSB
+
+#undef Updata_EFLAGS
