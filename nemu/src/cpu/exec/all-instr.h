@@ -7,7 +7,7 @@
 #include "data-push/push.h"
 #include "data-test/test.h"
 #include "data-jcc/jcc.h"
-
+#include "data-cmp/cmp.h"
 #include "arith/dec.h"
 #include "arith/inc.h"
 #include "arith/neg.h"
