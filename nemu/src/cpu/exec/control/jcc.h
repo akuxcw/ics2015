@@ -18,4 +18,6 @@ make_helper(mov_moffs2a_v);
 
 make_helper(je_i_b);
 
+make_helper(jbe_i_b);
+
 #endif

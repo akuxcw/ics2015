@@ -4,7 +4,7 @@
 #include "data-mov/xchg.h"
 #include "data-mov/push.h"
 
-#include "data-jcc/jcc.h"
+#include "control/jcc.h"
 #include "control/call.h"
 #include "control/jmp.h"
 
