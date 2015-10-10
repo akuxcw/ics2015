@@ -1,7 +1,7 @@
 #include "cpu/exec/helper.h"
 
 //#define DATA_BYTE 1
-//#include "sub-template.h"
+//#include "add-template.h"
 //#undef DATA_BYTE
 
 #define DATA_BYTE 2
