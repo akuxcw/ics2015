@@ -4,7 +4,7 @@
 
 static void do_execute() {
 	if(cpu.ZF == 1) {
-		cpu.eip += op_src->val;
+		cpu.eip += op_src->val < (1 << (8 * DATA_BYTE - 1)) ? op_src->val : - ((1ll << 8 * DATA_BYTE) - op_src->val);
 	}
 	print_asm_template1();
 }
