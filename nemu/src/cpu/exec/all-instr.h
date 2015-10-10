@@ -8,6 +8,7 @@
 #include "control/call.h"
 #include "control/jmp.h"
 
+#include "arith/add.h"
 #include "arith/sub.h"
 #include "arith/cmp.h"
 #include "arith/dec.h"
