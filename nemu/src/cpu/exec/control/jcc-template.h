@@ -23,7 +23,7 @@ static void do_execute() {
 		}else {
 			printf("dayu %d\n", ((~op_src->val) + 1));
 		}
-		cpu.eip += op_src->val < 0x80 ? op_src->val : -((~op_src->val)+1);
+		cpu.eip += op_src->val < 0x80 ? op_src->val : - (0x100 - op_src->val);
 	}
 	print_asm_template1();
 }
