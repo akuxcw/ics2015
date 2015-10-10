@@ -4,7 +4,7 @@
 
 static void do_execute() {
 	cpu.eip += op_src->val;
-	printf("%d\n",cpu.eip);
+	printf("%x\n",cpu.eip);
 	print_asm_template1();
 }
 
