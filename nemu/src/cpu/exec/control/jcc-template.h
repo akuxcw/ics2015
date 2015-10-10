@@ -21,7 +21,7 @@ static void do_execute() {
 		if(op_src->val < 0x80) {
 			printf("xiaoyu\n");
 		}else {
-			printf("dayu\n");
+			printf("dayu %d\n", -((~op_src->val) + 1));
 		}
 		cpu.eip += op_src->val < 0x80 ? op_src->val : -((~op_src->val)+1);
 	}
