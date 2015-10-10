@@ -5,7 +5,8 @@
 #include "data-mov/push.h"
 
 #include "data-jcc/jcc.h"
-#include "data-call/call.h"
+#include "control/call.h"
+#include "control/jmp.h"
 
 #include "arith/sub.h"
 #include "arith/cmp.h"
