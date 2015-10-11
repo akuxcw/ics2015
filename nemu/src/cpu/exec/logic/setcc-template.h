@@ -95,10 +95,11 @@ make_instr_helper(si)
 #define instr setne
 
 static void do_execute() {
+	DATA_TYPE i;
 	if(cpu.ZF == 0) {
-		 op_dest->val = 1;
-	}else op_dest->val = 0;
-	OPERAND_W(op_src, op_dest->val);
+		 i = 1;
+	}else i = 0;
+	OPERAND_W(op_src, i);
 	print_asm_template1();
 }
 
