@@ -100,7 +100,8 @@ static void do_execute() {
 		 i = 1;
 	}else i = 0;
 	//OPERAND_W(op_src, i);
-	swaddr_write(op_src->addr, DATA_BYTE, i);
+	//swaddr_write(op_src->addr, DATA_BYTE, i);
+	reg_b(op_src->reg) = i;
 	print_asm_template1();
 }
 
