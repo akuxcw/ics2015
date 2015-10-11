@@ -131,6 +131,34 @@ make_helper(concat(decode_i2r_, SUFFIX)) {
 	return decode_i(eip);
 }
 
+/* used for movsx,movzx */
+
+make_helper(concat(decode_rm_b2r_, SUFFIX)) {
+	Operand *rm = op_src;
+	Operand *reg = op_dest;
+	rm->size = 1;
+	int len = read_ModR_M(eip, rm, reg);
+	reg->val = REG(reg->reg);
+
+#ifdef DEBUG
+	snprintf(reg->str, OP_STR_SIZE, "%%%s", REG_NAME(reg->reg));
+#endif
+	return len;
+}
+
+make_helper(concat(decode_rm_w2r_, SUFFIX)) {
+	Operand *rm = op_src;
+	Operand *reg = op_dest;
+	rm->size = 2;
+	int len = read_ModR_M(eip, rm, reg);
+	reg->val = REG(reg->reg);
+
+#ifdef DEBUG
+	snprintf(reg->str, OP_STR_SIZE, "%%%s", REG_NAME(reg->reg));
+#endif
+	return len;
+}
+
 /* used by unary operations */
 make_helper(concat(decode_rm_, SUFFIX)) {
 	return decode_rm_internal(eip, op_src, op_src2);		/* op_src2 not use here */
