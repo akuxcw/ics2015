@@ -96,8 +96,9 @@ make_instr_helper(si)
 
 static void do_execute() {
 	if(cpu.ZF == 0) {
-		 OPERAND_W(op_src, 1);
-	}else OPERAND_W(op_src, 0);
+		 op_src->val = 1;
+	}else op_src->val = 0;
+	OPERAND_W(op_src, op_src->val);
 	print_asm_template1();
 }
 
