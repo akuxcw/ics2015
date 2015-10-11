@@ -16,8 +16,8 @@ make_helper(mov_a2moffs_v);
 make_helper(mov_moffs2a_v);
 */
 
-make_helper(je_i_b);
+make_helper(je_si_b);
 
-make_helper(jbe_i_b);
+make_helper(jbe_si_b);
 
 #endif
