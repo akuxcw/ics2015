@@ -3,10 +3,10 @@
 #define instr movsx
 
 static void do_execute() {
-	printf("%d\n", op_src->size);
+	printf("%d %d\n", op_src->size, DATA_BYTE);
 	printf("%x\n", op_src->val);
 	if(op_src->val >> (8 * op_src->size - 1) == 1)
-		op_src->val |= ((1 << 8 * op_src->size)-1) << 8 * op_src->size;else 
+		op_src->val |= ((1 << 8 * (DATA_BYTE - op_src->size))-1) << 8 * op_src->size;else 
 			op_src->val &= ((1 << 8 * op_src->size)-1);
 	printf("%x\n", op_src->val);
 	OPERAND_W(op_dest, op_src->val);
