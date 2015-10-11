@@ -149,11 +149,11 @@ make_helper(concat(decode_si_rm2r_, SUFFIX)) {
 	len += decode_si_b(eip + len);
 	return len;
 }
-#else
+//#else
 
-make_helper(concat(decode_si2rm_, SUFFIX)) {
-	return 0;
-}
+//make_helper(concat(decode_si2rm_, SUFFIX)) {
+//	return 0;
+//}
 
 #endif
 
