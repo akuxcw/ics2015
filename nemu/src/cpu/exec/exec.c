@@ -74,7 +74,7 @@ make_group(group3_v,
 
 /* 0xfe */
 make_group(group4,
-	inv, inv, inv, inv, 
+	inc_rm_b, inv, inv, inv, 
 	inv, inv, inv, inv)
 
 /* 0xff */
