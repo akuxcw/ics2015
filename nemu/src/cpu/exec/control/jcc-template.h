@@ -3,7 +3,7 @@
 #define instr ja
 
 static void do_execute() {
-	if(cpu.CF == 0 || cpu.ZF == 0) {
+	if(cpu.CF == 0 && cpu.ZF == 0) {
 		cpu.eip += op_src->val;
 	}
 	print_asm_template1();
