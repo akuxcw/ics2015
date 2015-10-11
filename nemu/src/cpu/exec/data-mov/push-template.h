@@ -3,8 +3,8 @@
 #define instr push
 
 static void do_execute() {
-	swaddr_write(cpu.esp, DATA_BYTE, op_src->val);
 	cpu.esp -= DATA_BYTE;
+	swaddr_write(cpu.esp, DATA_BYTE, op_src->val);
 	print_asm_template1();
 }
 
