@@ -42,7 +42,7 @@ make_instr_helper(si)
 #define instr jg
 
 static void do_execute() {
-	if(cpu.ZF == 0 || cpu.SF == cpu.OF) {
+	if(cpu.ZF == 0 && cpu.SF == cpu.OF) {
 		cpu.eip += op_src->val;
 	}
 	print_asm_template1();
