@@ -28,5 +28,7 @@ make_helper(jg_si_b);
 
 make_helper(jge_si_b);
 
+make_helper(jne_si_b);
+
 #endif
 
