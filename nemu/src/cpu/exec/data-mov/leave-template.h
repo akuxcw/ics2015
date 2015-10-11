@@ -6,8 +6,8 @@ static void do_execute() {
 	cpu.esp = cpu.ebp;
 	DATA_TYPE result = swaddr_read(cpu.esp, DATA_BYTE);
 	cpu.esp += DATA_BYTE;
-	OPERAND_W(op_src, result); 
-	print_asm_template1();
+	cpu.ebp = result;
+	print_asm("leave");
 }
 
 make_instr_helper(n)
