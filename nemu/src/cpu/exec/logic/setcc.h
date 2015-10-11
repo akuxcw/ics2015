@@ -16,7 +16,7 @@
 
 //make_helper(jge_si_b);
 
-make_helper(setne_si_b);
+make_helper(setne_rm_b);
 
 #endif
 

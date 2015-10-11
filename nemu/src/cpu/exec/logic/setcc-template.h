@@ -95,17 +95,13 @@ make_instr_helper(si)
 #define instr setne
 
 static void do_execute() {
-	DATA_TYPE i;
 	if(cpu.ZF == 0) {
-		 i = 1;
-	}else i = 0;
-	//OPERAND_W(op_src, i);
-	//swaddr_write(op_src->addr, DATA_BYTE, i);
-	reg_b(op_src->reg) = i;
+		 OPERAND_W(op_src, 1);
+	}else OPERAND_W(op_src, 0);
 	print_asm_template1();
 }
 
-make_instr_helper(si)
+make_instr_helper(rm)
 
 #undef instr
 
