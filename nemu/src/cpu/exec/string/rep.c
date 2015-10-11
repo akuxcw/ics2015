@@ -36,6 +36,5 @@ make_helper(rep) {
 	sprintf(temp, "rep %s", assembly);
 	sprintf(assembly, "%s[cnt = %d]", temp, count);
 #endif
-	printf("%d\n",len);	
 	return len + 1;
 }
