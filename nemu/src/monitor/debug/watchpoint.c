@@ -84,7 +84,7 @@ void check_wp(int *nemu_state) {
 		}
 		wp = wp->next;
 	}
-
+	if(*nemu_state == 0)print_wp(0);
 }
 
 #define DELETE 1
