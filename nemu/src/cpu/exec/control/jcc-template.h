@@ -26,6 +26,20 @@ make_instr_helper(si)
 
 #undef instr
 
+#define instr jl
+
+static void do_execute() {
+	if(cpu.SF != cpu.OF) {
+		cpu.eip += op_src->val;
+	}
+	print_asm_template1();
+}
+
+make_instr_helper(si)
+
+#undef instr
+
+
 #define instr jle
 
 static void do_execute() {
