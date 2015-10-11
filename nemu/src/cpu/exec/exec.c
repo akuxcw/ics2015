@@ -45,22 +45,22 @@ make_group(group2_i_v,
 /* 0xd0 */
 make_group(group2_1_b,
 	inv, inv, inv, inv, 
-	inv, inv, inv, inv)
+	shl_rm_1_b, inv, inv, inv)
 
 /* 0xd1 */
 make_group(group2_1_v,
 	inv, inv, inv, inv, 
-	inv, inv, inv, inv)
+	shl_rm_1_v, inv, inv, inv)
 
 /* 0xd2 */
 make_group(group2_cl_b,
 	inv, inv, inv, inv, 
-	inv, inv, inv, inv)
+	shl_rm_cl_b, inv, inv, inv)
 
 /* 0xd3 */
 make_group(group2_cl_v,
 	inv, inv, inv, inv, 
-	inv, inv, inv, inv)
+	shl_rm_cl_v, inv, inv, inv)
 
 /* 0xf6 */
 make_group(group3_b,
