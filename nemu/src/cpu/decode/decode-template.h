@@ -79,6 +79,9 @@ static int concat3(decode_rm_, SUFFIX, _internal) (swaddr_t eip, Operand *rm, Op
 	return len;
 }
 
+make_helper(concat(decode_n_, SUFFIX)) {
+	return 0;
+}
 /* Eb <- Gb
  * Ev <- Gv
  */
