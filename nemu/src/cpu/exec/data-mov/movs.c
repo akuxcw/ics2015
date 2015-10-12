@@ -14,5 +14,5 @@
 
 /* for instruction encoding overloading */
 
-make_helper_v(movs_r2rm)
+make_helper_v(movs_n)
 
