@@ -4,7 +4,7 @@
 
 static void do_execute() {
 //	cpu.esp += op_src->val;
-	DATA_TYPE result = swaddr_read(cpu.esp, DATA_BYTE);
+	DATA_TYPE result = swaddr_read(cpu.esp, 4);
 	cpu.esp += DATA_BYTE + op_src->val;
 	cpu.eip = result;
 	printf("%x\n",op_src->val);
