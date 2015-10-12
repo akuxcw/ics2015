@@ -3,4 +3,6 @@
 
 make_helper(cmps_n_b);
 
+make_helper(cmps_n_v);
+
 #endif
