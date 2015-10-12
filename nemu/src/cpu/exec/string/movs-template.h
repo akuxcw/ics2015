@@ -4,7 +4,7 @@
 
 static void do_execute() {
 //	OPERAND_W(op_dest, op_src->val);
-	cpu.edi = cpu.esi;
+	swaddr_write(cpu.edi,4,swaddr_read(cpu.esi,4));
 	print_asm_template2();
 }
 
