@@ -3,7 +3,8 @@
 #define instr movs
 
 static void do_execute() {
-	OPERAND_W(op_dest, op_src->val);
+//	OPERAND_W(op_dest, op_src->val);
+	cpu.edi = cpu.esi;
 	print_asm_template2();
 }
 
