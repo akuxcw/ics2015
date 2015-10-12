@@ -10,6 +10,7 @@
 #include "data-mov/leave.h"
 #include "data-mov/ret.h"
 #include "data-mov/cltd.h"
+#include "data-mov/cld.h"
 
 #include "control/jcc.h"
 #include "control/call.h"
