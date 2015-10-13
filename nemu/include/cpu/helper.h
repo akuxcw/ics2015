@@ -22,7 +22,7 @@ static inline int idex(swaddr_t eip, int (*decode)(swaddr_t), void (*execute) (v
 	/* eip is pointing to the opcode */
 	int len = decode(eip + 1);
 //	cpu.eip += len + 1;
-	printf("%d\n",len);
+//	printf("%d\n",len);
 	execute();
 	return len + 1;	// "1" for opcode
 }
