@@ -13,7 +13,8 @@ FLOAT F_div_F(FLOAT a, FLOAT b) {
 }
 
 FLOAT f2F(float a) {
-	int *i = &a;
+	int i = *(int*)&a;
+
 	return (FLOAT)(i);
 }
 
