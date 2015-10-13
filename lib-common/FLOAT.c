@@ -8,8 +8,8 @@ FLOAT F_mul_F(FLOAT a, FLOAT b) {
 
 FLOAT F_div_F(FLOAT a, FLOAT b) {
 //	int l = 0, r = 0xffffffff;
-//	return (FLOAT)((int64_t)a / (int64_t)b);
-	return (a / b);
+//	return (FLOAT)((int64_t)a / b);
+	return a / b;
 }
 
 FLOAT f2F(float a) {

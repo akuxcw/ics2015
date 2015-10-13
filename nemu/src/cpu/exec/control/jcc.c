@@ -15,4 +15,5 @@
 /* for instruction encoding overloading */
 
 make_helper_v(jle_si)
+make_helper_v(jns_si)
 
