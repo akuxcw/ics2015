@@ -3,7 +3,16 @@
 #define int64_t int//long long
 
 FLOAT F_mul_F(FLOAT a, FLOAT b) {
-	return (FLOAT)(((int64_t)a * (int64_t)b) >> 16) ;
+	int a1 = (a >> 16),b1 = (b >> 16);
+	int a0 = a & 0xffff,b0 = b & 0xffff;
+	int c0,c1,c2,c3;
+	c0 = a0 * b0;
+	c1 = c0 / 0xffff + a0 * b1 + a1 * b0; c0 %= 0xffff;
+	c2 = c1 / 0xffff + a1 * b1; c1 %= 0xffff;
+	c3 = c2 / 0xffff; c2 %= 0xffff;
+	int ans = c1 + (c2 << 16);
+	return ans;
+//	return (FLOAT)(((int64_t)a * (int64_t)b) >> 16) ;
 }
 
 FLOAT F_div_F(FLOAT a, FLOAT b) {
@@ -24,7 +33,7 @@ FLOAT f2F(float a) {
 		if (ans < 0) return 0x80000000u;
 		m = m << 1;
 	}
-	if (s == 1) ans = (~ans) + 1;
+	if (s != 0) ans = (~ans) + 1;
 	return (FLOAT)(ans);
 }
 
