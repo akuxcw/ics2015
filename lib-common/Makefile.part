@@ -4,7 +4,7 @@ FLOAT_OBJ := $(FLOAT:.a=.o)
 FLOAT_SRC := lib-common/FLOAT.c
 FLOAT_DIR := lib-common
 
-FLOAT_CFLAGS_EXTRA := -c -fno-builtin -I$(FLOAT_DIR)
+FLOAT_CFLAGS_EXTRA := -ggdb3 -O2 -I$(FLOAT_DIR)
 FLOAT_BIN := FLOAT
 
 $(FLOAT): $(FLOAT_OBJ)

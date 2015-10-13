@@ -20,7 +20,7 @@ FLOAT F_div_F(FLOAT a, FLOAT b) {
 //	return (FLOAT)((int64_t)a / b);
 	int64_t c = (int64_t)a << 16ll;
 //	do_div(c,b);
-	return c;
+	return c / b;
 	//return ((int64_t)a << 16ll) / b;
 }
 
