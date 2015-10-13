@@ -21,17 +21,17 @@ FLOAT F_div_F(FLOAT a, FLOAT b) {
 	int ans = 0, i;
 	for(i = 0; i < 64; ++i)
 	{
-			a11 = (a11 << 1) + (a10 >> 31);
-			a10 = (a10 << 1) + (a01 >> 31);
-			a01 = (a01 << 1) + (a00 >> 31);
-			a00 = a00 << 1;
-			ans = ans << 1;
-			if(a11 > 0 || a10 >= b) {
-						if(a10 < b) a11 --;
-						a10 -= b;
-						ans++; 
-					}
+		a11 = (a11 << 1) + (a10 >> 31);
+		a10 = (a10 << 1) + (a01 >> 31);
+		a01 = (a01 << 1) + (a00 >> 31);
+		a00 = a00 << 1;
+		ans = ans << 1;
+		if(a11 > 0 || a10 >= b) {
+			if(a10 < b) a11 --;
+			a10 -= b;
+			ans++; 
 		}
+	}
 	return ans;
 }
 
@@ -52,7 +52,7 @@ FLOAT f2F(float a) {
 }
 
 FLOAT Fabs(FLOAT a) {
-	return (a >> 31) == 0 ? a : (~a) + 1;
+	return a >=0 ? a : -a;
 }
 
 FLOAT sqrt(FLOAT x) {
