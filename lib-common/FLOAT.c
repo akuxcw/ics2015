@@ -1,6 +1,6 @@
 #include "FLOAT.h"
-
-#define int64_t int//long long
+//#include <asm/div64.h>
+#define int64_t long long
 
 FLOAT F_mul_F(FLOAT a, FLOAT b) {
 	int a1 = (a >> 16),b1 = (b >> 16);
@@ -18,7 +18,10 @@ FLOAT F_mul_F(FLOAT a, FLOAT b) {
 FLOAT F_div_F(FLOAT a, FLOAT b) {
 //	int l = 0, r = 0xffffffff;
 //	return (FLOAT)((int64_t)a / b);
-	return a / b;
+	int64_t c = (int64_t)a << 16ll;
+//	do_div(c,b);
+	return c;
+	//return ((int64_t)a << 16ll) / b;
 }
 
 FLOAT f2F(float a) {
