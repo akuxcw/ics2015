@@ -1,5 +1,7 @@
 #include "FLOAT.h"
 
+#define int64_t long long
+
 FLOAT F_mul_F(FLOAT a, FLOAT b) {
 	return (FLOAT)(((int64_t)a * (int64_t)b) >> 16) ;
 }
