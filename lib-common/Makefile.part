@@ -2,8 +2,16 @@
 
 FLOAT_OBJ := $(FLOAT:.a=.o)
 
+FLOAT_CFLAGS_EXTRA := -m32 -fno-builtin 
+FLOAT_BIN := FLOAT
+
 $(FLOAT): $(FLOAT_OBJ)
 	ar r $(FLOAT) $(FLOAT_OBJ)
 
+$(FLOAT_BIN): $(FLOAT_OBJS) 
+	$(call make_command, $(CC), $(FLOAT_LDFLAGS), ld $@, $^)
+
 # TODO: write a rule for generating $(FLOAT_OBJ)
+
+
 
