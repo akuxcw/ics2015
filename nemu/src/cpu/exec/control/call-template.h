@@ -4,11 +4,17 @@
 
 static void do_execute() {
 	cpu.esp -= 4;
-	swaddr_write(cpu.esp, 4, cpu.eip + 4);
-	cpu.eip += op_src->val;
+	if(op_src->val < 0x100000) {
+		swaddr_write(cpu.esp, 4, cpu.eip + 4);
+		cpu.eip += op_src->val;
+	}else {
+		swaddr_write(cpu.esp, 4, cpu.eip + 1);
+		cpu.eip = op_src->val;
+	}
 	print_asm_template1();
 }
 
 make_instr_helper(i)
+make_instr_helper(rm)
 
 #include "cpu/exec/template-end.h"
