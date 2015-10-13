@@ -38,4 +38,4 @@
     cpu.PF = 1;\
     for(i = 0; i < 8; ++ i) cpu.PF ^= (result & (1 << i)) >> i;\
     cpu.ZF = (result == 0);\
-    cpu.SF = result >> (8 * DATA_BYTE - 1);
+    cpu.SF = MSB(result);
