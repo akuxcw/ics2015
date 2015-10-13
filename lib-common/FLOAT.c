@@ -8,8 +8,7 @@ FLOAT F_mul_F(FLOAT a, FLOAT b) {
 
 FLOAT F_div_F(FLOAT a, FLOAT b) {
 //	int l = 0, r = 0xffffffff;
-
-	return 0;
+	return (FLOAT)((int64_t)a / (int64_t)b);
 }
 
 FLOAT f2F(float a) {
@@ -24,12 +23,12 @@ FLOAT f2F(float a) {
 		if (ans < 0) return 0x80000000u;
 		m = m << 1;
 	}
+	if (s == 1) ans = (~ans) + 1;
 	return (FLOAT)(ans);
 }
 
 FLOAT Fabs(FLOAT a) {
-	nemu_assert(0);
-	return 0;
+	return (a >> 31) == 0 ? a : (~a) + 1;
 }
 
 FLOAT sqrt(FLOAT x) {
