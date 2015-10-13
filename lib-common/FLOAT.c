@@ -16,16 +16,21 @@ FLOAT F_mul_F(FLOAT a, FLOAT b) {
 }
 
 FLOAT F_div_F(FLOAT a, FLOAT b) {
-	unsigned long long a0 = (long long)a << 16;
-	unsigned long long a1 = a >> 63;
+	unsigned int a00 = a << 16;
+	unsigned int a01 = a >> 16;
+	unsigned int a10 = a >> 31;
+	unsigned int a11 = a >> 31;
 	int ans = 0, i;
 	for(i = 0; i < 64; ++i)
 	{
-			a1 = (a1 << 1) + (a0 >> 63);
-			a0 = a0 << 1;
+			a11 = (a11 << 1) + (a10 >> 31);
+			a10 = (a10 << 1) + (a01 >> 31);
+			a01 = (a01 << 1) + (a00 >> 31);
+			a00 = a00 << 1;
 			ans = ans << 1;
-			if(a1 >= b) {
-						a1 = a1 - b;
+			if(a11 > 0 || a10 >= b) {
+						if(a10 < b) a11 --;
+						a10 -= b;
 						ans++; 
 					}
 		}
