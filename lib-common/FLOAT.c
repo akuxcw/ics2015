@@ -16,12 +16,20 @@ FLOAT F_mul_F(FLOAT a, FLOAT b) {
 }
 
 FLOAT F_div_F(FLOAT a, FLOAT b) {
-//	int l = 0, r = 0xffffffff;
-//	return (FLOAT)((int64_t)a / b);
-	int64_t c = (int64_t)a << 16ll;
-//	do_div(c,b);
-	return c / b;
-	//return ((int64_t)a << 16ll) / b;
+	unsigned long long a0 = (long long)a << 16;
+	unsigned long long a1 = a >> 63;
+	int ans = 0, i;
+	for(i = 0; i < 64; ++i)
+	{
+			a1 = (a1 << 1) + (a0 >> 63);
+			a0 = a0 << 1;
+			ans = ans << 1;
+			if(a1 >= b) {
+						a1 = a1 - b;
+						ans++; 
+					}
+		}
+	return ans;
 }
 
 FLOAT f2F(float a) {
