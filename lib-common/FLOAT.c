@@ -13,7 +13,8 @@ FLOAT F_div_F(FLOAT a, FLOAT b) {
 }
 
 FLOAT f2F(float a) {
-	return (FLOAT)(a * (1 << 16));
+	int *i = &a;
+	return (FLOAT)(i);
 }
 
 FLOAT Fabs(FLOAT a) {
