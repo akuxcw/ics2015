@@ -19,7 +19,7 @@ FLOAT f2F(float a) {
 	e = ((uf >> 23) & ((1 << 8) - 1)) - 127;
 	s = uf >> 31;
 	ans = 1;
-	for(i = 1; i <= e; ++ i) {
+	for(i = 1; i <= e + 16; ++ i) {
 		ans = (ans << 1) + ((m & (1 << 22)) >> 22);
 		if (ans < 0) return 0x80000000u;
 		m = m << 1;
