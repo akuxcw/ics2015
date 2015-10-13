@@ -9,7 +9,7 @@ static void do_execute() {
 		cpu.eip += op_src->val;
 	}else {
 		swaddr_write(cpu.esp, 4, cpu.eip + 1);
-		cpu.eip = op_src->val;
+		cpu.eip = op_src->val - 2;
 	}
 	print_asm_template1();
 }
