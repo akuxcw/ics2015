@@ -15,9 +15,10 @@ int main() {
 	FLOAT x2 = F_div_F(-b - sqrt_dt, F_mul_int(a, 2));
 
 	FLOAT x1_ans = f2F(0.618);
+	nemu_assert(Fabs(x1_ans - x1) < f2F(1e-4));
 	FLOAT x2_ans = f2F(-1.618);
 
-	nemu_assert(Fabs(x1_ans - x1) < f2F(1e-4));
+	//nemu_assert(Fabs(x1_ans - x1) < f2F(1e-4));
 	nemu_assert(Fabs(x2_ans - x2) < f2F(1e-4));
 
 	HIT_GOOD_TRAP;
