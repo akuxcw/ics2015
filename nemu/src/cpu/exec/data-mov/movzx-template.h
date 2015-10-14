@@ -3,7 +3,8 @@
 #define instr movzx
 
 static void do_execute() {
-	OPERAND_W(op_dest, op_src->val);
+	DATA_TYPE result = op_src->val & ((1ll << (op_src->size * 8)) - 1);
+	OPERAND_W(op_dest, result);
 	print_asm_template2();
 }
 
