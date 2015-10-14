@@ -4,6 +4,7 @@
 
 static void do_execute() {
 	DATA_TYPE result = op_src->val & ((1ll << (op_src->size * 8)) - 1);
+	printf("%x %x %d\n",result, op_src->val, op_src->size);
 	OPERAND_W(op_dest, result);
 	print_asm_template2();
 }
