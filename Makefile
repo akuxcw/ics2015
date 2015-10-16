@@ -51,7 +51,7 @@ clean: clean-cpp
 
 ##### some convinient rules #####
 
-USERPROG := obj/testcase/gcd
+USERPROG := obj/testcase/add-longlong
 
 ENTRY := $(USERPROG)
 
