@@ -44,9 +44,9 @@ uint32_t loader() {
 	/* Load each program segment */
 //	for(; true; ) {
 //	for(; false; ) 
-	{
+//	{
 		/* Scan the program header table, load each segment into memory */
-		if(ph->p_type == PT_LOAD) {
+//		if(ph->p_type == PT_LOAD) {
 
 			int i;
 			/* TODO: read the content of the segment from the ELF file 
@@ -67,9 +67,9 @@ uint32_t loader() {
 #endif
 //	HIT_GOOD_TRAP;
 //			break;
-		}
-	HIT_GOOD_TRAP;
-	}
+//		}
+//	HIT_GOOD_TRAP;
+//	}
 
 //	HIT_GOOD_TRAP;
 	volatile uint32_t entry = elf->e_entry;
