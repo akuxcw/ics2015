@@ -94,6 +94,7 @@ void find_func(int addr, char *str) {
 	for(i = 0; i < nr_symtab_entry; ++ i) {
 		if(addr >= symtab[i].st_value && addr <= symtab[i].st_value + symtab[i].st_size) {
 			strcpy(str, strtab + symtab[i].st_name);
+			printf("*\n");
 			return; 
 		}
 	}
