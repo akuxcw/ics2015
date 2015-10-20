@@ -90,8 +90,17 @@ int find_var(char *str) {
 	return -1;
 }
 
+void find_func(int addr, char *str) {
+	int i;
+	for(i = 0; i < nr_symtab_entry; ++ i) {
+		//printf("%d\n", symtab[i].st_name);
+	}
+}
+
 void print() {
-	printf("%d\n", nr_symtab_entry);
+	int i;
+	for(i = 0; i < nr_symtab_entry; ++ i) {
+		printf("%s\n", strtab + symtab[i].st_name);
+	}	
 	
-	printf("%s\n", strtab);
 }

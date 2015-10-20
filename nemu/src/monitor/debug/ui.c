@@ -9,8 +9,6 @@
 
 bool flag;
 
-extern char *strtab;
-
 extern void new_wp(char *args);
 extern void free_wp(int n);
 extern void print_wp();
@@ -168,6 +166,16 @@ static int cmd_d(char *args) {
 	return 0;
 }
 
+static int cmd_bt(char *args) {
+	int x = cpu.ebp;
+	if(x == 0) {
+		printf("No stack.");
+		return 0;
+	}
+//	while(x != 0)
+	return 0;
+}
+
 static struct {
 	char *name;
 	char *description;
@@ -182,6 +190,7 @@ static struct {
 	{ "p [/x] EXPR   ", "Show the value of the EXPR in decimal, if \"/x\" print in sixteen decimal", cmd_p },
 	{ "w EXPR        ", "When the EXPR's value changes, the program will stop", cmd_w },
 	{ "d N           ", "Delete the Nth watchpoint", cmd_d},
+	{ "bt            ", "Print the stack", cmd_bt},
 	/* TODO: Add more commands */
 
 };
