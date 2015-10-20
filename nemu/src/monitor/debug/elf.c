@@ -95,7 +95,7 @@ void find_func(int addr, char *str) {
 	//	printf("%x %x\n", symtab[i].st_value, symtab[i].st_value + symtab[i].st_size);
 		if(addr >= symtab[i].st_value && addr <= symtab[i].st_value + symtab[i].st_size) {
 			strcpy(str, strtab + symtab[i].st_name);
-//			printf("*\n");
+			printf("*\n");
 			return; 
 		}
 	}
