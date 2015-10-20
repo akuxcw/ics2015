@@ -42,7 +42,6 @@ uint32_t loader() {
 //	panic("please implement me");
 	for(; true; ) {
 //	for(; false; ) {
-	HIT_GOOD_TRAP;
 		/* Scan the program header table, load each segment into memory */
 		if(ph->p_type == PT_LOAD) {
 
@@ -65,6 +64,7 @@ uint32_t loader() {
 //	HIT_GOOD_TRAP;
 	//		break;
 		}
+	HIT_GOOD_TRAP;
 	}
 
 //	HIT_GOOD_TRAP;
