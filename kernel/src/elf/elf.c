@@ -61,7 +61,7 @@ uint32_t loader() {
 			uint32_t new_brk = ph->p_vaddr + ph->p_memsz - 1;
 			if(brk < new_brk) { brk = new_brk; }
 #endif
-			break;
+//			break;
 		}
 	}
 
