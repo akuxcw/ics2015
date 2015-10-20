@@ -55,19 +55,19 @@ uint32_t loader() {
 			 */
 
 
-	HIT_GOOD_TRAP;
+//	HIT_GOOD_TRAP;
 #ifdef IA32_PAGE
 			/* Record the program break for future use. */
 			extern uint32_t brk;
 			uint32_t new_brk = ph->p_vaddr + ph->p_memsz - 1;
 			if(brk < new_brk) { brk = new_brk; }
 #endif
-	HIT_GOOD_TRAP;
+//	HIT_GOOD_TRAP;
 //			break;
 		}
 	}
 
-	HIT_GOOD_TRAP;
+//	HIT_GOOD_TRAP;
 	volatile uint32_t entry = elf->e_entry;
 //	nemu_assert(entry == 0x8000c7);
 
