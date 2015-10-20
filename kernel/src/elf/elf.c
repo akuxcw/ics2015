@@ -40,7 +40,6 @@ uint32_t loader() {
 
 	/* Load each program segment */
 //	panic("please implement me");
-	HIT_GOOD_TRAP;
 	for(; true; ) {
 //	for(; false; ) {
 		/* Scan the program header table, load each segment into memory */
