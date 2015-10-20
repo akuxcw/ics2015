@@ -209,7 +209,7 @@ uint32_t eval(p, q) {
 		int value = 0,i = 0;
 //		printf("str=%s\n,value=%d\n",tokens[p].str,value);
 		if (tokens[p].type == VAR) {
-			printf("%s\n", tokens[p].str);
+//			printf("%s\n", tokens[p].str);
 			value = find_var(tokens[p].str);
 		} else
 		if (tokens[p].str[0] == '$') {
@@ -296,7 +296,7 @@ uint32_t expr(char *e, bool *success) {
 		*success = false;
 		return 0;
 	}
-	print();
+//	print();
 	return eval(0,nr_token-1);
 	/* TODO: Insert codes to evaluate the expression. */
 	panic("please implement me");
