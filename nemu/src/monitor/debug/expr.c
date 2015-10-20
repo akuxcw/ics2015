@@ -49,7 +49,7 @@ static struct rule {
 	{"\\)", ')', 10, false},							// right par
 	{"-", MS, 9, true},									// minus sign
 	{"\\*", DR, 9, true},								// dereference
-	{"[a-zA-Z_]+[0-9a-zA-Z_]\\*", VAR, 10, false},					// var
+	{"[a-zA-Z_]+[0-9a-zA-Z_]*", VAR, 10, false},					// var
 };
 
 #define NR_REGEX (sizeof(rules) / sizeof(rules[0]) )
