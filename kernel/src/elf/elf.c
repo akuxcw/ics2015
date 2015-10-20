@@ -42,8 +42,8 @@ uint32_t loader() {
 	nemu_assert(buf[199] == 0x55);
 	
 	/* Load each program segment */
-//	for(; true; ) {
-	for(; false; ) {
+	for(; true; ) {
+//	for(; false; ) {
 		/* Scan the program header table, load each segment into memory */
 		if(ph->p_type == PT_LOAD) {
 
