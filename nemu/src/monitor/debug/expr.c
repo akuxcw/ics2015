@@ -289,7 +289,7 @@ uint32_t expr(char *e, bool *success) {
 		return 0;
 	}
 	print();
-//	printf("%s\n", strtab);
+	printf("%s\n", strtab + 1);
 	return eval(0,nr_token-1);
 	/* TODO: Insert codes to evaluate the expression. */
 	panic("please implement me");
