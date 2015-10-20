@@ -12,6 +12,8 @@ void ide_read(uint8_t *, uint32_t, uint32_t);
 void ramdisk_read(uint8_t *, uint32_t, uint32_t);
 #endif
 
+void ramdisk_write(uint8_t *, uint32_t, uint32_t);
+
 #define STACK_SIZE (1 << 20)
 
 void create_video_mapping();
@@ -43,11 +45,11 @@ uint32_t loader() {
 		/* Scan the program header table, load each segment into memory */
 		if(ph->p_type == PT_LOAD) {
 
-//			int i;
+			int i;
 			/* TODO: read the content of the segment from the ELF file 
 			 * to the memory region [VirtAddr, VirtAddr + FileSiz)
 			 */
-//			for(i = 0; i < ph->p_memsz; i ++) ramdisk_write(elf->e_entry + i, 1, buf[i]);
+			for(i = 0; i < ph->p_memsz; i ++) ramdisk_write(buf + i, 0x800000 + i, 1);
 			 
 			/* TODO: zero the memory region 
 			 * [VirtAddr + FileSiz, VirtAddr + MemSiz)
