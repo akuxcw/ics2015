@@ -177,7 +177,7 @@ static int cmd_bt(char *args) {
 	}
 	while(x != 0) {
 		find_func(x, str);
-		printf("0x%x in %s\n", swaddr_read(x, 4), str);
+		printf("0x%x in %s\n", swaddr_read(x + 4, 4) + 1, str);
 		x = swaddr_read(x, 4);
 	}
 	return 0;
