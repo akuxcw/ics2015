@@ -110,8 +110,7 @@ static bool make_token(char *e) {
 					case EQ: case MS: case DR: 
 					case AND_L: case OR_L: case NOT_L:
 					case AND: case OR: case NOT: case MOD: 
-					case LE: case BE: case L: case B: 
-					case VAR: break;
+					case LE: case BE: case L: case B: break;
 					case '-': 
 						if (nr_token == 0 || tokens[nr_token-1].type != NB) {
 							tokens[nr_token].type = MS;
@@ -126,7 +125,7 @@ static bool make_token(char *e) {
 							tokens[nr_token].singel = true;
 						}
 						break;
-					case NB: 
+					case NB: case VAR:
 						strncpy(tokens[nr_token].str, substr_start, substr_len);
 						tokens[nr_token].str[substr_len] = '\0';
 						break;
