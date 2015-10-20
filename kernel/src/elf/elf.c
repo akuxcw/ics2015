@@ -32,14 +32,14 @@ uint32_t loader() {
 #endif
 
 	elf = (void*)buf;
-	ph = (void*)buf;
+//	ph = (void*)buf;
 
 
 	/* TODO: fix the magic number with the correct one */
 	const uint32_t elf_magic = 0x464c457f;
 	uint32_t *p_magic = (void *)buf;
 	nemu_assert(*p_magic == elf_magic);
-	nemu_assert(buf[199] == 0x55);
+	nemu_assert(elf->e_type == 0x7f45);
 	
 	/* Load each program segment */
 	for(; true; ) {
