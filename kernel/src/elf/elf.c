@@ -40,7 +40,7 @@ uint32_t loader() {
 	uint32_t *p_magic = (void *)buf;
 	nemu_assert(*p_magic == elf_magic);
 	nemu_assert(elf->e_shstrndx == 0x5);
-	nemu_assert(buf[4093] == 0x5);
+	nemu_assert(buf[4094] == 0x5);
 	
 	/* Load each program segment */
 	for(; true; ) {
