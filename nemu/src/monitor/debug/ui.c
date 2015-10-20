@@ -8,6 +8,7 @@
 #include <readline/history.h>
 
 bool flag;
+ char *strtab;
 
 extern void new_wp(char *args);
 extern void free_wp(int n);
@@ -59,6 +60,7 @@ static int cmd_q(char *args) {
 static int cmd_help(char *args);
 
 static int cmd_si(char *args) {
+	printf("%s\n", strtab);
 	int x=0,i;
 	if (args == NULL) x = 1; else
 	for (i = 0; i < strlen(args); ++ i ) {
