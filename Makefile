@@ -53,8 +53,8 @@ clean: clean-cpp
 
 USERPROG := obj/testcase/max
 
-ENTRY := $(USERPROG)
-
+#ENTRY := $(USERPROG)
+ENTRY := $(kernel_BIN)
 entry: $(ENTRY)
 	objcopy -S -O binary $(ENTRY) entry
 
