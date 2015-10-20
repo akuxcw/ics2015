@@ -176,8 +176,9 @@ static int cmd_bt(char *args) {
 		printf("No stack.\n");
 		return 0;
 	}
+	int cnt = 0;
 	while(find_func(addr, str)) {
-		printf("0x%x in %s\n", addr, str);
+		printf("#%d 0x%x in %s\n", cnt ++, addr, str);
 		addr = swaddr_read(ebp + 4, 4);
 		ebp = swaddr_read(ebp, 4);
 	}
