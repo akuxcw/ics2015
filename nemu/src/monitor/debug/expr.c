@@ -281,11 +281,14 @@ uint32_t eval(p, q) {
 	return 0;
 }
 
+extern void print();
+
 uint32_t expr(char *e, bool *success) {
 	if(!make_token(e)) {
 		*success = false;
 		return 0;
 	}
+	print();
 //	printf("%s\n", strtab);
 	return eval(0,nr_token-1);
 	/* TODO: Insert codes to evaluate the expression. */
