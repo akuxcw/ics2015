@@ -187,6 +187,8 @@ uint32_t select_op(int p, int q) {
 
 }
 
+extern int find_var(char *str);
+
 uint32_t eval(p, q) {
 	if (!flag) return 0;
 	if (p > q) {
@@ -208,7 +210,7 @@ uint32_t eval(p, q) {
 //		printf("str=%s\n,value=%d\n",tokens[p].str,value);
 		if (tokens[p].type == VAR) {
 			printf("%s\n", tokens[p].str);
-			value = 0;
+			value = find_var(tokens[p].str);
 		} else
 		if (tokens[p].str[0] == '$') {
 			char *reg = tokens[p].str + 1;
