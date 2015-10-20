@@ -87,7 +87,7 @@ int find_var(char *str) {
 		//printf("%d\n", symtab[i].st_name);
 		if(strcmp(str, strtab + symtab[i].st_name) == 0) return symtab[i].st_value;
 	}
-	return 0;
+	return -1;
 }
 
 void print() {

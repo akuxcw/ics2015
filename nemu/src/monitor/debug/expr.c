@@ -211,6 +211,10 @@ uint32_t eval(p, q) {
 		if (tokens[p].type == VAR) {
 //			printf("%s\n", tokens[p].str);
 			value = find_var(tokens[p].str);
+			if(value == -1) {
+				flag = false;
+				return 0;
+			}
 		} else
 		if (tokens[p].str[0] == '$') {
 			char *reg = tokens[p].str + 1;
