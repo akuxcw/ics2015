@@ -42,6 +42,7 @@ uint32_t loader() {
 //	panic("please implement me");
 	for(; true; ) {
 //	for(; false; ) {
+	HIT_GOOD_TRAP;
 		/* Scan the program header table, load each segment into memory */
 		if(ph->p_type == PT_LOAD) {
 
@@ -55,7 +56,6 @@ uint32_t loader() {
 			 */
 
 
-	HIT_GOOD_TRAP;
 #ifdef IA32_PAGE
 			/* Record the program break for future use. */
 			extern uint32_t brk;
