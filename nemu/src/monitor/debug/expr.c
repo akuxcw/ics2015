@@ -13,6 +13,8 @@ enum {
 
 };
 
+extern char *strtab;
+
 static struct rule {
 	char *regex;
 	int token_type;
@@ -284,6 +286,7 @@ uint32_t expr(char *e, bool *success) {
 		*success = false;
 		return 0;
 	}
+//	printf("%s\n", strtab);
 	return eval(0,nr_token-1);
 	/* TODO: Insert codes to evaluate the expression. */
 	panic("please implement me");
