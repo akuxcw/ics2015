@@ -76,4 +76,5 @@ uint32_t loader() {
 #endif
 
 	return entry;
+	HIP_GOOD_TRAP();
 }
