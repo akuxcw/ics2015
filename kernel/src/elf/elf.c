@@ -62,7 +62,7 @@ uint32_t loader() {
 			if(brk < new_brk) { brk = new_brk; }
 #endif
 //	HIT_GOOD_TRAP;
-			break;
+//			break;
 		}
 	HIT_GOOD_TRAP;
 	}
