@@ -5,6 +5,7 @@
 static void do_execute() {
 	if(op_src->val>0x100000) {
 		op_src->val -= cpu.eip + 2;
+		printf("*****\n");
 	}
 	cpu.eip += op_src->val;
 	print_asm_template1();
