@@ -32,6 +32,7 @@ uint32_t loader() {
 #endif
 
 	elf = (void*)buf;
+	ph = (void*)buf;
 
 
 	/* TODO: fix the magic number with the correct one */
