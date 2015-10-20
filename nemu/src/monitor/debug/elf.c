@@ -89,16 +89,17 @@ int find_var(char *str) {
 	return -1;
 }
 
-void find_func(int addr, char *str) {
+bool find_func(int addr, char *str) {
 	int i;
 	for(i = 0; i < nr_symtab_entry; ++ i) {
 	//	printf("%x %x\n", symtab[i].st_value, symtab[i].st_value + symtab[i].st_size);
-		if(addr >= symtab[i].st_value && addr <= symtab[i].st_value + symtab[i].st_size) {
+		if(addr >= symtab[i].st_value && addr < symtab[i].st_value + symtab[i].st_size) {
 			strcpy(str, strtab + symtab[i].st_name);
 			printf("*\n");
-			return; 
+			return true; 
 		}
 	}
+	return false;
 }
 
 void print() {
