@@ -172,12 +172,12 @@ static int cmd_bt(char *args) {
 	int x = cpu.ebp;
 	char str[32];
 	if(x == 0) {
-		printf("No stack.");
+		printf("No stack.\n");
 		return 0;
 	}
 	while(x != 0) {
 		find_func(x, str);
-		printf("0x%x in %s", x, str);
+		printf("0x%x in %s\n", swaddr_read(x, 4), str);
 		x = swaddr_read(x, 4);
 	}
 	return 0;
