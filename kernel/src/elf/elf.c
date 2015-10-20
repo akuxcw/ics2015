@@ -37,10 +37,10 @@ uint32_t loader() {
 	/* TODO: fix the magic number with the correct one */
 	const uint32_t elf_magic = 0x464c457f;
 	uint32_t *p_magic = (void *)buf;
-	HIT_GOOD_TRAP;
 	nemu_assert(*p_magic == elf_magic);
 	nemu_assert(buf[199] == 0x55);
 	
+	HIT_GOOD_TRAP;
 	/* Load each program segment */
 //	for(; true; ) {
 //	for(; false; ) 
