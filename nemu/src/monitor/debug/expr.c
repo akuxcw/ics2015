@@ -278,6 +278,7 @@ uint32_t eval(p, q) {
 			case BE: return val1 >= val2;
 			case L: return val1 < val2;
 			case B: return val1 > val2;
+			case NB: case VAR: flag = false; return 0;
 		default: assert(0);
 		}
 	//	panic("error");
