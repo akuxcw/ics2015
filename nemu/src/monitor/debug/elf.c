@@ -4,7 +4,7 @@
 
 char *exec_file = NULL;
 
-static char *strtab = NULL;
+/*tatic*/ char *strtab = NULL;
 static Elf32_Sym *symtab = NULL;
 static int nr_symtab_entry;
 
