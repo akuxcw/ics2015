@@ -61,10 +61,11 @@ uint32_t loader() {
 			uint32_t new_brk = ph->p_vaddr + ph->p_memsz - 1;
 			if(brk < new_brk) { brk = new_brk; }
 #endif
-//			break;
+			break;
 		}
 	}
 
+	HIT_GOOD_TRAP;
 	volatile uint32_t entry = elf->e_entry;
 //	nemu_assert(entry == 0x8000c7);
 
