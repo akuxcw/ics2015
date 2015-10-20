@@ -18,6 +18,7 @@
 #include "arith/add.h"
 #include "arith/adc.h"
 #include "arith/sub.h"
+#include "arith/sbb.h"
 #include "arith/cmp.h"
 #include "arith/dec.h"
 #include "arith/inc.h"
