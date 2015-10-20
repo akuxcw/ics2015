@@ -40,8 +40,8 @@ uint32_t loader() {
 
 	/* Load each program segment */
 //	panic("please implement me");
-//	for(; true; ) {
-	for(; false; ) {
+	for(; true; ) {
+//	for(; false; ) {
 		/* Scan the program header table, load each segment into memory */
 		if(ph->p_type == PT_LOAD) {
 
@@ -61,11 +61,12 @@ uint32_t loader() {
 			uint32_t new_brk = ph->p_vaddr + ph->p_memsz - 1;
 			if(brk < new_brk) { brk = new_brk; }
 #endif
+			break;
 		}
 	}
 
 	volatile uint32_t entry = elf->e_entry;
-	nemu_assert(entry == 0x8000c7);
+//	nemu_assert(entry == 0x8000c7);
 
 #ifdef IA32_PAGE
 	mm_malloc(KOFFSET - STACK_SIZE, STACK_SIZE);
