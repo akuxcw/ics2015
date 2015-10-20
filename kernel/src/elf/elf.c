@@ -55,7 +55,7 @@ uint32_t loader() {
 			 */
 
 
-//	HIT_GOOD_TRAP;
+	HIT_GOOD_TRAP;
 #ifdef IA32_PAGE
 			/* Record the program break for future use. */
 			extern uint32_t brk;
