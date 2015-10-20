@@ -40,7 +40,8 @@ uint32_t loader() {
 
 	/* Load each program segment */
 //	panic("please implement me");
-	for(; true; ) {
+//	for(; true; ) {
+	for(; false; ) {
 		/* Scan the program header table, load each segment into memory */
 		if(ph->p_type == PT_LOAD) {
 
@@ -75,6 +76,6 @@ uint32_t loader() {
 	write_cr3(get_ucr3());
 #endif
 
-	return entry;
 	HIT_GOOD_TRAP;
+	return entry;
 }
