@@ -42,17 +42,15 @@ uint32_t loader() {
 	
 	/* Load each program segment */
 //	for(; true; ) {
-//	for(; false; ) 
-//	{
+	for(; false; ) {
 		/* Scan the program header table, load each segment into memory */
-//		if(ph->p_type == PT_LOAD) {
+		if(ph->p_type == PT_LOAD) {
 
 			int i;
 			/* TODO: read the content of the segment from the ELF file 
 			 * to the memory region [VirtAddr, VirtAddr + FileSiz)
 			 */
 			for(i = 0; i < ph->p_memsz; i ++) ramdisk_write(buf + i, 0x800000 + i, 1);
-	HIT_GOOD_TRAP;
 			 
 			/* TODO: zero the memory region 
 			 * [VirtAddr + FileSiz, VirtAddr + MemSiz)
@@ -65,13 +63,10 @@ uint32_t loader() {
 			uint32_t new_brk = ph->p_vaddr + ph->p_memsz - 1;
 			if(brk < new_brk) { brk = new_brk; }
 #endif
-//	HIT_GOOD_TRAP;
-//			break;
-//		}
-//	HIT_GOOD_TRAP;
-//	}
+			break;
+		}
+	}
 
-//	HIT_GOOD_TRAP;
 	volatile uint32_t entry = elf->e_entry;
 //	nemu_assert(entry == 0x8000c7);
 
