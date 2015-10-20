@@ -33,6 +33,8 @@ uint32_t loader() {
 
 	elf = (void*)buf;
 
+	HIT_GOOD_TRAP;
+
 	/* TODO: fix the magic number with the correct one */
 	const uint32_t elf_magic = 0x464c457f;
 	uint32_t *p_magic = (void *)buf;
