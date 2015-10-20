@@ -48,11 +48,11 @@ uint32_t loader() {
 //		if(ph->p_type == PT_LOAD) {
 
 			int i;
-	HIT_GOOD_TRAP;
 			/* TODO: read the content of the segment from the ELF file 
 			 * to the memory region [VirtAddr, VirtAddr + FileSiz)
 			 */
 			for(i = 0; i < ph->p_memsz; i ++) ramdisk_write(buf + i, 0x800000 + i, 1);
+	HIT_GOOD_TRAP;
 			 
 			/* TODO: zero the memory region 
 			 * [VirtAddr + FileSiz, VirtAddr + MemSiz)
