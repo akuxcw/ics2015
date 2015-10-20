@@ -40,7 +40,6 @@ uint32_t loader() {
 	nemu_assert(*p_magic == elf_magic);
 	nemu_assert(buf[199] == 0x55);
 	
-//	HIT_GOOD_TRAP;
 	/* Load each program segment */
 //	for(; true; ) {
 //	for(; false; ) 
@@ -49,6 +48,7 @@ uint32_t loader() {
 //		if(ph->p_type == PT_LOAD) {
 
 			int i;
+	HIT_GOOD_TRAP;
 			/* TODO: read the content of the segment from the ELF file 
 			 * to the memory region [VirtAddr, VirtAddr + FileSiz)
 			 */
