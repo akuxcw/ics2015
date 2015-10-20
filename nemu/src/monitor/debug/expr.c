@@ -7,7 +7,7 @@
 #include <regex.h>
 
 enum {
-	NOTYPE = 256, EQ, NB, MS, DR, NEQ, AND_L, OR_L ,NOT_L, MOD, AND, OR, NOT, LE, BE, L, B,
+	NOTYPE = 256, EQ, NB, MS, DR, NEQ, AND_L, OR_L ,NOT_L, MOD, AND, OR, NOT, LE, BE, L, B, VAR,
 
 	/* TODO: Add more token types */
 
@@ -49,6 +49,7 @@ static struct rule {
 	{"\\)", ')', 10, false},							// right par
 	{"-", MS, 9, true},									// minus sign
 	{"\\*", DR, 9, true},								// dereference
+	{"[a-zA-Z_]+[0-9a-zA-Z_]+", VAR, 10, false},		// var
 };
 
 #define NR_REGEX (sizeof(rules) / sizeof(rules[0]) )
@@ -109,7 +110,8 @@ static bool make_token(char *e) {
 					case EQ: case MS: case DR: 
 					case AND_L: case OR_L: case NOT_L:
 					case AND: case OR: case NOT: case MOD: 
-					case LE: case BE: case L: case B: break;
+					case LE: case BE: case L: case B: 
+					case VAR: break;
 					case '-': 
 						if (nr_token == 0 || tokens[nr_token-1].type != NB) {
 							tokens[nr_token].type = MS;
@@ -199,12 +201,16 @@ uint32_t eval(p, q) {
 		 * For now this token should be a number. 
 		 * Return the value of the number.
 		 */
-		if (tokens[p].type != NB) {
+		if (tokens[p].type != NB && tokens[p].type != VAR) {
 			flag = false;
 			return 0;
 		}
 		int value = 0,i = 0;
 //		printf("str=%s\n,value=%d\n",tokens[p].str,value);
+		if (tokens[p].type == VAR) {
+			printf("%s\n", tokens[p].str);
+			value = 0;
+		} else
 		if (tokens[p].str[0] == '$') {
 			char *reg = tokens[p].str + 1;
 //			printf("%s\n",reg);
@@ -288,8 +294,6 @@ uint32_t expr(char *e, bool *success) {
 		*success = false;
 		return 0;
 	}
-	print();
-	printf("%s\n", strtab + 1);
 	return eval(0,nr_token-1);
 	/* TODO: Insert codes to evaluate the expression. */
 	panic("please implement me");
