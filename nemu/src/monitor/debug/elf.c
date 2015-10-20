@@ -4,7 +4,7 @@
 
 char *exec_file = NULL;
 
-/*tatic*/ char *strtab = NULL;
+static char *strtab = NULL;
 static Elf32_Sym *symtab = NULL;
 static int nr_symtab_entry;
 
@@ -81,3 +81,6 @@ void load_elf_tables(int argc, char *argv[]) {
 	fclose(fp);
 }
 
+void print() {
+	printf("%s\n", strtab);
+}
