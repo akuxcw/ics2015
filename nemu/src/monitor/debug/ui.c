@@ -166,13 +166,20 @@ static int cmd_d(char *args) {
 	return 0;
 }
 
+extern void find_func(int addr, char *str);
+
 static int cmd_bt(char *args) {
 	int x = cpu.ebp;
+	char str[32];
 	if(x == 0) {
 		printf("No stack.");
 		return 0;
 	}
-//	while(x != 0)
+	while(x != 0) {
+		find_func(x, str);
+		printf("0x%x in %s", x, str);
+		x = swaddr_read(x, 4);
+	}
 	return 0;
 }
 
