@@ -60,7 +60,7 @@ uint32_t loader() {
 //			}
 			for(i = 0; !(i >= ph->p_filesz); i ++) {
 				ramdisk_write(buf + ph->p_offset + i, ph->p_vaddr + i, 1);
-				if(cnt == 1)assert(i >= ph->p_filesz);
+				if(cnt == 1)assert(i == 0x10);
 			}
 			 
 			if(cnt == 1)HIT_GOOD_TRAP;
