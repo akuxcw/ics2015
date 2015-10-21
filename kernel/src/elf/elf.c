@@ -60,9 +60,9 @@ uint32_t loader() {
 			/* TODO: zero the memory region 
 			 * [VirtAddr + FileSiz, VirtAddr + MemSiz)
 			 */
-			uint8_t zero = 0;
-			for(i = ph->p_filesz; i < ph->p_memsz; i ++) 
-				ramdisk_write(&zero, ph->p_vaddr + i, 1);
+//			uint8_t zero = 0;
+//			for(i = ph->p_filesz; i < ph->p_memsz; i ++) 
+//				ramdisk_write(&zero, ph->p_vaddr + i, 1);
 
 //			nemu_assert(elf->e_phentsize == 32);
 #ifdef IA32_PAGE
