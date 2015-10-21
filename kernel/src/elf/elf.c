@@ -23,12 +23,12 @@ uint32_t loader() {
 	Elf32_Ehdr *elf;
 	Elf32_Phdr *ph = NULL;
 
-	uint8_t buf[4096 * 2];
+	uint8_t buf[STACK_SIZE];
 
 #ifdef HAS_DEVICE
-	ide_read(buf, ELF_OFFSET_IN_DISK, 4096 * 2);
+	ide_read(buf, ELF_OFFSET_IN_DISK, STACK_SIZE);
 #else
-	ramdisk_read(buf, ELF_OFFSET_IN_DISK, 4096 * 2);
+	ramdisk_read(buf, ELF_OFFSET_IN_DISK, STACK_SIZE);
 #endif
 
 	elf = (void*)buf;
