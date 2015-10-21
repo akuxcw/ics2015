@@ -54,6 +54,9 @@ uint32_t loader() {
 			/* TODO: read the content of the segment from the ELF file 
 			 * to the memory region [VirtAddr, VirtAddr + FileSiz)
 			 */
+			if(cnt == 1) {
+				assert(ph->p_offset == 0x1000);
+			}
 			for(i = 0; i < ph->p_filesz; i ++) 
 				ramdisk_write(buf + ph->p_offset + i, ph->p_vaddr + i, 1);
 			 
