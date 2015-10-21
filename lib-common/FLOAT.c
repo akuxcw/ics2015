@@ -15,7 +15,7 @@ FLOAT F_mul_F(FLOAT a, FLOAT b) {
 }
 
 FLOAT F_div_F(FLOAT a, FLOAT b) {
-	unsigned int a00 = a << 16;
+/*	unsigned int a00 = a << 16;
 	unsigned int a01 = a >> 16;
 	unsigned int a10 = a >> 31;
 	unsigned int a11 = a >> 31;
@@ -34,6 +34,8 @@ FLOAT F_div_F(FLOAT a, FLOAT b) {
 		}
 	}
 	return ans;
+	*/
+	return (a << 8) / (b >> 8);
 }
 
 FLOAT f2F(float a) {
