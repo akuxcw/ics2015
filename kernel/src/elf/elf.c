@@ -63,7 +63,7 @@ uint32_t loader() {
 //			uint8_t zero = 0;
 //			for(i = ph->p_filesz; i < ph->p_memsz; i ++) 
 //				ramdisk_write(&zero, 0x800000 + i, 1);
-		ph = (void*)(buf + elf->e_ehsize + elf->e_phentsize);
+		ph = (void*)(buf + elf->e_ehsize + cnt * elf->e_phentsize);
 
 //			nemu_assert(elf->e_phentsize == 32);
 #ifdef IA32_PAGE
