@@ -44,6 +44,7 @@ uint32_t loader() {
 //	nemu_assert(ph->p_type == PT_LOAD);
 
 //	HIT_GOOD_TRAP;
+//	int cnt = 0;i
 	/* Load each program segment */
 	for(; true; ) {
 		/* Scan the program header table, load each segment into memory */
@@ -54,7 +55,7 @@ uint32_t loader() {
 			 * to the memory region [VirtAddr, VirtAddr + FileSiz)
 			 */
 			for(i = 0; i < ph->p_memsz; i ++) 
-				ramdisk_write(buf + i, 0x800000 + i, 1);
+				ramdisk_write(buf + i, ph->p_vaddr + i, 1);
 			 
 			/* TODO: zero the memory region 
 			 * [VirtAddr + FileSiz, VirtAddr + MemSiz)
@@ -62,15 +63,15 @@ uint32_t loader() {
 //			uint8_t zero = 0;
 //			for(i = ph->p_filesz; i < ph->p_memsz; i ++) 
 //				ramdisk_write(&zero, 0x800000 + i, 1);
-
+			ph += elf->e_phentsize;
 #ifdef IA32_PAGE
 			/* Record the program break for future use. */
 			extern uint32_t brk;
 			uint32_t new_brk = ph->p_vaddr + ph->p_memsz - 1;
 			if(brk < new_brk) { brk = new_brk; }
 #endif
-			break;
-		}
+	//		break;
+		} else break;
 	}
 
 	volatile uint32_t entry = elf->e_entry;
