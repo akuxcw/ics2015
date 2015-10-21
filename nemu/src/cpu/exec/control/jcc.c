@@ -15,6 +15,7 @@
 /* for instruction encoding overloading */
 
 make_helper_v(jae_si)
+make_helper_v(jg_si)
 make_helper_v(jle_si)
 make_helper_v(jns_si)
 

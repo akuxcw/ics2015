@@ -18,6 +18,7 @@ make_helper(jle_si_b);
 make_helper(jle_si_v);
 
 make_helper(jg_si_b);
+make_helper(jg_si_v);
 
 make_helper(jge_si_b);
 
