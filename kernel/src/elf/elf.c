@@ -43,7 +43,7 @@ uint32_t loader() {
 	nemu_assert(buf[50] == 0x5);
 	nemu_assert(ph->p_type == PT_LOAD);
 
-	HIT_GOOD_TRAP;
+//	HIT_GOOD_TRAP;
 	/* Load each program segment */
 	for(; true; ) {
 //	for(; false; ) {
