@@ -44,12 +44,12 @@ uint32_t loader() {
 //	nemu_assert(ph->p_type == PT_LOAD);
 
 //	HIT_GOOD_TRAP;
-//	int cnt = 0;i
+	int cnt = 0;
 	/* Load each program segment */
 	for(; true; ) {
 		/* Scan the program header table, load each segment into memory */
 		if(ph->p_type == PT_LOAD) {
-
+			cnt ++;
 			int i;
 			/* TODO: read the content of the segment from the ELF file 
 			 * to the memory region [VirtAddr, VirtAddr + FileSiz)
@@ -74,6 +74,7 @@ uint32_t loader() {
 		} else break;
 	}
 
+	nemu_assert(cnt == 2);
 	volatile uint32_t entry = elf->e_entry;
 
 #ifdef IA32_PAGE
