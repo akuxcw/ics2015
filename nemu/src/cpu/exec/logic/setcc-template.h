@@ -13,19 +13,22 @@ make_instr_helper(si)
 
 #undef instr
 
-#define instr je
+*/
+
+#define instr sete
 
 static void do_execute() {
 	if(cpu.ZF == 1) {
-		cpu.eip += op_src->val;
-	}
+		 OPERAND_W(op_src, 1);
+	}else OPERAND_W(op_src, 0);
 	print_asm_template1();
 }
 
-make_instr_helper(si)
+make_instr_helper(rm)
 
 #undef instr
 
+	/*
 #define instr jbe
 
 static void do_execute() {
