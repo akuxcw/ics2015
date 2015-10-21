@@ -32,7 +32,7 @@ uint32_t loader() {
 #endif
 
 	elf = (void*)buf;
-//	ph = (void*)buf;
+	ph = (void*)(buf + elf->e_ehsize);
 
 
 	/* TODO: fix the magic number with the correct one */
@@ -41,6 +41,8 @@ uint32_t loader() {
 	nemu_assert(*p_magic == elf_magic);
 	nemu_assert(elf->e_ehsize == 52);
 	nemu_assert(buf[50] == 0x5);
+	nemu_assert(ph->p_type == PT_LOAD);
+
 	HIT_GOOD_TRAP;
 	/* Load each program segment */
 	for(; true; ) {
