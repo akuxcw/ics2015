@@ -60,11 +60,11 @@ uint32_t loader() {
 			/* TODO: zero the memory region 
 			 * [VirtAddr + FileSiz, VirtAddr + MemSiz)
 			 */
-			HIT_GOOD_TRAP;
 			uint8_t zero = 0;
 			for(i = ph->p_filesz; i < ph->p_memsz; i ++) 
 				ramdisk_write(&zero, 0x800000 + i, 1);
 
+			HIT_GOOD_TRAP;
 //			nemu_assert(elf->e_phentsize == 32);
 #ifdef IA32_PAGE
 			/* Record the program break for future use. */
