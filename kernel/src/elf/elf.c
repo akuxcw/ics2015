@@ -63,7 +63,7 @@ uint32_t loader() {
 //			uint8_t zero = 0;
 //			for(i = ph->p_filesz; i < ph->p_memsz; i ++) 
 //				ramdisk_write(&zero, 0x800000 + i, 1);
-			ph += 4 * elf->e_phentsize;
+			ph += 4 * 32;//elf->e_phentsize;
 #ifdef IA32_PAGE
 			/* Record the program break for future use. */
 			extern uint32_t brk;
@@ -74,7 +74,7 @@ uint32_t loader() {
 		} else break;
 	}
 
-	nemu_assert(cnt == 1);
+	nemu_assert(cnt == 2);
 	volatile uint32_t entry = elf->e_entry;
 
 #ifdef IA32_PAGE
