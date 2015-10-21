@@ -56,6 +56,7 @@ uint32_t loader() {
 			 */
 			if(cnt == 1) {
 				assert(ph->p_offset == 0x1000);
+				assert(ph->p_filesz == 0x7c);
 			}
 			for(i = 0; i < ph->p_filesz; i ++) 
 				ramdisk_write(buf + ph->p_offset + i, ph->p_vaddr + i, 1);
