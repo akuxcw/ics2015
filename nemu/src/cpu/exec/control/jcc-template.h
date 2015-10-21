@@ -13,6 +13,19 @@ make_instr_helper(si)
 
 #undef instr
 
+#define instr jae
+
+static void do_execute() {
+	if(cpu.CF == 0) {
+		cpu.eip += op_src->val;
+	}
+	print_asm_template1();
+}
+
+make_instr_helper(si)
+
+#undef instr
+
 #define instr jb
 
 static void do_execute() {
