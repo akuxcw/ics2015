@@ -63,7 +63,7 @@ uint32_t loader() {
 //				if(cnt == 1)assert(i < 0x70);//ph->p_filesz);
 			}
 			 
-			if(cnt == 1)HIT_GOOD_TRAP;
+//			if(cnt == 1)HIT_GOOD_TRAP;
 			/* TODO: zero the memory region 
 			 * [VirtAddr + FileSiz, VirtAddr + MemSiz)
 			 */
