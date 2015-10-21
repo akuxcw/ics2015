@@ -9,6 +9,7 @@ make_helper(jae_si_v);
 make_helper(jb_si_b);
 
 make_helper(je_si_b);
+make_helper(je_si_v);
 
 make_helper(jbe_si_b);
 
