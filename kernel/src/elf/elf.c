@@ -41,7 +41,7 @@ uint32_t loader() {
 	nemu_assert(*p_magic == elf_magic);
 	nemu_assert(elf->e_shstrndx == 0x5);
 	nemu_assert(buf[18] == EM_386);
-	
+	HIT_GOOD_TRAP;
 	/* Load each program segment */
 	for(; true; ) {
 //	for(; false; ) {
