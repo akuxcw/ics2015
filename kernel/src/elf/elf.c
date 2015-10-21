@@ -54,7 +54,7 @@ uint32_t loader() {
 			/* TODO: read the content of the segment from the ELF file 
 			 * to the memory region [VirtAddr, VirtAddr + FileSiz)
 			 */
-			for(i = 0; i < ph->p_memsz; i ++) ramdisk_write(buf + i, 0x800000 + i, 1);
+			for(i = 0; i < ph->p_filesz; i ++) ramdisk_write(buf + i, 0x800000 + i, 1);
 			 
 			/* TODO: zero the memory region 
 			 * [VirtAddr + FileSiz, VirtAddr + MemSiz)
