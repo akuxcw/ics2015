@@ -64,7 +64,6 @@ uint32_t loader() {
 			for(i = ph->p_filesz; i < ph->p_memsz; i ++) 
 				ramdisk_write(&zero, 0x800000 + i, 1);
 
-			HIT_GOOD_TRAP;
 //			nemu_assert(elf->e_phentsize == 32);
 #ifdef IA32_PAGE
 			/* Record the program break for future use. */
@@ -76,6 +75,7 @@ uint32_t loader() {
 		}
 	}
 
+			HIT_GOOD_TRAP;
 	volatile uint32_t entry = elf->e_entry;
 
 #ifdef IA32_PAGE
