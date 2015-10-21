@@ -48,8 +48,8 @@ uint32_t loader() {
 	/* Load each program segment */
 	for(cnt = 0; cnt < elf->e_phnum; ++ cnt) {
 		/* Scan the program header table, load each segment into memory */
+		ph = (void*)(buf + elf->e_ehsize + cnt * elf->e_phentsize);
 		if(ph->p_type == PT_LOAD) {
-			ph = (void*)(buf + elf->e_ehsize + cnt * elf->e_phentsize);
 			int i;
 			/* TODO: read the content of the segment from the ELF file 
 			 * to the memory region [VirtAddr, VirtAddr + FileSiz)
@@ -72,7 +72,7 @@ uint32_t loader() {
 			if(brk < new_brk) { brk = new_brk; }
 #endif
 	//		break;
-		} else break;
+		}
 	}
 
 	nemu_assert(cnt == 2);
