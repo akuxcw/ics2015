@@ -14,7 +14,7 @@ make_helper(cmove_rm2r_v);
 
 //make_helper(jg_si_b);
 
-//make_helper(jge_si_b);
+make_helper(cmovge_rm2r_v);
 
 make_helper(cmovns_rm2r_v);
 
