@@ -31,5 +31,7 @@ make_helper(jne_si_v);
 make_helper(jns_si_b);
 make_helper(jns_si_v);
 
+make_helper(js_si_v);
+
 #endif
 
