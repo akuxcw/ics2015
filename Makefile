@@ -51,7 +51,7 @@ clean: clean-cpp
 
 ##### some convinient rules #####
 
-USERPROG := obj/testcase/quadratic-eq
+USERPROG := obj/testcase/switch
 
 #ENTRY := $(USERPROG)
 ENTRY := $(kernel_BIN)
