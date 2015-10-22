@@ -14,5 +14,7 @@
 
 /* for instruction encoding overloading */
 
+make_helper_v(cmove_rm2r)
+
 make_helper_v(cmovns_rm2r)
 

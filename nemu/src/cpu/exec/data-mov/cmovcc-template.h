@@ -12,23 +12,23 @@ static void do_execute() {
 make_instr_helper(si)
 
 #undef instr
+*/
 
 
-
-#define instr sete
+#define instr cmove
 
 static void do_execute() {
 	if(cpu.ZF == 1) {
-		 OPERAND_W(op_src, 1);
-	}else OPERAND_W(op_src, 0);
-	print_asm_template1();
+		 OPERAND_W(op_dest, op_src->val);
+	}
+	print_asm_template2();
 }
 
-make_instr_helper(rm)
+make_instr_helper(rm2r)
 
 #undef instr
 
-	
+/*	
 #define instr jbe
 
 static void do_execute() {

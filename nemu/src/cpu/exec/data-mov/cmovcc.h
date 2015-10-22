@@ -3,7 +3,7 @@
 
 //make_helper(ja_si_b);
 
-//make_helper(je_si_b);
+make_helper(cmove_rm2r_v);
 
 //make_helper(jbe_si_b);
 
