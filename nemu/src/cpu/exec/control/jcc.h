@@ -2,6 +2,7 @@
 #define __JCC_H__
 
 make_helper(ja_si_b);
+make_helper(ja_si_v);
 
 make_helper(jae_si_b);
 make_helper(jae_si_v);
