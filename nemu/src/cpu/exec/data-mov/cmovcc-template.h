@@ -1,141 +1,109 @@
 #include "cpu/exec/template-start.h"
+
+#define if_exec() OPERAND_W(op_dest, op_src->val);
+
+#define else_exec() ;
+
+#define all_exec() static void do_execute() {\
+				       if(CMOVFLAG) if_exec() else else_exec();\
+					   print_asm_template2();\
+				   }\
+				   make_instr_helper(rm2r)
 /*
-#define instr ja
+#define instr cmova
+#define CMOVFLAG cpu.CF == 0 && cpu.ZF == 0
 
-static void do_execute() {
-	if(cpu.CF == 0 && cpu.ZF == 0) {
-		cpu.eip += op_src->val;
-	}
-	print_asm_template1();
-}
+all_exec();
 
-make_instr_helper(si)
+#undef CMOVFLAG
+#undef instr
 
+#define instr cmovae
+#define CMOVFLAG cpu.CF == 0
+
+all_exec();
+
+#undef CMOVFLAG
+#undef instr
+
+#define instr cmovb
+#define CMOVFLAG cpu.CF == 1
+
+all_exec();
+
+#undef CMOVFLAG
 #undef instr
 */
-
-
 #define instr cmove
+#define CMOVFLAG cpu.ZF == 1
 
-static void do_execute() {
-	if(cpu.ZF == 1) {
-		 OPERAND_W(op_dest, op_src->val);
-	}
-	print_asm_template2();
-}
+all_exec();
 
-make_instr_helper(rm2r)
-
+#undef CMOVFLAG
 #undef instr
-
-/*	
-#define instr jbe
-
-static void do_execute() {
-	if(cpu.ZF == 1 || cpu.CF == 1) {
-		cpu.eip += op_src->val;
-	}
-	print_asm_template1();
-}
-
-make_instr_helper(si)
-
-#undef instr
-
-#define instr jl
-
-static void do_execute() {
-	if(cpu.SF != cpu.OF) {
-		cpu.eip += op_src->val;
-	}
-	print_asm_template1();
-}
-
-make_instr_helper(si)
-
-#undef instr
-
-
-#define instr jle
-
-static void do_execute() {
-	if(cpu.ZF == 1 || cpu.SF != cpu.OF) {
-		cpu.eip += op_src->val;
-	}
-	print_asm_template1();
-}
-
-make_instr_helper(si)
-
-#undef instr
-
-#define instr jg
-
-static void do_execute() {
-	if(cpu.ZF == 0 && cpu.SF == cpu.OF) {
-		cpu.eip += op_src->val;
-	}
-	print_asm_template1();
-}
-
-make_instr_helper(si)
-
-#undef instr
-*/
-
-#define instr cmovge
-
-static void do_execute() {
-	if(cpu.SF == cpu.OF) {
-		OPERAND_W(op_dest, op_src->val);
-	}
-	print_asm_template2();
-}
-
-make_instr_helper(rm2r)
-
-#undef instr
-
 /*
-#define instr setne
+#define instr cmovbe
+#define CMOVFLAG cpu.ZF == 1 || cpu.CF == 1
 
-static void do_execute() {
-	if(cpu.ZF == 0) {
-		 OPERAND_W(op_src, 1);
-	}else OPERAND_W(op_src, 0);
-	print_asm_template1();
-}
+all_exec();
 
-make_instr_helper(rm)
+#undef CMOVFLAG
+#undef instr
 
+#define instr cmovl
+#define CMOVFLAG cpu.SF != cpu.OF
+
+all_exec();
+
+#undef CMOVFLAG
+#undef instr
+
+#define instr cmovle
+#define CMOVFLAG cpu.ZF == 1 || cpu.SF != cpu.OF
+
+all_exec();
+
+#undef CMOVFLAG
+#undef instr
+
+#define instr cmovg
+#define CMOVFLAG cpu.ZF == 0 && cpu.SF == cpu.OF
+
+all_exec();
+
+#undef CMOVFLAG	
 #undef instr
 */
+#define instr cmovge
+#define CMOVFLAG cpu.SF == cpu.OF
+
+all_exec();
+	
+#undef CMOVFLAG
+#undef instr
+/*
+#define instr cmovne
+#define CMOVFLAG cpu.ZF == 0
+
+all_exec();
+
+#undef CMOVFLAG
+#undef instr
+*/
+#define instr cmovns
+#define CMOVFLAG cpu.SF == 0
+
+all_exec();
+
+#undef CMOVFLAG
+#undef instr
 
 #define instr cmovs
+#define CMOVFLAG cpu.SF == 1
 
-static void do_execute() {
-	if(cpu.SF == 1) {
-		 OPERAND_W(op_dest, op_src->val);
-	}
-	print_asm_template2();
-}
+all_exec();
 
-make_instr_helper(rm2r)
-
+#undef CMOVFLAG
 #undef instr
-
-#define instr cmovns
-
-static void do_execute() {
-	if(cpu.SF == 0) {
-		 OPERAND_W(op_dest, op_src->val);
-	}
-	print_asm_template2();
-}
-
-make_instr_helper(rm2r)
-
-#undef instr
-
 
 #include "cpu/exec/template-end.h"
