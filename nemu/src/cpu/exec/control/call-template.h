@@ -10,6 +10,7 @@ static void do_execute() {
 		swaddr_write(cpu.esp, 4, cpu.eip + len);
 		cpu.eip += op_src->val;
 		op_src->val = cpu.eip + len + 1;
+		printf("%x\n", op_src->val);
 	}else {
 		swaddr_write(cpu.esp, 4, cpu.eip + len);
 		cpu.eip = op_src->val - 2;
