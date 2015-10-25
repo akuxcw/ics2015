@@ -23,7 +23,8 @@ make_instr_helper(si)
 
 static void do_execute() {
 	if(cpu.CF == 0) {
-		cpu.eip += op_src->val;
+		//cpu.eip += op_src->val;
+		_exec();
 	}
 	print_asm_template1();
 }
@@ -36,7 +37,8 @@ make_instr_helper(si)
 
 static void do_execute() {
 	if(cpu.CF == 1) {
-		cpu.eip += op_src->val;
+//		cpu.eip += op_src->val;
+		_exec();
 	}
 	print_asm_template1();
 }
@@ -49,7 +51,8 @@ make_instr_helper(si)
 
 static void do_execute() {
 	if(cpu.ZF == 1) {
-		cpu.eip += op_src->val;
+//		cpu.eip += op_src->val;
+		_exec();
 	}
 	print_asm_template1();
 }
@@ -62,7 +65,8 @@ make_instr_helper(si)
 
 static void do_execute() {
 	if(cpu.ZF == 1 || cpu.CF == 1) {
-		cpu.eip += op_src->val;
+//		cpu.eip += op_src->val;
+		_exec();
 	}
 	print_asm_template1();
 }
@@ -75,7 +79,8 @@ make_instr_helper(si)
 
 static void do_execute() {
 	if(cpu.SF != cpu.OF) {
-		cpu.eip += op_src->val;
+//		cpu.eip += op_src->val;
+		_exec();
 	}
 	print_asm_template1();
 }
@@ -89,7 +94,8 @@ make_instr_helper(si)
 
 static void do_execute() {
 	if(cpu.ZF == 1 || cpu.SF != cpu.OF) {
-		cpu.eip += op_src->val;
+//		cpu.eip += op_src->val;
+		_exec();
 	}
 	print_asm_template1();
 }
@@ -102,7 +108,8 @@ make_instr_helper(si)
 
 static void do_execute() {
 	if(cpu.ZF == 0 && cpu.SF == cpu.OF) {
-		cpu.eip += op_src->val;
+//		cpu.eip += op_src->val;
+		_exec();
 	}
 	print_asm_template1();
 }
@@ -115,7 +122,8 @@ make_instr_helper(si)
 
 static void do_execute() {
 	if(cpu.SF == cpu.OF) {
-		cpu.eip += op_src->val;
+//		cpu.eip += op_src->val;
+		_exec();
 	}
 	print_asm_template1();
 }
@@ -128,7 +136,8 @@ make_instr_helper(si)
 
 static void do_execute() {
 	if(cpu.ZF == 0) {
-		cpu.eip += op_src->val;
+//		cpu.eip += op_src->val;
+		_exec();
 	}
 	print_asm_template1();
 }
@@ -141,7 +150,8 @@ make_instr_helper(si)
 
 static void do_execute() {
 	if(cpu.SF == 0) {
-		cpu.eip += op_src->val;
+//		cpu.eip += op_src->val;
+		_exec();
 	}
 	print_asm_template1();
 }
@@ -154,7 +164,8 @@ make_instr_helper(si)
 
 static void do_execute() {
 	if(cpu.SF == 1) {
-		cpu.eip += op_src->val;
+//		cpu.eip += op_src->val;
+		_exec();
 	}
 	print_asm_template1();
 }
