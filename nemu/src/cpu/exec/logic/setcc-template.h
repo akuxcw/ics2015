@@ -1,111 +1,109 @@
 #include "cpu/exec/template-start.h"
+
+#define if_exec() OPERAND_W(op_src, 1);
+
+#define else_exec() OPERAND_W(op_src, 0)
+
+#define all_exec() static void do_execute() {\
+				       if(SETFLAG) if_exec() else else_exec();\
+					   print_asm_template1();\
+				   }\
+				   make_instr_helper(rm)
 /*
-#define instr ja
+#define instr seta
+#define SETFLAG cpu.CF == 0 && cpu.ZF == 0
 
-static void do_execute() {
-	if(cpu.CF == 0 && cpu.ZF == 0) {
-		cpu.eip += op_src->val;
-	}
-	print_asm_template1();
-}
+all_exec();
 
-make_instr_helper(si)
-
+#undef SETFLAG
 #undef instr
 
+#define instr setae
+#define SETFLAG cpu.CF == 0
+
+all_exec();
+
+#undef SETFLAG
+#undef instr
+
+#define instr setb
+#define SETFLAG cpu.CF == 1
+
+all_exec();
+
+#undef SETFLAG
+#undef instr
 */
-
 #define instr sete
+#define SETFLAG cpu.ZF == 1
 
-static void do_execute() {
-	if(cpu.ZF == 1) {
-		 OPERAND_W(op_src, 1);
-	}else OPERAND_W(op_src, 0);
-	print_asm_template1();
-}
+all_exec();
 
-make_instr_helper(rm)
+#undef SETFLAG
+#undef instr
+/*
+#define instr setbe
+#define SETFLAG cpu.ZF == 1 || cpu.CF == 1
 
+all_exec();
+
+#undef SETFLAG
 #undef instr
 
-	/*
-#define instr jbe
+#define instr setl
+#define SETFLAG cpu.SF != cpu.OF
 
-static void do_execute() {
-	if(cpu.ZF == 1 || cpu.CF == 1) {
-		cpu.eip += op_src->val;
-	}
-	print_asm_template1();
-}
+all_exec();
 
-make_instr_helper(si)
-
+#undef SETFLAG
 #undef instr
 
-#define instr jl
+#define instr setle
+#define SETFLAG cpu.ZF == 1 || cpu.SF != cpu.OF
 
-static void do_execute() {
-	if(cpu.SF != cpu.OF) {
-		cpu.eip += op_src->val;
-	}
-	print_asm_template1();
-}
+all_exec();
 
-make_instr_helper(si)
-
+#undef SETFLAG
 #undef instr
 
+#define instr setg
+#define SETFLAG cpu.ZF == 0 && cpu.SF == cpu.OF
 
-#define instr jle
+all_exec();
 
-static void do_execute() {
-	if(cpu.ZF == 1 || cpu.SF != cpu.OF) {
-		cpu.eip += op_src->val;
-	}
-	print_asm_template1();
-}
-
-make_instr_helper(si)
-
+#undef SETFLAG	
 #undef instr
 
-#define instr jg
+#define instr setge
+#define SETFLAG cpu.SF == cpu.OF
 
-static void do_execute() {
-	if(cpu.ZF == 0 && cpu.SF == cpu.OF) {
-		cpu.eip += op_src->val;
-	}
-	print_asm_template1();
-}
-
-make_instr_helper(si)
-
-#undef instr
-
-#define instr jge
-
-static void do_execute() {
-	if(cpu.SF == cpu.OF) {
-		cpu.eip += op_src->val;
-	}
-	print_asm_template1();
-}
-
-make_instr_helper(si)
-
+all_exec();
+	
+#undef SETFLAG
 #undef instr
 */
 #define instr setne
+#define SETFLAG cpu.ZF == 0
 
-static void do_execute() {
-	if(cpu.ZF == 0) {
-		 OPERAND_W(op_src, 1);
-	}else OPERAND_W(op_src, 0);
-	print_asm_template1();
-}
+all_exec();
 
-make_instr_helper(rm)
+#undef SETFLAG
+#undef instr
+/*
+#define instr setns
+#define SETFLAG cpu.SF == 0
 
+all_exec();
+
+#undef SETFLAG
 #undef instr
 
+#define instr sets
+#define SETFLAG cpu.SF == 1
+
+all_exec();
+
+#undef SETFLAG
+#undef instr
+*/
 #include "cpu/exec/template-end.h"
