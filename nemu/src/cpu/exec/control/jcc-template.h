@@ -30,12 +30,7 @@ all_exec();
 #define instr jae
 #define JMPFLAG cpu.CF == 0
 
-static void do_execute() {
-	if(JMPFLAG) if_exec() else else_exec();
-	print_asm_template1();
-}
-
-make_instr_helper(si)
+all_exec();
 
 #undef JMPFLAG
 #undef instr
@@ -43,12 +38,7 @@ make_instr_helper(si)
 #define instr jb
 #define JMPFLAG cpu.CF == 1
 
-static void do_execute() {
-	if(JMPFLAG) if_exec() else else_exec();
-	print_asm_template1();
-}
-
-make_instr_helper(si)
+all_exec();
 
 #undef JMPFLAG
 #undef instr
@@ -56,12 +46,7 @@ make_instr_helper(si)
 #define instr je
 #define JMPFLAG cpu.ZF == 1
 
-static void do_execute() {
-	if(JMPFLAG) if_exec() else else_exec();
-	print_asm_template1();
-}
-
-make_instr_helper(si)
+all_exec();
 
 #undef JMPFLAG
 #undef instr
@@ -69,12 +54,7 @@ make_instr_helper(si)
 #define instr jbe
 #define JMPFLAG cpu.ZF == 1 || cpu.CF == 1
 
-static void do_execute() {
-	if(JMPFLAG) if_exec() else else_exec();
-	print_asm_template1();
-}
-
-make_instr_helper(si)
+all_exec();
 
 #undef JMPFLAG
 #undef instr
@@ -82,12 +62,7 @@ make_instr_helper(si)
 #define instr jl
 #define JMPFLAG cpu.SF != cpu.OF
 
-static void do_execute() {
-	if(JMPFLAG) if_exec() else else_exec();
-	print_asm_template1();
-}
-
-make_instr_helper(si)
+all_exec();
 
 #undef JMPFLAG
 #undef instr
@@ -95,12 +70,7 @@ make_instr_helper(si)
 #define instr jle
 #define JMPFLAG cpu.ZF == 1 || cpu.SF != cpu.OF
 
-static void do_execute() {
-	if(JMPFLAG) if_exec() else else_exec();
-	print_asm_template1();
-}
-
-make_instr_helper(si)
+all_exec();
 
 #undef JMPFLAG
 #undef instr
@@ -108,12 +78,7 @@ make_instr_helper(si)
 #define instr jg
 #define JMPFLAG cpu.ZF == 0 && cpu.SF == cpu.OF
 
-static void do_execute() {
-	if(JMPFLAG) if_exec() else else_exec();
-	print_asm_template1();
-}
-
-make_instr_helper(si)
+all_exec();
 
 #undef JMPFLAG	
 #undef instr
@@ -121,12 +86,7 @@ make_instr_helper(si)
 #define instr jge
 #define JMPFLAG cpu.SF == cpu.OF
 
-static void do_execute() {
-	if(JMPFLAG) if_exec() else else_exec();
-	print_asm_template1();
-}
-
-make_instr_helper(si)
+all_exec();
 	
 #undef JMPFLAG
 #undef instr
@@ -134,12 +94,7 @@ make_instr_helper(si)
 #define instr jne
 #define JMPFLAG cpu.ZF == 0
 
-static void do_execute() {
-	if(JMPFLAG) if_exec() else else_exec();
-	print_asm_template1();
-}
-
-make_instr_helper(si)
+all_exec();
 
 #undef JMPFLAG
 #undef instr
@@ -147,12 +102,7 @@ make_instr_helper(si)
 #define instr jns
 #define JMPFLAG cpu.SF == 0
 
-static void do_execute() {
-	if(JMPFLAG) if_exec() else else_exec();
-	print_asm_template1();
-}
-
-make_instr_helper(si)
+all_exec();
 
 #undef JMPFLAG
 #undef instr
@@ -160,12 +110,7 @@ make_instr_helper(si)
 #define instr js
 #define JMPFLAG cpu.SF == 1
 
-static void do_execute() {
-	if(JMPFLAG) if_exec() else else_exec();
-	print_asm_template1();
-}
-
-make_instr_helper(si)
+all_exec();
 
 #undef JMPFLAG
 #undef instr
