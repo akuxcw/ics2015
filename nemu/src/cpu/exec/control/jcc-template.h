@@ -7,16 +7,23 @@ extern int len;
 
 #define else_exec() snprintf(op_src->str, OP_STR_SIZE, "$0x%x", cpu.eip + op_src->val + len + 1)
 
+#define all_exec() static void do_execute() {\
+				       if(JMPFLAG) if_exec() else else_exec();\
+					   print_asm_template1();\
+				   }\
+				   make_instr_helper(si)
+
 #define instr ja
 #define JMPFLAG cpu.CF == 0 && cpu.ZF == 0
-
+/*
 static void do_execute() {
 	if(JMPFLAG) if_exec() else else_exec();
 	print_asm_template1();
 }
 
 make_instr_helper(si)
-
+*/
+all_exec();
 #undef JMPFLAG
 #undef instr
 
