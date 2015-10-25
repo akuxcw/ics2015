@@ -14,7 +14,7 @@ static void do_execute() {
 		snprintf(op_src->str, OP_STR_SIZE, "$0x%x", op_src->val);
 	}else {
 		swaddr_write(cpu.esp, 4, cpu.eip + len);
-		cpu.eip = op_src->val - 2;
+		cpu.eip = op_src->val - len - 1;
 	}
 	print_asm_template1();
 }
