@@ -2,8 +2,10 @@
 
 extern int len;
 
-#define if_exec() {cpu.eip += op_src->val;\
-				  snprintf(op_src->str, OP_STR_SIZE, "$0x%x", cpu.eip + len + 1);}
+#define if_exec() {\
+	cpu.eip += op_src->val;\
+	snprintf(op_src->str, OP_STR_SIZE, "$0x%x", cpu.eip + len + 1);\
+}
 
 #define else_exec() snprintf(op_src->str, OP_STR_SIZE, "$0x%x", cpu.eip + op_src->val + len + 1)
 

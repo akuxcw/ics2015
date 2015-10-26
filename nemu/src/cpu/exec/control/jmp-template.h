@@ -5,9 +5,6 @@
 extern int len;
 
 static void do_execute() {
-//	printf("%x %d\n", op_src->val, DATA_BYTE);
-//	if(DATA_BYTE == 4 && op_src->val>0x100000 && MSB(op_src->val) == 0) {
-//		printf("%x\n", op_src->val);
 	if(op_src->type == OP_TYPE_IMM) {
 		cpu.eip += op_src->val;
 		snprintf(op_src->str, OP_STR_SIZE, "$0x%x", cpu.eip + len + 1);
