@@ -4,7 +4,7 @@
 
 static void do_execute() {
 	cpu.DF = 0;
-	print_asm("ret"); 
+	print_asm("cld"); 
 }
 
 make_instr_helper(n)
