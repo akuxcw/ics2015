@@ -6,7 +6,6 @@ extern int len;
 
 static void do_execute() {
 	cpu.esp -= 4;
-//	if(op_src->val < 0x100000 || 0xffffffff - op_src->val < 0x100000) {
 	swaddr_write(cpu.esp, 4, cpu.eip + len);
 	if(op_src->type == OP_TYPE_IMM) {
 		cpu.eip += op_src->val;
