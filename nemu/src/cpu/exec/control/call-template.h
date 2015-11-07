@@ -2,9 +2,9 @@
 
 #define instr call
 
-extern int len;
 
 static void do_execute() {
+	int len = instr_len();
 	cpu.esp -= 4;
 	swaddr_write(cpu.esp, 4, cpu.eip + len);
 	if(op_src->type == OP_TYPE_IMM) {
