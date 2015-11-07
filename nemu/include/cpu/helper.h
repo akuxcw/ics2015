@@ -29,7 +29,9 @@ static inline int idex(swaddr_t eip, int (*decode)(swaddr_t), void (*execute) (v
 	return len + 1;	// "1" for opcode
 }
 
-//static inline
+static inline int instr_len() {
+	return len;
+}
 
 /* shared by all helper function */
 
