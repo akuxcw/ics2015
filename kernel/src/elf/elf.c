@@ -12,9 +12,10 @@ void ide_read(uint8_t *, uint32_t, uint32_t);
 void ramdisk_read(uint8_t *, uint32_t, uint32_t);
 #endif
 
-void ramdisk_write(uint8_t *, uint32_t, uint32_t);
+//void ramdisk_write(uint8_t *, uint32_t, uint32_t);
 
 #define STACK_SIZE (1 << 20)
+#define STACK_SIZE_ 0xa0000
 
 void create_video_mapping();
 uint32_t get_ucr3();
@@ -23,12 +24,12 @@ uint32_t loader() {
 	Elf32_Ehdr *elf;
 	Elf32_Phdr *ph = NULL;
 
-	uint8_t buf[STACK_SIZE];
+	uint8_t buf[STACK_SIZE_];
 
 #ifdef HAS_DEVICE
-	ide_read(buf, ELF_OFFSET_IN_DISK, STACK_SIZE);
+	ide_read(buf, ELF_OFFSET_IN_DISK, STACK_SIZE_);
 #else
-	ramdisk_read(buf, ELF_OFFSET_IN_DISK, STACK_SIZE);
+	ramdisk_read(buf, ELF_OFFSET_IN_DISK, STACK_SIZE_);
 #endif
 
 	elf = (void*)buf;
