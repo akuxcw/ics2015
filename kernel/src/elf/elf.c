@@ -50,8 +50,8 @@ uint32_t loader() {
 			 * to the memory region [VirtAddr, VirtAddr + FileSiz)
 			 */
 			 
-			ramdisk_write(buf + ph->p_offset, ph->p_vaddr, ph->p_filesz);
-			
+//			ramdisk_write(buf + ph->p_offset, ph->p_vaddr, ph->p_filesz);
+			memcpy(ph->p_vaddr, buf + ph->p_offset, ph->p_filesz);
 			/* TODO: zero the memory region 
 			 * [VirtAddr + FileSiz, VirtAddr + MemSiz)
 			 */
