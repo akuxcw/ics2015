@@ -57,6 +57,8 @@ bool cache_set_read(hwaddr_t addr, void *data) {
 	}
 	if(!find) {
 		if(full) line_ = rand(addr) & LINE_MASK;
+		cache[set].valid[line_] = true;
+		cache[set].flag[line_] = flag;
 		int i;
 		for(i = 0; i < 64; ++ i) 
 			cache[set].data[line_][i] = dram_read((addr & ~COL_MASK) + i, 1);
