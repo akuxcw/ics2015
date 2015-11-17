@@ -37,6 +37,7 @@ cache_set cache[NR_SET];
 
 uint32_t rand(int);
 uint32_t dram_read(hwaddr_t, size_t);
+uint32_t L2_cache_read(hwaddr_t, size_t);
 
 void init_cache() {
 	memset(cache, 0, sizeof cache);
@@ -57,6 +58,7 @@ void cache_set_read(hwaddr_t addr, void *data) {
 			if(cache[set].flag[line] == flag) {
 				memcpy(data, cache[set].data[line] + col, BURST_LEN);
 				find = true;
+				break;
 			}
 		} else {
 			full = false;
@@ -68,11 +70,8 @@ void cache_set_read(hwaddr_t addr, void *data) {
 		cache[set].valid[line_] = true;
 		cache[set].flag[line_] = flag;
 		int i;
-		for(i = 0; i < 64; ++ i) { 
-			uint8_t data_;
-//			if(!L2_cache_read((addr & ~COL_MASK) + i), 1, data_)
-				data_ = dram_read((addr & ~COL_MASK) + i, 1);
-			cache[set].data[line_][i] = data_;
+		for(i = 0; i < NR_COL; ++ i) { 
+			cache[set].data[line_][i] = L2_cache_read((addr & ~COL_MASK) + i, 1);
 		}
 		memcpy(data, cache[set].data[line_] + col, BURST_LEN);
 	}

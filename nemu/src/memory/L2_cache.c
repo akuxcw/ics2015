@@ -38,12 +38,29 @@ L2_cache_set L2_cache[NR_SET];
 
 uint32_t rand(int);
 uint32_t dram_read(hwaddr_t, size_t);
+void dram_write(hwaddr_t, size_t, uint32_t);
 
 void init_L2_cache() {
 	memset(L2_cache, 0, sizeof L2_cache);
 }
 
-bool L2_cache_set_read(hwaddr_t addr, void *data) {
+void write_back(uint32_t set, uint32_t line, hwaddr_t addr) {
+	if(!L2_cache[set].dirty[line]) return;
+	uint32_t col;
+	for(col = 0; col < NR_COL; ++ col) 
+		dram_write((addr & ~COL_MASK) + col, 1, L2_cache[set].data[line][col]);
+}
+
+void write_L2_cache(uint32_t set, uint32_t line, uint32_t flag, uint32_t addr) {
+	L2_cache[set].valid[line] = true;
+	L2_cache[set].dirty[line] = false;
+	L2_cache[set].flag[line] = flag;
+	uint32_t col;
+	for(col = 0; col < NR_COL; ++ col) 
+		L2_cache[set].data[line][col] = dram_read((addr & ~COL_MASK) + col, 1);
+}
+
+void L2_cache_set_read(hwaddr_t addr, void *data) {
 	Assert(addr < HW_MEM_SIZE, "physical address %x is outside of the physical memory!", addr);
 
 	L2_cache_addr temp;
@@ -58,6 +75,7 @@ bool L2_cache_set_read(hwaddr_t addr, void *data) {
 			if(L2_cache[set].flag[line] == flag) {
 				memcpy(data, L2_cache[set].data[line] + col, BURST_LEN);
 				find = true;
+				break;
 			}
 		} else {
 			full = false;
@@ -65,14 +83,13 @@ bool L2_cache_set_read(hwaddr_t addr, void *data) {
 		}
 	}
 	if(!find) {
-		if(full) line_ = rand(addr) & LINE_MASK;
-		L2_cache[set].valid[line_] = true;
-		L2_cache[set].flag[line_] = flag;
-		int i;
-		for(i = 0; i < 64; ++ i) 
-			L2_cache[set].data[line_][i] = dram_read((addr & ~COL_MASK) + i, 1);
+		if(full) {
+			line_ = rand(addr) & LINE_MASK;
+			write_back(set, line_, addr);
+		}
+		write_L2_cache(set, line_, flag, addr);
+		memcpy(data, L2_cache[set].data[line_] + col, BURST_LEN);
 	}
-	return find;
 }
 
 void L2_cache_set_write(hwaddr_t addr, void *data, uint8_t *mask) {
@@ -83,29 +100,46 @@ void L2_cache_set_write(hwaddr_t addr, void *data, uint8_t *mask) {
 	uint32_t col = temp.col;
 	uint32_t set = temp.set;
 	uint32_t flag = temp.flag;
+	uint32_t line, line_ = 0;
+	bool full = true, find = false;
 	
-	uint32_t line;
 	for(line = 0; line < NR_LINE; ++ line) {
-		if(L2_cache[set].valid[line] && L2_cache[set].flag[line] == flag) {
-			memcpy_with_mask(L2_cache[set].data[line] + col, data, BURST_LEN, mask);
-			break;
+		if(L2_cache[set].valid[line]) {
+			if(L2_cache[set].flag[line] == flag) {
+				find = true;
+				L2_cache[set].dirty[line] = true;
+				memcpy_with_mask(L2_cache[set].data[line] + col, data, BURST_LEN, mask);
+				break;
+			}
+		} else {
+			full = false;
+			line_ = line;
 		}
 	}
+	
+	if(!find) {
+		if(full) {
+			line_ = rand(addr) & LINE_MASK;
+			write_back(set, line_, addr);
+		}
+		write_L2_cache(set, line_, flag, addr);
+		memcpy_with_mask(L2_cache[set].data[line_] + col, data, BURST_LEN, mask);
+	}
+
 }
 
-bool L2_cache_read(hwaddr_t addr, size_t len, uint32_t *data) {
+uint32_t L2_cache_read(hwaddr_t addr, size_t len) {
 	uint32_t offset = addr & BURST_MASK;
 	uint8_t temp[2 * BURST_LEN];
 
-	bool success = L2_cache_set_read(addr, temp);
+	L2_cache_set_read(addr, temp);
 
 	if(offset + len > BURST_LEN) {
-		success &= L2_cache_set_read(addr + BURST_LEN, temp + BURST_LEN);
+		L2_cache_set_read(addr + BURST_LEN, temp + BURST_LEN);
 	}
 	
-	*data = unalign_rw(temp + offset, 4);
+	return unalign_rw(temp + offset, 4);
 //	printf("%d", success);
-	return success;
 }
 
 void L2_cache_write(hwaddr_t addr, size_t len, uint32_t data) {

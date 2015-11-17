@@ -4,18 +4,17 @@ uint32_t dram_read(hwaddr_t, size_t);
 void dram_write(hwaddr_t, size_t, uint32_t);
 uint32_t cache_read(hwaddr_t, size_t);
 void cache_write(hwaddr_t, size_t, uint32_t);
-
+void L2_cache_write(hwaddr_t, size_t, uint32_t);
 /* Memory accessing interfaces */
 
 uint32_t hwaddr_read(hwaddr_t addr, size_t len) {
 	return cache_read(addr, len) & (~0u >> ((4 - len) << 3));
-	//) return data & (~0u >> ((4 - len) << 3));
-//	else if(L2_cache_read(addr, len, ))return dram_read(addr, len) & (~0u >> ((4 - len) << 3));
 }
 
 void hwaddr_write(hwaddr_t addr, size_t len, uint32_t data) {
 	cache_write(addr, len, data);
-	dram_write(addr, len, data);
+	L2_cache_write(addr, len, data);
+
 }
 
 uint32_t lnaddr_read(lnaddr_t addr, size_t len) {
