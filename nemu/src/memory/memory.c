@@ -3,6 +3,8 @@
 uint32_t dram_read(hwaddr_t, size_t);
 void dram_write(hwaddr_t, size_t, uint32_t);
 uint32_t cache_read(hwaddr_t, size_t, uint32_t*);
+void cache_write(hwaddr_t, size_t, uint32_t);
+
 /* Memory accessing interfaces */
 
 uint32_t hwaddr_read(hwaddr_t addr, size_t len) {
@@ -12,6 +14,7 @@ uint32_t hwaddr_read(hwaddr_t addr, size_t len) {
 }
 
 void hwaddr_write(hwaddr_t addr, size_t len, uint32_t data) {
+	cache_write(addr, len, data);
 	dram_write(addr, len, data);
 }
 
