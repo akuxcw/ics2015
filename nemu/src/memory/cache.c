@@ -6,12 +6,11 @@
 #define COL_WIDTH 6
 #define LINE_WIDTH 3
 #define SET_WIDTH 7
-#define FLAG_WIDTH (27 - COL_WIDTH - LINE_WIDTH - SET_WIDTH)
+#define FLAG_WIDTH (27 - COL_WIDTH - SET_WIDTH)
 
 typedef union {
 	struct {
 		uint32_t col	: COL_WIDTH;
-//		uint32_t line	: LINE_WIDTH;
 		uint32_t set	: SET_WIDTH;
 		uint32_t flag	: FLAG_WIDTH;
 	};
