@@ -100,7 +100,7 @@ bool cache_read(hwaddr_t addr, size_t len, uint32_t *data) {
 	}
 	
 	*data = unalign_rw(temp + offset, 4);
-//	printf("%d\n", success);
+	printf("%d", success);
 	return success;
 }
 
