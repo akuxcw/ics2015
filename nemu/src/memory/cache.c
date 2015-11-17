@@ -39,6 +39,10 @@ cache_set cache[NR_SET];
 uint32_t rand(int);
 uint32_t dram_read(hwaddr_t, size_t);
 
+void init_cache() {
+	memset(cache, 0, sizeof cache);
+}
+
 bool cache_set_read(hwaddr_t addr, void *data) {
 	Assert(addr < HW_MEM_SIZE, "physical address %x is outside of the physical memory!", addr);
 
@@ -100,7 +104,7 @@ bool cache_read(hwaddr_t addr, size_t len, uint32_t *data) {
 	}
 	
 	*data = unalign_rw(temp + offset, 4);
-	printf("%d", success);
+//	printf("%d", success);
 	return success;
 }
 
