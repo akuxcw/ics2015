@@ -42,7 +42,7 @@ void init_cache() {
 	memset(cache, 0, sizeof cache);
 }
 
-bool cache_set_read(hwaddr_t addr, void *data) {
+void cache_set_read(hwaddr_t addr, void *data) {
 	Assert(addr < HW_MEM_SIZE, "physical address %x is outside of the physical memory!", addr);
 
 	cache_addr temp;
@@ -68,10 +68,14 @@ bool cache_set_read(hwaddr_t addr, void *data) {
 		cache[set].valid[line_] = true;
 		cache[set].flag[line_] = flag;
 		int i;
-		for(i = 0; i < 64; ++ i) 
-			cache[set].data[line_][i] = dram_read((addr & ~COL_MASK) + i, 1);
+		for(i = 0; i < 64; ++ i) { 
+			uint8_t data_;
+//			if(!L2_cache_read((addr & ~COL_MASK) + i), 1, data_)
+				data_ = dram_read((addr & ~COL_MASK) + i, 1);
+			cache[set].data[line_][i] = data_;
+		}
+		memcpy(data, cache[set].data[line_] + col, BURST_LEN);
 	}
-	return find;
 }
 
 void cache_set_write(hwaddr_t addr, void *data, uint8_t *mask) {
@@ -92,19 +96,18 @@ void cache_set_write(hwaddr_t addr, void *data, uint8_t *mask) {
 	}
 }
 
-bool cache_read(hwaddr_t addr, size_t len, uint32_t *data) {
+uint32_t cache_read(hwaddr_t addr, size_t len) {
 	uint32_t offset = addr & BURST_MASK;
 	uint8_t temp[2 * BURST_LEN];
 
-	bool success = cache_set_read(addr, temp);
+	cache_set_read(addr, temp);
 
 	if(offset + len > BURST_LEN) {
-		success &= cache_set_read(addr + BURST_LEN, temp + BURST_LEN);
+		cache_set_read(addr + BURST_LEN, temp + BURST_LEN);
 	}
 	
-	*data = unalign_rw(temp + offset, 4);
 //	printf("%d", success);
-	return success;
+	return unalign_rw(temp + offset, 4);
 }
 
 void cache_write(hwaddr_t addr, size_t len, uint32_t data) {
