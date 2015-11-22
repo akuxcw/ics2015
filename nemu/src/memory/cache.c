@@ -72,12 +72,10 @@ void cache_set_write(hwaddr_t addr, void *data, uint8_t *mask) {
 	}
 }
 
-
 uint32_t cache_read(hwaddr_t addr, size_t len) {
 	uint32_t offset = addr & BURST_MASK;
 	uint8_t temp[2 * BURST_LEN];
 
-	cache.read = cache_set_read;
 	cache_set_read(addr, temp);
 
 	if(offset + len > BURST_LEN) {

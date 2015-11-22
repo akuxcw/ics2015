@@ -22,6 +22,7 @@ typedef struct {
 	struct {
 		uint8_t data[NR_LINE][NR_COL];
 		bool valid[NR_LINE];
+		bool dirty[NR_LINE];
 		uint32_t flag[NR_LINE];
 	} set[NR_SET];
 	void (*read)(hwaddr_t, void *);
