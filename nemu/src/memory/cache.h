@@ -19,8 +19,12 @@ typedef union {
 #define COL_MASK (NR_COL - 1)
 
 typedef struct {
-	uint8_t data[NR_LINE][NR_COL];
-	bool valid[NR_LINE];
-	uint32_t flag[NR_LINE];
-} cache_set;
+	struct {
+		uint8_t data[NR_LINE][NR_COL];
+		bool valid[NR_LINE];
+		uint32_t flag[NR_LINE];
+	} set[NR_SET];
+	void (*read)(hwaddr_t, void *);
+	void (*write)(hwaddr_t, void *, uint8_t *);
+} cache_t;
 

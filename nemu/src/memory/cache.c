@@ -10,14 +10,14 @@
 
 #include "cache.h"
 
-cache_set cache[NR_SET];
+cache_t cache;
 
 uint32_t rand(int);
 uint32_t dram_read(hwaddr_t, size_t);
 uint32_t L2_cache_read(hwaddr_t, size_t);
 
 void init_cache() {
-	memset(cache, 0, sizeof cache);
+	memset(cache.set, 0, sizeof cache.set);
 }
 
 void cache_set_read(hwaddr_t addr, void *data) {
@@ -31,9 +31,9 @@ void cache_set_read(hwaddr_t addr, void *data) {
 	uint32_t line, line_ = 0;
 	bool full = true, find = false;
 	for(line = 0; line < NR_LINE; ++ line) {
-		if(cache[set].valid[line]) {
-			if(cache[set].flag[line] == flag) {
-				memcpy(data, cache[set].data[line] + col, BURST_LEN);
+		if(cache.set[set].valid[line]) {
+			if(cache.set[set].flag[line] == flag) {
+				memcpy(data, cache.set[set].data[line] + col, BURST_LEN);
 				find = true;
 				break;
 			}
@@ -44,13 +44,13 @@ void cache_set_read(hwaddr_t addr, void *data) {
 	}
 	if(!find) {
 		if(full) line_ = rand(addr) & LINE_MASK;
-		cache[set].valid[line_] = true;
-		cache[set].flag[line_] = flag;
+		cache.set[set].valid[line_] = true;
+		cache.set[set].flag[line_] = flag;
 		int i;
 		for(i = 0; i < NR_COL; ++ i) { 
-			cache[set].data[line_][i] = L2_cache_read((addr & ~COL_MASK) + i, 1);
+			cache.set[set].data[line_][i] = L2_cache_read((addr & ~COL_MASK) + i, 1);
 		}
-		memcpy(data, cache[set].data[line_] + col, BURST_LEN);
+		memcpy(data, cache.set[set].data[line_] + col, BURST_LEN);
 	}
 }
 
@@ -65,12 +65,14 @@ void cache_set_write(hwaddr_t addr, void *data, uint8_t *mask) {
 	
 	uint32_t line;
 	for(line = 0; line < NR_LINE; ++ line) {
-		if(cache[set].valid[line] && cache[set].flag[line] == flag) {
-			memcpy_with_mask(cache[set].data[line] + col, data, BURST_LEN, mask);
+		if(cache.set[set].valid[line] && cache.set[set].flag[line] == flag) {
+			memcpy_with_mask(cache.set[set].data[line] + col, data, BURST_LEN, mask);
 			break;
 		}
 	}
 }
+
+//cache.read = cache_set_read;
 
 uint32_t cache_read(hwaddr_t addr, size_t len) {
 	uint32_t offset = addr & BURST_MASK;
