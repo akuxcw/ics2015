@@ -42,7 +42,10 @@ typedef struct {
 		uint32_t DF	:	1;
 		uint32_t OF	:	1;		 
 	};
-	lnaddr_t GDTR;
+	struct {
+		lnaddr_t base;
+		size_t limit;
+	} GDTR;
 	uint32_t CR0;
 	union {
 		struct {
