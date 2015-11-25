@@ -272,7 +272,7 @@ uint32_t eval(p, q) {
 			case '/': return val1 / val2;
 			case EQ: return val1 == val2;
 			case MS: return - val1;
-			case DR: return swaddr_read(val1,4);
+			case DR: return swaddr_read(val1, 4, R_DS);
 			case AND_L:	return val1 && val2;
 			case OR_L: return val1 || val2;
 			case NOT_L:	return !val1;

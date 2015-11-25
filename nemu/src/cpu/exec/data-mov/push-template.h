@@ -7,7 +7,7 @@ static void do_execute() {
 	if(DATA_BYTE == 2)len = 2; else len = 4;
 //	if(DATA_BYTE == )
 	cpu.esp -= len;
-	swaddr_write(cpu.esp, len, op_src->val);
+	swaddr_write(cpu.esp, len, op_src->val, R_SS);
 	print_asm_template1();
 }
 

@@ -14,7 +14,7 @@ extern Operands ops_decoded;
 #define op_dest (&ops_decoded.dest)
 
 static inline uint32_t instr_fetch(swaddr_t addr, size_t len) {
-	return swaddr_read(addr, len);
+	return swaddr_read(addr, len, R_CS);
 }
 
 static int len;
