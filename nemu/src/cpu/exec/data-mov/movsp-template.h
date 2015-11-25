@@ -15,12 +15,12 @@ make_instr_helper(rm2r)
 make_helper(concat(movsp_rm2cr_, SUFFIX)) {
 	cpu.CR0 = 1;
 	print_asm_template2();
-	return 1;
+	return 2;
 }
 
 make_helper(concat(movsp_cr2rm_, SUFFIX)) {
 	print_asm_template2();
-	return 1;
+	return 2;
 }
 
 #include "cpu/exec/template-end.h"
