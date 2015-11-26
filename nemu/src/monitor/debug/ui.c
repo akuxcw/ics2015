@@ -117,11 +117,11 @@ static int cmd_x(char *args) {
 	swaddr_t addr = expr(pos+1, &flag);
 	if (!flag) return 0;
 	int j;
-	int len = 4;
+	int len = 1;
 	printf("0x%08x: ",addr);
 	for(j = 0; j < n; ++ j) {
-		int value = swaddr_read(addr + j * 4, len, R_DS);
-		printf("0x%08x ", value);
+		int value = swaddr_read(addr + j, len, R_DS);
+		printf("0x%02x ", value);
 	}
 	printf("\n");
 	return 0;
