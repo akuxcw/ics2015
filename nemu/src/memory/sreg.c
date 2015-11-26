@@ -6,9 +6,10 @@ uint32_t lnaddr_read(lnaddr_t, size_t);
 
 lnaddr_t seg_translate(swaddr_t addr, uint8_t sreg) {
 	if(addr < 0x100006) return addr;
-	uint32_t tmp[2]; 
-	tmp[1] = lnaddr_read(cpu.GDTR.base + cpu.sr[sreg].index, 4);
-	tmp[0] = lnaddr_read(cpu.GDTR.base + cpu.sr[sreg].index + 4, 4);
+	uint8_t tmp[8]; 
+	int i;
+	for(i = 0; i < 8; ++ i) 
+		tmp[i] = lnaddr_read(cpu.GDTR.base + cpu.sr[sreg].index + i, 1);
 	SegDesc *segdesc = (SegDesc*)tmp;
 	printf("%s %x\n", sregs[sreg], sreg(sreg));
 //		printf("%x\n", cpu.GDTR.base );
