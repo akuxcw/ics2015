@@ -2,6 +2,7 @@
 #define __REG_H__
 
 #include "common.h"
+#include "../../lib-common/x86-inc/cpu.h"
 
 enum { R_EAX, R_ECX, R_EDX, R_EBX, R_ESP, R_EBP, R_ESI, R_EDI };
 enum { R_AX, R_CX, R_DX, R_BX, R_SP, R_BP, R_SI, R_DI };
@@ -46,13 +47,14 @@ typedef struct {
 		lnaddr_t base;
 		size_t limit;
 	} GDTR;
-	union {
+/*	union {
 		struct {
 			uint32_t pe	:	1;
 			uint32_t	:	31;
 		};
 		uint32_t _32;
-	} CR0;
+	} CR0;*/
+	CR0 cr0;
 	union {
 		union {
 			struct {
