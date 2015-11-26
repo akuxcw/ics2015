@@ -33,7 +33,7 @@ uint32_t swaddr_read(swaddr_t addr, size_t len, uint8_t sreg) {
 	assert(len == 1 || len == 2 || len == 4);
 #endif
 	lnaddr_t lnaddr = seg_translate(addr, sreg);
-	printf("%x %x\n", addr, lnaddr);
+	printf("addr=%x lnaddr=%x\n", addr, lnaddr);
 	return lnaddr_read(lnaddr, len);
 }
 
