@@ -1,5 +1,5 @@
 #include "common.h"
-#include "memory/mmu.h"
+#include "../../lib-common/x86-inc/mmu.h"
 #include "cpu/reg.h"
 
 uint32_t lnaddr_read(lnaddr_t, size_t);
