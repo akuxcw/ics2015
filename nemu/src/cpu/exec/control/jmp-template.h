@@ -22,7 +22,7 @@ make_helper(concat(ljmp_, SUFFIX)) {
 	uint16_t sreg = instr_fetch(eip + 5, 2);
 	cpu.cs = sreg;
 	cpu.eip = addr;
-	print_asm("mov" str(SUFFIX) " $0x%x,$0x%x", sreg, addr);
+	print_asm("ljmp" str(SUFFIX) " $0x%x,$0x%x", sreg, addr);
 	return 0;
 }
 
