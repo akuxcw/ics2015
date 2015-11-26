@@ -120,7 +120,7 @@ static int cmd_x(char *args) {
 	int len = 4;
 	printf("0x%08x: ",addr);
 	for(j = 0; j < n; ++ j) {
-		int value = swaddr_read(addr + j, len, R_DS);
+		int value = swaddr_read(addr + j * 4, len, R_DS);
 		printf("0x%08x ", value);
 	}
 	printf("\n");
