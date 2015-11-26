@@ -29,7 +29,7 @@ make_helper(concat(mov_moffs2a_, SUFFIX)) {
 }
 
 make_helper(concat(mov_rm2s_, SUFFIX)) {
-	return 1;
+	return 2;
 }
 
 #include "cpu/exec/template-end.h"
