@@ -13,13 +13,16 @@ make_instr_helper(r2rm)
 make_instr_helper(rm2r)
 */
 make_helper(concat(movsp_rm2cr_, SUFFIX)) {
-	cpu.CR0 = 1;
-	print_asm_template2();
+	uint8_t r = instr_fetch(eip + 1, 1);
+	cpu.CR0._32 = REG(r & 0x7);
+	print_asm("movsp" str(SUFFIX) " %%%s,%%%s", REG_NAME(r & 0x7), "cr0");
 	return 2;
 }
 
 make_helper(concat(movsp_cr2rm_, SUFFIX)) {
-	print_asm_template2();
+	uint8_t r = instr_fetch(eip + 1, 1);
+	REG(r & 0x7) = cpu.CR0._32;
+	print_asm("movsp" str(SUFFIX) " %%%s,%%%s", "cr0", REG_NAME(r & 0x7));
 	return 2;
 }
 
