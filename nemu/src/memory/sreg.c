@@ -5,7 +5,7 @@
 uint32_t lnaddr_read(lnaddr_t, size_t);
 
 lnaddr_t seg_translate(swaddr_t addr, uint8_t sreg) {
-	if(cpu.CR0.pe == 0) return addr;
+//	if(cpu.CR0.pe == 0) return addr;
 	uint8_t tmp[8]; 
 	int i;
 	for(i = 0; i < 8; ++ i) 

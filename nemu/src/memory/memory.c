@@ -1,6 +1,5 @@
 #include "common.h"
-//#include "../lib-common/x86-inc/mmu.h"
-
+#include "cpu/reg.h"
 uint32_t cache_read(hwaddr_t, size_t);
 
 void cache_write(hwaddr_t, size_t, uint32_t);
@@ -32,7 +31,9 @@ uint32_t swaddr_read(swaddr_t addr, size_t len, uint8_t sreg) {
 #ifdef DEBUG
 	assert(len == 1 || len == 2 || len == 4);
 #endif
-	lnaddr_t lnaddr = seg_translate(addr, sreg);
+	lnaddr_t lnaddr;
+	if(cpu.CR0.pe == 1) lnaddr = seg_translate(addr, sreg);
+		else lnaddr = addr;
 //	printf("addr=%x lnaddr=%x\n", addr, lnaddr);
 	return lnaddr_read(lnaddr, len);
 }
@@ -41,7 +42,9 @@ void swaddr_write(swaddr_t addr, size_t len, uint32_t data, uint8_t sreg) {
 #ifdef DEBUG
 	assert(len == 1 || len == 2 || len == 4);
 #endif
-	lnaddr_t lnaddr = seg_translate(addr, sreg);
+	lnaddr_t lnaddr;
+	if(cpu.CR0.pe == 1) lnaddr = seg_translate(addr, sreg);
+		else lnaddr = addr;
 	lnaddr_write(lnaddr, len, data);
 }
 /*
