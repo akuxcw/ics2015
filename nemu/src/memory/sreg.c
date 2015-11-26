@@ -5,11 +5,11 @@
 uint32_t lnaddr_read(lnaddr_t, size_t);
 
 lnaddr_t seg_translate(swaddr_t addr, uint8_t sreg) {
-	if(addr < 0x100006); return addr;
+	if(addr < 0x100006) return addr;
 	uint8_t tmp[8]; 
 	int i;
 	for(i = 0; i < 8; ++ i) 
-		tmp[i] = lnaddr_read(cpu.GDTR.base + cpu.sr[sreg].index + i, 1);
+		tmp[i] = lnaddr_read(cpu.GDTR.base + cpu.sr[sreg].index * 8 + i, 1);
 	SegDesc *segdesc = (SegDesc*)tmp;
 	printf("%s %x\n", sregs[sreg], cpu.sr[sreg].index);
 //		printf("%x\n", cpu.GDTR.base );
