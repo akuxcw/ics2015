@@ -12,7 +12,7 @@
 make_helper(concat(decode_i_, SUFFIX)) {
 	/* eip here is pointing to the immediate */
 	op_src->type = OP_TYPE_IMM;
-	printf("decode_i\n");
+//	printf("decode_i\n");
 	op_src->imm = instr_fetch(eip, DATA_BYTE);
 	op_src->val = op_src->imm;
 
