@@ -11,7 +11,7 @@ lnaddr_t seg_translate(swaddr_t addr, uint8_t sreg) {
 	for(i = 0; i < 8; ++ i) 
 		tmp[i] = lnaddr_read(cpu.GDTR.base + cpu.sr[sreg].index + i, 1);
 	SegDesc *segdesc = (SegDesc*)tmp;
-	printf("%s %x\n", sregs[sreg], sreg(sreg));
+	printf("%s %x\n", sregs[sreg], cpu.sr[sreg].index);
 //		printf("%x\n", cpu.GDTR.base );
 	printf("%x\n", 
 			(segdesc->base_31_24 << 24) + (segdesc->base_23_16 << 16) + segdesc->base_15_0 );
