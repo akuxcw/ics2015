@@ -2,14 +2,10 @@
 
 #define instr lgdt
 
-static void do_execute() {
-	printf("ldgt\n");
-	cpu.eip ++ ;
-	cpu.GDTR.base = op_src->val >> 8;
-	cpu.GDTR.limit = op_src->val & 0xff;
-	print_asm_template1();
+make_helper(concat(lgdt_, SUFFIX)) {
+	lnaddr_t addr = instr_fetch(eip + 2, 4);
+	cpu.GDTR.limit = lnaddr_read(addr, 2);
+	cpu.GDTR.base = lnaddr_read(addr + 2, 4);
+	return 6;
 }
-
-make_instr_helper(i)
-
 #include "cpu/exec/template-end.h"

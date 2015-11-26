@@ -89,7 +89,7 @@ make_group(group6,
 
 /* 0x0f 0x01 */
 make_group(group7,
-	inv, inv, lgdt_i_v, inv, 
+	inv, inv, lgdt_v, inv, 
 	inv, inv, inv, inv)
 
 
