@@ -32,7 +32,6 @@ uint32_t loader() {
 
 	elf = (void*)buf;
 
-
 	/* TODO: fix the magic number with the correct one */
 	const uint32_t elf_magic = 0x464c457f;
 	uint32_t *p_magic = (void *)buf;
@@ -48,9 +47,10 @@ uint32_t loader() {
 			/* TODO: read the content of the segment from the ELF file 
 			 * to the memory region [VirtAddr, VirtAddr + FileSiz)
 			 */
-			 
-//			ramdisk_write(buf + ph->p_offset, ph->p_vaddr, ph->p_filesz);
-			memcpy((void *)ph->p_vaddr, (void *)(buf + ph->p_offset), ph->p_filesz);
+			
+			uint32_t hwaddr = mm_malloc(ph->p_vaddr, ph->p_filesz);
+
+			memcpy((void *)hwaddr, (void *)(buf + ph->p_offset), ph->p_filesz);
 			/* TODO: zero the memory region 
 			 * [VirtAddr + FileSiz, VirtAddr + MemSiz)
 			 */
@@ -58,7 +58,7 @@ uint32_t loader() {
 //			uint8_t zero = 0;
 			for(i = ph->p_filesz; i < ph->p_memsz; i ++) 
 //				ramdisk_write(&zero, ph->p_vaddr + i, 1);
-				memcpy((void *)ph->p_vaddr + i, (void *)0, 1);
+				memcpy((void *)hwaddr + i, (void *)0, 1);
 
 #ifdef IA32_PAGE
 			/* Record the program break for future use. */
