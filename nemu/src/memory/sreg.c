@@ -28,6 +28,7 @@ void init_seg() {
 	segdesc.present = 1;
 	segdesc.base_31_24 = segdesc.base_23_16 = segdesc.base_15_0 = 0;
 	segdesc.limit_19_16 = segdesc.limit_15_0 = 0;
+	printf("***\n");
 	uint64_t *tmp = (uint64_t *)&segdesc;
 	int i;
 	for(i = 0; i < 8; ++ i)
