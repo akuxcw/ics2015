@@ -18,12 +18,20 @@ void hwaddr_write(hwaddr_t addr, size_t len, uint32_t data) {
 	L2_cache_write(addr, len, data);
 }
 
+hwaddr_t page_translate(lnaddr_t);
+
 uint32_t lnaddr_read(lnaddr_t addr, size_t len) {
-	return hwaddr_read(addr, len);
+	hwaddr_t hwaddr;
+	if(cpu.cr0.paging == 1) hwaddr = page_translate(addr);
+		else hwaddr = addr;
+	return hwaddr_read(hwaddr, len);
 }
 
 void lnaddr_write(lnaddr_t addr, size_t len, uint32_t data) {
-	hwaddr_write(addr, len, data);
+	hwaddr_t hwaddr;
+	if(cpu.cr0.paging == 1) hwaddr = page_translate(addr);
+		else hwaddr = addr;
+	hwaddr_write(hwaddr, len, data);
 }
 
 lnaddr_t seg_translate(swaddr_t, uint8_t);
