@@ -30,5 +30,7 @@ hwaddr_t page_translate(lnaddr_t addr) {
 	Assert(pg_tbl_entry.present == 1, "pg_tbl_entry is not valid!");
 
 	printf("0x%x\n", pg_tbl_entry.page_frame);
-	return hwaddr_read((pg_tbl_entry.page_frame << 12) + lnaddr.offset, 4);
+	hwaddr_t hwaddr = hwaddr_read((pg_tbl_entry.page_frame << 12) + lnaddr.offset, 4);
+	printf("0x%x 0x%x\n", addr, hwaddr);
+	return hwaddr;
 }
