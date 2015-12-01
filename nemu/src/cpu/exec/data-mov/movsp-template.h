@@ -16,7 +16,9 @@ make_helper(concat(movsp_rm2cr_, SUFFIX)) {
 	uint8_t r = instr_fetch(eip + 1, 1);
 	printf("0x%x\n", r);
 	cpu.cr._[(r >> 3) & 0x7] = REG(r & 0x7);
+	printf("*\n");
 	print_asm("movsp" str(SUFFIX) " %%%s,%%%s", REG_NAME(r & 0x7), "cr0");
+	printf("**\n");
 	return 2;
 }
 
