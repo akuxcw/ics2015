@@ -3,7 +3,7 @@
 #include "cpu/reg.h"
 
 uint32_t hwaddr_read(hwaddr_t, size_t);
-uint32_t hwaddr_write(hwaddr_t, uint32_t, size_t);
+uint32_t hwaddr_write(hwaddr_t, size_t, uint32_t);
 
 lnaddr_t seg_translate(swaddr_t addr, uint8_t sreg) {
 	uint8_t tmp[8]; 
@@ -32,5 +32,5 @@ void init_seg() {
 	printf("***\n");
 	int i;
 	for(i = 0; i < 8; ++ i)
-		hwaddr_write(0x100030 + i, tmp[i], 1);
+		hwaddr_write(0x100030 + i, 1, tmp[i]);
 }
