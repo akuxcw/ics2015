@@ -59,7 +59,7 @@ uint32_t loader() {
 //			uint8_t zero = 0;
 			for(i = ph->p_filesz; i < ph->p_memsz; i ++) 
 //				ramdisk_write(&zero, ph->p_vaddr + i, 1);
-				memcpy((void *)/*ph->p_vaddr*/hwaddr + i, (void *)0, 1);
+				memcpy((void *)/*ph->p_vaddr*/hwaddr + 0, (void *)0, 1);
 
 #ifdef IA32_PAGE
 			/* Record the program break for future use. */
