@@ -22,7 +22,7 @@ hwaddr_t page_translate(lnaddr_t);
 
 uint32_t lnaddr_read(lnaddr_t addr, size_t len) {
 	hwaddr_t hwaddr;
-	printf("%x\n", cpu.cr0.val);
+//	printf("%x\n", cpu.cr0.val);
 	if(cpu.cr0.paging == 1) hwaddr = page_translate(addr);
 		else hwaddr = addr;
 	return hwaddr_read(hwaddr, len);

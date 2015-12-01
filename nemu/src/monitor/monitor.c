@@ -12,6 +12,7 @@ void init_wp_list();
 void init_ddr3();
 void init_cache();
 void init_L2_cache();
+void init_reg();
 
 FILE *log_fp = NULL;
 
@@ -97,4 +98,6 @@ void restart() {
 
 	/* Initialize L2_cache. */
 	init_L2_cache();
+
+	init_reg();
 }

@@ -88,4 +88,8 @@ extern const char* regsw[];
 extern const char* regsb[];
 extern const char* sregs[];
 
+static inline void init_reg() {
+	cpu.cr0.val = 0;
+}
+
 #endif
