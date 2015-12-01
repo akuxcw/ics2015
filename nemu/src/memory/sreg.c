@@ -29,7 +29,6 @@ void init_seg() {
 	segdesc->present = 1;
 	segdesc->base_31_24 = segdesc->base_23_16 = segdesc->base_15_0 = 0;
 	segdesc->limit_19_16 = segdesc->limit_15_0 = 0;
-	printf("***\n");
 	int i;
 	for(i = 0; i < 8; ++ i)
 		hwaddr_write(0x100030 + i, 1, tmp[i]);
