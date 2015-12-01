@@ -54,8 +54,15 @@ typedef struct {
 		};
 		uint32_t _32;
 	} CR0;*/
-	CR0 cr0;
-	CR3 cr3;
+	union {
+		struct {
+			CR0 _0;
+			CR0 _1;
+			CR0 _2;
+			CR3 _3;
+		};
+		uint32_t _[4];
+	} cr;
 	union {
 		union {
 			struct {
@@ -89,7 +96,7 @@ extern const char* regsb[];
 extern const char* sregs[];
 
 static inline void init_reg() {
-	cpu.cr0.val = 0;
+	cpu.cr._[0] = 0;
 }
 
 #endif

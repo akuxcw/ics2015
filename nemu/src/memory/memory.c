@@ -23,14 +23,14 @@ hwaddr_t page_translate(lnaddr_t);
 uint32_t lnaddr_read(lnaddr_t addr, size_t len) {
 	hwaddr_t hwaddr;
 //	printf("%x\n", cpu.cr0.val);
-	if(cpu.cr0.paging == 1) hwaddr = page_translate(addr);
+	if(cpu.cr._0.paging == 1) hwaddr = page_translate(addr);
 		else hwaddr = addr;
 	return hwaddr_read(hwaddr, len);
 }
 
 void lnaddr_write(lnaddr_t addr, size_t len, uint32_t data) {
 	hwaddr_t hwaddr;
-	if(cpu.cr0.paging == 1) hwaddr = page_translate(addr);
+	if(cpu.cr._0.paging == 1) hwaddr = page_translate(addr);
 		else hwaddr = addr;
 	hwaddr_write(hwaddr, len, data);
 }
@@ -42,7 +42,7 @@ uint32_t swaddr_read(swaddr_t addr, size_t len, uint8_t sreg) {
 	assert(len == 1 || len == 2 || len == 4);
 #endif
 	lnaddr_t lnaddr;
-	if(cpu.cr0.protect_enable == 1) lnaddr = seg_translate(addr, sreg);
+	if(cpu.cr._0.protect_enable == 1) lnaddr = seg_translate(addr, sreg);
 		else lnaddr = addr;
 //	printf("addr=%x lnaddr=%x\n", addr, lnaddr);
 	return lnaddr_read(lnaddr, len);
@@ -53,7 +53,7 @@ void swaddr_write(swaddr_t addr, size_t len, uint32_t data, uint8_t sreg) {
 	assert(len == 1 || len == 2 || len == 4);
 #endif
 	lnaddr_t lnaddr;
-	if(cpu.cr0.protect_enable == 1) lnaddr = seg_translate(addr, sreg);
+	if(cpu.cr._0.protect_enable == 1) lnaddr = seg_translate(addr, sreg);
 		else lnaddr = addr;
 	lnaddr_write(lnaddr, len, data);
 }

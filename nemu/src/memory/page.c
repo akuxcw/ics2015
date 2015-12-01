@@ -18,9 +18,9 @@ hwaddr_t page_translate(lnaddr_t addr) {
 	lnaddr_st lnaddr;
 	lnaddr.val = addr;
 	
-	printf("0x%x\n", cpu.cr3.val);//page_directory_base);
+	printf("0x%x\n", cpu.cr._3.val);//page_directory_base);
 	PDE dir_entry;
-	dir_entry.val = hwaddr_read(cpu.cr3.page_directory_base + 4 * lnaddr.dir, 4);
+	dir_entry.val = hwaddr_read(cpu.cr._3.page_directory_base + 4 * lnaddr.dir, 4);
 
 	printf("0x%x\n", dir_entry.page_frame);
 	PTE pg_tbl_entry;
