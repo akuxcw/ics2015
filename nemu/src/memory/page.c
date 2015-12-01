@@ -24,8 +24,8 @@ hwaddr_t page_translate(lnaddr_t addr) {
 
 	printf("0x%x\n", dir_entry.page_frame);
 	PTE pg_tbl_entry;
-	pg_tbl_entry.val = hwaddr_read((dir_entry.page_frame << 12) + 4 * lnaddr.page, 4);
+	pg_tbl_entry.val = hwaddr_read((dir_entry.page_frame << 0) + 4 * lnaddr.page, 4);
 
 	printf("0x%x\n", pg_tbl_entry.page_frame);
-	return hwaddr_read((pg_tbl_entry.page_frame << 12) + lnaddr.offset, 4);
+	return hwaddr_read((pg_tbl_entry.page_frame << 0) + lnaddr.offset, 4);
 }
