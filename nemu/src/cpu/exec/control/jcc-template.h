@@ -31,89 +31,67 @@ all_exec();
 
 #define instr jae
 #define JMPFLAG cpu.CF == 0
-
 all_exec();
-
 #undef JMPFLAG
 #undef instr
 
 #define instr jb
 #define JMPFLAG cpu.CF == 1
-
 all_exec();
-
 #undef JMPFLAG
 #undef instr
 
 #define instr je
 #define JMPFLAG cpu.ZF == 1
-
 all_exec();
-
 #undef JMPFLAG
 #undef instr
 
 #define instr jbe
 #define JMPFLAG cpu.ZF == 1 || cpu.CF == 1
-
 all_exec();
-
 #undef JMPFLAG
 #undef instr
 
 #define instr jl
 #define JMPFLAG cpu.SF != cpu.OF
-
 all_exec();
-
 #undef JMPFLAG
 #undef instr
 
 #define instr jle
 #define JMPFLAG cpu.ZF == 1 || cpu.SF != cpu.OF
-
 all_exec();
-
 #undef JMPFLAG
 #undef instr
 
 #define instr jg
 #define JMPFLAG cpu.ZF == 0 && cpu.SF == cpu.OF
-
 all_exec();
-
 #undef JMPFLAG	
 #undef instr
 
 #define instr jge
 #define JMPFLAG cpu.SF == cpu.OF
-
 all_exec();
-	
 #undef JMPFLAG
 #undef instr
 
 #define instr jne
 #define JMPFLAG cpu.ZF == 0
-
 all_exec();
-
 #undef JMPFLAG
 #undef instr
 
 #define instr jns
 #define JMPFLAG cpu.SF == 0
-
 all_exec();
-
 #undef JMPFLAG
 #undef instr
 
 #define instr js
 #define JMPFLAG cpu.SF == 1
-
 all_exec();
-
 #undef JMPFLAG
 #undef instr
 
