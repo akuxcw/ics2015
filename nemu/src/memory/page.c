@@ -18,7 +18,7 @@ hwaddr_t page_translate(lnaddr_t addr) {
 	lnaddr_st lnaddr;
 	lnaddr.val = addr;
 	
-	printf("0x%x\n", cpu.cr._3.val);//page_directory_base);
+	printf("0x%x\n", cpu.cr._3.page_directory_base);
 	PDE dir_entry;
 	dir_entry.val = hwaddr_read(cpu.cr._3.page_directory_base + 4 * lnaddr.dir, 4);
 	Assert(dir_entry.present == 1, "dir_entry is not valid!");
