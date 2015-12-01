@@ -51,14 +51,14 @@ uint32_t loader() {
 				mm_malloc(ph->p_vaddr, ph->p_memsz);
 
 			memcpy((void *)/*ph->p_vaddr*/hwaddr, (void *)(buf + ph->p_offset), ph->p_filesz);
-//			HIT_GOOD_TRAP;
+			if(cnt == 1)HIT_GOOD_TRAP;
 			/* TODO: zero the memory region 
 			 * [VirtAddr + FileSiz, VirtAddr + MemSiz)
 			 */
 			
-//			int i;
-//			for(i = ph->p_filesz; i < ph->p_memsz; i ++) 
-//				memcpy((void *)/*ph->p_vaddr*/hwaddr + 0, (void *)0, 1);
+			int i;
+			for(i = ph->p_filesz; i < ph->p_memsz; i ++) 
+				memcpy((void *)/*ph->p_vaddr*/hwaddr + i, (void *)0, 1);
 
 #ifdef IA32_PAGE
 			/* Record the program break for future use. */
