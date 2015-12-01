@@ -20,6 +20,7 @@ hwaddr_t page_translate(lnaddr_t addr) {
 	
 	bool flag = 1;//(addr == 0xc01012c5 || addr == 0xc01012c6);
 
+	if(flag)printf("lnaddr = 0x%x\n", addr);
 	if(flag)printf("0x%x\n", cpu.cr._3.page_directory_base);
 	PDE dir_entry;
 	dir_entry.val = 
@@ -34,6 +35,5 @@ hwaddr_t page_translate(lnaddr_t addr) {
 	if(flag)printf("0x%x\n", (pg_tbl_entry.page_frame << 12) + 4 * lnaddr.offset);
 	hwaddr_t hwaddr = (pg_tbl_entry.page_frame << 12) + lnaddr.offset;
 		//hwaddr_read((pg_tbl_entry.page_frame << 12) + 4 * lnaddr.offset, 4);
-	if(flag)printf("0x%x 0x%x\n", addr, hwaddr);
 	return hwaddr;
 }
