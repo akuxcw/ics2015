@@ -18,7 +18,7 @@ hwaddr_t page_translate(lnaddr_t addr) {
 	lnaddr_st lnaddr;
 	lnaddr.val = addr;
 	
-	bool flag = 1;//(addr == 0xc01012c5 || addr == 0xc01012c6);
+	bool flag = 0;//(addr == 0xc01012c5 || addr == 0xc01012c6);
 
 	if(flag)printf("lnaddr = 0x%x\n", addr);
 	if(flag)printf("0x%x\n", cpu.cr._3.page_directory_base);
