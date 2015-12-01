@@ -101,8 +101,8 @@ void init_cond() {
 	asm volatile("movl $0, %ebp");
 	asm volatile("subl $16, %esp");
 
-	asm volatile("movl $0xc0146004, %eax");
-	asm volatile("movl %eax, %cr3");
+//	asm volatile("movl $0xc0146004, %eax");
+//	asm volatile("movl %eax, %cr3");
 	
 	/* Here we go! */
 	((void(*)(void))eip)();
