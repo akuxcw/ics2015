@@ -52,6 +52,7 @@ uint32_t loader() {
 				mm_malloc(ph->p_vaddr, ph->p_memsz);
 
 			memcpy((void *)/*ph->p_vaddr*/hwaddr, (void *)(buf + ph->p_offset), ph->p_filesz);
+			HIT_GOOD_TRAP;
 			/* TODO: zero the memory region 
 			 * [VirtAddr + FileSiz, VirtAddr + MemSiz)
 			 */
