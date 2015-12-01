@@ -17,6 +17,7 @@ lnaddr_t seg_translate(swaddr_t addr, uint8_t sreg) {
 //		(segdesc->base_31_24 << 24) + (segdesc->base_23_16 << 16) + segdesc->base_15_0 );
 	//if(sreg != R_CS) 
 	Assert(segdesc->present == 1, "Segdesc is not valid!");
+	Assert(addr <= (segdesc->limit_19_16 << 16) + segdesc->limit_15_0, "Seg_translate overflow!");
 	return 
 		(segdesc->base_31_24 << 24) + (segdesc->base_23_16 << 16) + 
 		segdesc->base_15_0 + addr;
