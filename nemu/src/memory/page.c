@@ -15,6 +15,7 @@ uint32_t hwaddr_read(lnaddr_t, size_t);
 
 hwaddr_t page_translate(lnaddr_t addr) {
 //	printf("***\n");
+	if(addr < 0xc0000000) return addr;
 	lnaddr_st lnaddr;
 	lnaddr.val = addr;
 	
