@@ -48,9 +48,10 @@ uint32_t loader() {
 			 * to the memory region [VirtAddr, VirtAddr + FileSiz)
 			 */
 			
-			uint32_t hwaddr = mm_malloc(ph->p_vaddr, ph->p_memsz);
+//			uint32_t hwaddr = 
+				mm_malloc(ph->p_vaddr, ph->p_memsz);
 
-			memcpy((void *)hwaddr, (void *)(buf + ph->p_offset), ph->p_filesz);
+			memcpy((void *)ph->p_vaddr, (void *)(buf + ph->p_offset), ph->p_filesz);
 			/* TODO: zero the memory region 
 			 * [VirtAddr + FileSiz, VirtAddr + MemSiz)
 			 */
@@ -58,7 +59,7 @@ uint32_t loader() {
 //			uint8_t zero = 0;
 			for(i = ph->p_filesz; i < ph->p_memsz; i ++) 
 //				ramdisk_write(&zero, ph->p_vaddr + i, 1);
-				memcpy((void *)hwaddr + i, (void *)0, 1);
+				memcpy((void *)ph->p_vaddr + i, (void *)0, 1);
 
 #ifdef IA32_PAGE
 			/* Record the program break for future use. */
