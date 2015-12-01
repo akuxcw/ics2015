@@ -55,6 +55,7 @@ typedef struct {
 		uint32_t _32;
 	} CR0;*/
 	CR0 cr0;
+	CR3 cr3;
 	union {
 		union {
 			struct {
