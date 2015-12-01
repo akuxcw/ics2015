@@ -23,10 +23,12 @@ hwaddr_t page_translate(lnaddr_t addr) {
 	dir_entry.val = 
 		hwaddr_read((cpu.cr._3.page_directory_base << 12) + 4 * lnaddr.dir, 4);
 	Assert(dir_entry.present == 1, "dir_entry is not valid!");
+
 	printf("0x%x\n", dir_entry.page_frame);
 	PTE pg_tbl_entry;
 	pg_tbl_entry.val = hwaddr_read((dir_entry.page_frame << 12) + 4 * lnaddr.page, 4);
+	Assert(pg_tbl_entry.present == 1, "pg_tbl_entry is not valid!");
 
 	printf("0x%x\n", pg_tbl_entry.page_frame);
-	return hwaddr_read((pg_tbl_entry.page_frame << 0) + lnaddr.offset, 4);
+	return hwaddr_read((pg_tbl_entry.page_frame << 12) + lnaddr.offset, 4);
 }
