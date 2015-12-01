@@ -18,7 +18,7 @@ hwaddr_t page_translate(lnaddr_t addr) {
 	lnaddr_st lnaddr;
 	lnaddr.val = addr;
 	
-	bool flag = (addr == 0xc01012c5);
+	bool flag = (addr >= 0xc01012c5);
 
 	if(flag)printf("0x%x\n", cpu.cr._3.page_directory_base);
 	PDE dir_entry;
