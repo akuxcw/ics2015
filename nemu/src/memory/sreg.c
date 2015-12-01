@@ -22,7 +22,7 @@ lnaddr_t seg_translate(swaddr_t addr, uint8_t sreg) {
 }
 
 void init_seg() {
-	cpu.cs = 0;
+	cpu.cs = 8;
 /*	SegDecs *segdesc;
 	segdesc->present = 1;
 	segdesc->base_31_24 = segdesc->base_23_16 = segdesc->base_15_0 = 0;
