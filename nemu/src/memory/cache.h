@@ -1,4 +1,3 @@
-
 typedef union {
 	struct {
 		uint32_t col	: COL_WIDTH;
@@ -6,7 +5,7 @@ typedef union {
 		uint32_t flag	: FLAG_WIDTH;
 	};
 	uint32_t addr;
-} cache_addr;
+} concat(cache_addr_, LEVEL);
 
 #define NR_COL (1 << COL_WIDTH)
 #define NR_LINE (1 << LINE_WIDTH)
@@ -27,5 +26,15 @@ typedef struct {
 	} set[NR_SET];
 	void (*read)(hwaddr_t, void *);
 	void (*write)(hwaddr_t, void *, uint8_t *);
-} cache_t;
+} concat(cache_t_, LEVEL);
+
+#define cache concat(cache_, LEVEL)
+#define cache_addr concat(cache_addr_, LEVEL)
+#define cache_t concat(cache_t_, LEVEL)
+#define cache_read concat(cache_read_, LEVEL)
+#define cache_write concat(cache_write_, LEVEL)
+#define cache_set_read concat(cache_set_read_, LEVEL)
+#define cache_set_write concat(cache_set_write_, LEVEL)
+#define write_cache concat(write_cache_, LEVEL)
+#define write_back concat(write_back_, LEVEL)
 

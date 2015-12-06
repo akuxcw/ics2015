@@ -11,7 +11,6 @@ void init_regex();
 void init_wp_list();
 void init_ddr3();
 void init_cache();
-void init_L2_cache();
 void init_reg();
 void init_seg();
 
@@ -96,9 +95,6 @@ void restart() {
 
 	/* Initialize cache. */
 	init_cache();
-
-	/* Initialize L2_cache. */
-	init_L2_cache();
 
 	init_reg();
 
