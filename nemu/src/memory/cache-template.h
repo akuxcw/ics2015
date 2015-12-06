@@ -27,7 +27,7 @@ void concat(init_cache_, LEVEL)() {
 
 #ifdef WRITE_BACK
 void write_back(uint32_t set, uint32_t line, hwaddr_t addr) {
-	if(!L2_cache.set[set].dirty[line]) return;
+	if(!cache.set[set].dirty[line]) return;
 	uint32_t col;
 	for(col = 0; col < NR_COL; ++ col) {
 #if LEVEL == MAX_LEVEL

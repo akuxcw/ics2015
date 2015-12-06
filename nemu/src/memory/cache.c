@@ -4,7 +4,7 @@
 #define LINE_WIDTH 3
 #define SET_WIDTH 7
 #define FLAG_WIDTH (27 - COL_WIDTH - SET_WIDTH)
-#define WROTE_BACK
+#define WROTE_THOUGH
 #define LEVEL I
 #include "cache-template.h"
 #include "cache-undef.h"
@@ -14,7 +14,7 @@
 #define LINE_WIDTH 4
 #define SET_WIDTH 12
 #define FLAG_WIDTH (27 - COL_WIDTH - SET_WIDTH)
-#define WRITE_THOUGH
+#define WRITE_BACK
 #define LEVEL II
 #include "cache-template.h"
 #include "cache-undef.h"
@@ -30,3 +30,4 @@ uint32_t cache_read(hwaddr_t addr, size_t len) {
 void cache_write(hwaddr_t addr, size_t len, uint32_t data) {
 	cache_write_I(addr, len, data);
 }
+
