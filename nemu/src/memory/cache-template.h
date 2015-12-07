@@ -137,7 +137,7 @@ void cache_set_write(hwaddr_t addr, void *data, uint8_t *mask) {
 
 uint32_t cache_read(hwaddr_t addr, size_t len) {
 
-	printf("^_^  %s\n", str(cache));
+	printf("^_^  %s\n", str(NR_COL));
 	uint32_t offset = addr & BURST_MASK;
 	uint8_t temp[2 * BURST_LEN];
 
