@@ -11,8 +11,11 @@ typedef union {
 	uint32_t val;
 } lnaddr_st;
 
+static uint32_t cr3 = 0;
+
 uint32_t hwaddr_read(lnaddr_t, size_t);
 hwaddr_t tlb_read(lnaddr_t);
+void init_tlb();
 
 hwaddr_t page_read(lnaddr_t addr) {
 	lnaddr_st lnaddr;
@@ -32,5 +35,9 @@ hwaddr_t page_read(lnaddr_t addr) {
 }
 
 hwaddr_t page_translate(lnaddr_t addr) {
+	if(cr3 != cpu.cr._[3]) {
+		init_tlb();
+		cr3 = cpu.cr._[3];
+	}
 	return tlb_read(addr);
 }
