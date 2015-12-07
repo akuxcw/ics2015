@@ -8,7 +8,7 @@
 #define LEVEL I
 #include "cache-template.h"
 
-
+/*
 #define COL_WIDTH 6
 #define LINE_WIDTH 4
 #define SET_WIDTH 12
@@ -16,6 +16,7 @@
 #define WRITE_BACK
 #define LEVEL II
 #include "cache-template.h"
+*/
 
 void init_cache() {
 	init_cache_I();
