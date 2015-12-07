@@ -22,7 +22,6 @@ void init_cache() {
 }
 
 uint32_t cache_read(hwaddr_t addr, size_t len) {
-//	printf("%s\n", str(cache_read));
 	return cache_read_I(addr, len);
 }
 

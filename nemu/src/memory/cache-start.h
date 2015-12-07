@@ -24,8 +24,6 @@ typedef struct {
 		bool dirty[NR_LINE];
 		uint32_t flag[NR_LINE];
 	} set[NR_SET];
-	void (*read)(hwaddr_t, void *);
-	void (*write)(hwaddr_t, void *, uint8_t *);
 } concat(cache_t_, LEVEL);
 
 #define cache concat(cache_, LEVEL)
