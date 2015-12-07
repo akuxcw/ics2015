@@ -3,7 +3,7 @@
 #include "rand.h"
 #include "misc.h"
 
-#include "cache-start.h"
+#include "memory/cache-start.h"
 
 cache_t cache;
 
@@ -172,5 +172,5 @@ void cache_write(hwaddr_t addr, size_t len, uint32_t data) {
 #endif
 }
 
-#include "cache-end.h"
+#include "memory/cache-end.h"
 
