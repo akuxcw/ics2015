@@ -12,8 +12,9 @@ typedef union {
 } lnaddr_st;
 
 uint32_t hwaddr_read(lnaddr_t, size_t);
+hwaddr_t tlb_read(lnaddr_t);
 
-hwaddr_t page_translate(lnaddr_t addr) {
+hwaddr_t page_read(lnaddr_t addr) {
 	lnaddr_st lnaddr;
 	lnaddr.val = addr;
 	
@@ -28,4 +29,8 @@ hwaddr_t page_translate(lnaddr_t addr) {
 
 	hwaddr_t hwaddr = (pg_tbl_entry.page_frame << 12) + lnaddr.offset;
 	return hwaddr;
+}
+
+hwaddr_t page_translate(lnaddr_t addr) {
+	return tlb_read(addr);
 }
