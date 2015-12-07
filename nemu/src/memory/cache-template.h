@@ -67,7 +67,6 @@ void cache_set_read(hwaddr_t addr, void *data) {
 	for(line = 0; line < NR_LINE; ++ line) {
 		if(cache.set[set].valid[line]) {
 			if(cache.set[set].flag[line] == flag) {
-				printf("^_^\n");
 				memcpy(data, cache.set[set].data[line] + col, BURST_LEN);
 				find = true;
 				break;
@@ -137,6 +136,8 @@ void cache_set_write(hwaddr_t addr, void *data, uint8_t *mask) {
 }
 
 uint32_t cache_read(hwaddr_t addr, size_t len) {
+
+	printf("^_^  %s\n", str(cache));
 	uint32_t offset = addr & BURST_MASK;
 	uint8_t temp[2 * BURST_LEN];
 
