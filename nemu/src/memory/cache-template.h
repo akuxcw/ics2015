@@ -80,7 +80,6 @@ void cache_set_read(hwaddr_t addr, void *data) {
 		if(full) {
 			line_ = rand(addr) & LINE_MASK;
 #ifdef WRITE_BACK
-				printf("^_^\n");
 			write_back(set, line_, addr);
 #endif
 		}
@@ -97,23 +96,31 @@ void cache_set_write(hwaddr_t addr, void *data, uint8_t *mask) {
 	uint32_t col = temp.col;
 	uint32_t set = temp.set;
 	uint32_t flag = temp.flag;
-	uint32_t line, line_ = 0;
+	uint32_t line;
+#ifdef WRITE_ALLOCATE	
 	bool full = true, find = false;
+	uint32_t line_ = 0;
+#endif
 	
 	for(line = 0; line < NR_LINE; ++ line) {
 		if(cache.set[set].valid[line]) {
 			if(cache.set[set].flag[line] == flag) {
+#ifdef WRITE_ALLOCATE	
 				find = true;
+#endif
 				cache.set[set].dirty[line] = true;
 				memcpy_with_mask(cache.set[set].data[line] + col, data, BURST_LEN, mask);
 				break;
 			}
 		} else {
+#ifdef WRITE_ALLOCATE	
 			full = false;
 			line_ = line;
+#endif
 		}
 	}
-	
+
+#ifdef WRITE_ALLOCATE	
 	if(!find) {
 		if(full) {
 			line_ = rand(addr) & LINE_MASK;
@@ -124,6 +131,7 @@ void cache_set_write(hwaddr_t addr, void *data, uint8_t *mask) {
 		write_cache(set, line_, flag, addr);
 		memcpy_with_mask(cache.set[set].data[line_] + col, data, BURST_LEN, mask);
 	}
+#endif
 
 }
 
