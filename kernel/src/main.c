@@ -19,7 +19,7 @@ void init_cond();
 /* Initialization phase 1
  * The assembly code in start.S will finally jump here.
  */
-int x;
+static int x;
 void init() {
 #ifdef IA32_PAGE
 	x = 1;
@@ -103,9 +103,6 @@ void init_cond() {
 	asm volatile("movl $0, %ebp");
 	asm volatile("subl $16, %esp");
 
-//	asm volatile("movl $0xc0146004, %eax");
-//	asm volatile("movl %eax, %cr3");
-	
 	/* Here we go! */
 	((void(*)(void))eip)();
 
