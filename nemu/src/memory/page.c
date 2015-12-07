@@ -37,6 +37,7 @@ hwaddr_t page_read(lnaddr_t addr) {
 hwaddr_t page_translate(lnaddr_t addr) {
 	if(cr3 != cpu.cr._[3]) {
 		init_tlb();
+		printf("^_^\n");
 		cr3 = cpu.cr._[3];
 	}
 	return tlb_read(addr);
