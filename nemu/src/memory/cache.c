@@ -1,4 +1,4 @@
-#define MAX_LEVEL II
+#define MAX_LEVEL I
 
 #define COL_WIDTH 6
 #define LINE_WIDTH 3
