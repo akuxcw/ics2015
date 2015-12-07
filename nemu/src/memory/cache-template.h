@@ -97,7 +97,7 @@ void cache_set_write(hwaddr_t addr, void *data, uint8_t *mask) {
 	uint32_t set = temp.set;
 	uint32_t flag = temp.flag;
 	uint32_t line;
-#ifndef WRITE_ALLOCATE	
+#ifdef WRITE_ALLOCATE	
 	bool full = true, find = false;
 	uint32_t line_ = 0;
 #endif
@@ -105,7 +105,7 @@ void cache_set_write(hwaddr_t addr, void *data, uint8_t *mask) {
 	for(line = 0; line < NR_LINE; ++ line) {
 		if(cache.set[set].valid[line]) {
 			if(cache.set[set].flag[line] == flag) {
-#ifndef WRITE_ALLOCATE	
+#ifdef WRITE_ALLOCATE	
 				find = true;
 #endif
 				cache.set[set].dirty[line] = true;
@@ -113,14 +113,14 @@ void cache_set_write(hwaddr_t addr, void *data, uint8_t *mask) {
 				break;
 			}
 		} else {
-#ifndef WRITE_ALLOCATE	
+#ifdef WRITE_ALLOCATE	
 			full = false;
 			line_ = line;
 #endif
 		}
 	}
 
-#ifndef WRITE_ALLOCATE	
+#ifdef WRITE_ALLOCATE	
 	if(!find) {
 		if(full) {
 			line_ = rand(addr) & LINE_MASK;
