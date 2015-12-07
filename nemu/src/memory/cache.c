@@ -4,7 +4,7 @@
 #define LINE_WIDTH 3
 #define SET_WIDTH 7
 #define FLAG_WIDTH (27 - COL_WIDTH - SET_WIDTH)
-#define WROTE_THOUGH
+#define WRITE_THOUGH
 #define LEVEL I
 #include "cache-template.h"
 
