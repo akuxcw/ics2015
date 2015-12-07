@@ -67,7 +67,6 @@ void cache_set_read(hwaddr_t addr, void *data) {
 	for(line = 0; line < NR_LINE; ++ line) {
 		if(cache.set[set].valid[line]) {
 			if(cache.set[set].flag[line] == flag) {
-				printf("^_^\n");
 				memcpy(data, cache.set[set].data[line] + col, BURST_LEN);
 				find = true;
 				break;
@@ -81,6 +80,7 @@ void cache_set_read(hwaddr_t addr, void *data) {
 		if(full) {
 			line_ = rand(addr) & LINE_MASK;
 #ifdef WRITE_BACK
+				printf("^_^\n");
 			write_back(set, line_, addr);
 #endif
 		}
