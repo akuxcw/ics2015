@@ -54,7 +54,7 @@ void write_cache(uint32_t set, uint32_t line, uint32_t flag, uint32_t addr) {
 	}
 }
 
-void concat(cache_set_read_, LEVEL)(hwaddr_t addr, void *data) {
+void cache_set_read(hwaddr_t addr, void *data) {
 	Assert(addr < HW_MEM_SIZE, "physical address %x is outside of the physical memory!", addr);
 
 	cache_addr temp;
@@ -67,6 +67,7 @@ void concat(cache_set_read_, LEVEL)(hwaddr_t addr, void *data) {
 	for(line = 0; line < NR_LINE; ++ line) {
 		if(cache.set[set].valid[line]) {
 			if(cache.set[set].flag[line] == flag) {
+				printf("^_^\n");
 				memcpy(data, cache.set[set].data[line] + col, BURST_LEN);
 				find = true;
 				break;
