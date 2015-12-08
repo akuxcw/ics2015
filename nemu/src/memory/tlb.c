@@ -16,14 +16,12 @@ uint32_t rand(int);
 PTE page_read(lnaddr_t);
 
 void init_tlb() {
-//	memset(tlb.valid, 0, sizeof tlb.valid);
-	int i;
-	for(i = 0; i < NR_LINE; ++ i) tlb.valid[i] = false;
+	memset(tlb.valid, 0, sizeof tlb.valid);
 }
 
 hwaddr_t tlb_read(lnaddr_t addr) {
 	tlb_addr temp;
-	temp.addr = addr & ~BURST_MASK;
+	temp.addr = addr;
 	uint32_t col = temp.col;
 	uint32_t flag = temp.flag;
 	uint32_t line, line_ = 0;
