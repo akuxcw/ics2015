@@ -41,7 +41,7 @@ hwaddr_t page_translate(lnaddr_t addr) {
 		cr3 = cpu.cr._[3];
 		printf("^_^%d\n", cr3);
 	}
-	PTE tmp = page_read(addr);
-	return (tmp.page_frame << 12) + (addr & 0xfff);
-//	return tlb_read(addr);
+//	PTE tmp = page_read(addr);
+//	return (tmp.page_frame << 12) + (addr & 0xfff);
+	return tlb_read(addr);
 }
