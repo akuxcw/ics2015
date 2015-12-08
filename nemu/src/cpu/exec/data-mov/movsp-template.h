@@ -17,7 +17,7 @@ make_helper(concat(movsp_rm2cr_, SUFFIX)) {
 //	printf("0x%x\n", r);
 	cpu.cr._[(r >> 3) & 0x7] = REG(r & 0x7);
 //	printf("*\n");
-	print_asm("movsp" str(SUFFIX) " %%%s,%%%s", REG_NAME(r & 0x7), "cr0");
+	print_asm("movsp" str(SUFFIX) " %%%s,%%cr%d", REG_NAME(r & 0x7), (r >> 3) & 0x7);
 //	printf("**\n");
 	return 2;
 }
@@ -25,7 +25,7 @@ make_helper(concat(movsp_rm2cr_, SUFFIX)) {
 make_helper(concat(movsp_cr2rm_, SUFFIX)) {
 	uint8_t r = instr_fetch(eip + 1, 1);
 	REG(r & 0x7) = cpu.cr._[(r >> 3) & 0x7];
-	print_asm("movsp" str(SUFFIX) " %%%s,%%%s", "cr0", REG_NAME(r & 0x7));
+	print_asm("movsp" str(SUFFIX) " %%cr%d,%%%s", (r >> 3) & 0x7, REG_NAME(r & 0x7));
 	return 2;
 }
 
