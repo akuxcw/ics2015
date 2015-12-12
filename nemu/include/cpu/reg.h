@@ -47,13 +47,10 @@ typedef struct {
 		lnaddr_t base;
 		size_t limit;
 	} GDTR;
-/*	union {
-		struct {
-			uint32_t pe	:	1;
-			uint32_t	:	31;
-		};
-		uint32_t _32;
-	} CR0;*/
+	struct {
+		lnaddr_t base;
+		size_t limit;
+	} IDTR;
 	union {
 		struct {
 			CR0 _0;
