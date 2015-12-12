@@ -3,8 +3,8 @@
 #define instr lgdt
 
 static void do_execute() {
-	cpu.GDTR.limit = lnaddr_read(op_src->val, 2);
-	cpu.GDTR.base = lnaddr_read(op_src->val + 2, 4);
+	cpu.GDTR.limit = lnaddr_read(op_src->addr, 2);
+	cpu.GDTR.base = lnaddr_read(op_src->addr + 2, 4);
 	printf("0x%x 0x%x 0x%x\n", cpu.GDTR.limit, cpu.GDTR.base, op_src->addr);
 	print_asm_template1();
 	
