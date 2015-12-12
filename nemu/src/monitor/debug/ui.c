@@ -88,6 +88,8 @@ static int cmd_info(char *args) {
 			printf("%-6s0x%-10x\n", regsl[i], reg_l(i));
 		}
 		printf("%-6s0x%-10x\n", "eip", cpu.eip);
+		printf("%-6s0x%-10x\n", "cs", cpu.cs);
+		printf("%-6s0x%-10x\n", "EFLAGS", cpu.EFLAGS);
 	}else 
 	if (args[0] == 'w') {
 		print_wp(0);
