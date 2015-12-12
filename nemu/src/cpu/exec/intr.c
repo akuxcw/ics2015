@@ -20,6 +20,7 @@ void raise_intr(uint8_t NO) {
 	printf("0x%x\n", cpu.eip);
 	GateDesc *gde = (GateDesc*)tmp;
 	cpu.ss = gde->segment;
+	printf("%x\n", cpu.ss);
 	load_sreg(R_SS);
 	cpu.eip = (gde->offset_31_16 << 16) + gde->offset_15_0;
 	/* Jump back to cpu_exec() */
