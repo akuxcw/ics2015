@@ -66,9 +66,9 @@ typedef struct {
 	union {
 		union {
 			struct {
-				uint32_t rpl	:	2;
-				uint32_t ti		:	1;
-				uint32_t index	:	13;
+				uint16_t rpl	:	2;
+				uint16_t ti		:	1;
+				uint16_t index	:	13;
 			};
 			uint16_t _16;
 		} sr[4];
