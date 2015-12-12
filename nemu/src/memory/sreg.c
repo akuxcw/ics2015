@@ -28,4 +28,5 @@ void init_seg() {
 	int i;
 	for(i = 0; i < 8; ++ i)
 		hwaddr_write(0x100030 + i, 1, tmp[i]);
+	cpu.cr._[0] = cpu.cr._[3] = 0;
 }
