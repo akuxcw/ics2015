@@ -7,7 +7,7 @@ uint32_t lnaddr_read(lnaddr_t, size_t);
 void load_sreg(uint32_t);
 int tyu = 0;
 
-void raise_intr(uint8_t NO) {
+void raise_intr(uint32_t NO) {
 	/* TODO: Trigger an interrupt/exception with ``NO''.
 	 *	 * That is, use ``NO'' to index the IDT.
 	 *		 */

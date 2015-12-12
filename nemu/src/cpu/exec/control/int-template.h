@@ -2,7 +2,7 @@
 
 #define instr int
 
-void raise_intr(uint8_t);
+void raise_intr(uint32_t);
 
 static void do_execute() {
 	int len = instr_len();
