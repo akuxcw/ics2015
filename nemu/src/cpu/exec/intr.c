@@ -14,12 +14,11 @@ void raise_intr(uint8_t NO) {
 	uint8_t tmp[8];
 	int i;
 	for(i = 0; i < 8; ++ i) lnaddr_read(cpu.IDTR.base + NO * 0x8 + i, 1);
-	
-	panic("@@@");
 	GateDesc *gde = (GateDesc*)tmp;
 	cpu.ss = gde->segment;
 	load_sreg(R_SS);
 	cpu.eip = (gde->offset_31_16 << 16) + gde->offset_15_0;
 	/* Jump back to cpu_exec() */
+	panic("@@@");
 	longjmp(jbuf, 1);
 }
