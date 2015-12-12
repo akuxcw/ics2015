@@ -5,9 +5,8 @@
 static void do_execute() {
 	cpu.GDTR.limit = lnaddr_read(op_src->addr, 2);
 	cpu.GDTR.base = lnaddr_read(op_src->addr + 2, 4);
-	printf("0x%x 0x%x 0x%x\n", cpu.GDTR.limit, cpu.GDTR.base, op_src->addr);
-	print_asm_template1();
-	
+	printf("0x%x 0x%x %s\n", cpu.GDTR.limit, cpu.GDTR.base, op_src->str);
+	print_asm_template1();	
 }
 
 make_instr_helper(rm);
