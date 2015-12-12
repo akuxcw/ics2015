@@ -20,6 +20,7 @@ void raise_intr(uint8_t NO) {
 	cpu.ss = gde->segment;
 	load_sreg(R_SS);
 	cpu.eip = (gde->offset_31_16 << 16) + gde->offset_15_0;
+	printf("0x%x\n", cpu.eip);
 	/* Jump back to cpu_exec() */
 	tyu = 1;
 	longjmp(jbuf, 1);
