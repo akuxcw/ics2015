@@ -69,19 +69,19 @@ typedef struct {
 					uint16_t ti		:	1;
 					uint16_t index	:	13;
 				};
-				SegDesc* invi;
+				SegDesc invi;
 			};
 			uint16_t _16;
 		} sr[4];
 		struct {
 			uint16_t es	:	16;
-			uint64_t	:	32;
+			uint64_t	:	64;
 		   	uint16_t cs	:	16;
-			uint64_t	:	32;
+			uint64_t	:	64;
 		    uint16_t ss	:	16;
-			uint64_t	:	32;
+			uint64_t	:	64;
 			uint16_t ds	:	16;
-			uint64_t	:	32;
+			uint64_t	:	64;
 		};
 	};
 	
