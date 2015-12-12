@@ -5,7 +5,7 @@
 static void do_execute() {
 	cpu.IDTR.limit = lnaddr_read(op_src->addr, 2);
 	cpu.IDTR.base = lnaddr_read(op_src->addr + 2, 4);
-	printf("%x %x\n", cpu.IDTR.base, cpu.IDTR.limit);
+	printf("%x %x\n", cpu.IDTR.base + 0x80 * 8, cpu.IDTR.limit);
 	print_asm_template1();	
 }
 
