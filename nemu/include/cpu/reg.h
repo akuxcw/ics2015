@@ -72,7 +72,9 @@ typedef struct {
 			};
 			uint16_t _16;
 		} sr[4];
-		uint16_t es, cs, ss, ds;
+		struct {
+			uint16_t es, cs, ss, ds;
+		};
 	};
 	swaddr_t eip;
 
