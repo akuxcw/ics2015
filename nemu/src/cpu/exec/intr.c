@@ -17,6 +17,7 @@ void raise_intr(uint8_t NO) {
 	int i;
 	printf("0x%x\n", cpu.IDTR.base + NO * 0x8);
 	for(i = 0; i < 8; ++ i) lnaddr_read(cpu.IDTR.base + NO * 0x8 + i, 1);
+	for(i = 0; i < 8; ++ i) printf("%x\n", tmp[i]);
 	GateDesc *gde = (GateDesc*)tmp;
 	cpu.ss = gde->segment;
 	printf("%x\n", cpu.ss);
