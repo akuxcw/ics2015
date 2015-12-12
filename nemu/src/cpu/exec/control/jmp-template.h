@@ -20,6 +20,7 @@ make_instr_helper(rm)
 make_helper(concat(ljmp_, SUFFIX)) {
 	swaddr_t addr = instr_fetch(eip + 1, 4);
 	uint16_t sreg = instr_fetch(eip + 5, 2);
+	printf("%x", sreg);
 	cpu.cs = sreg;
 	cpu.eip = addr - 7;
 	print_asm("ljmp" str(SUFFIX) " $0x%x,$0x%x", sreg, addr);
