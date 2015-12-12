@@ -14,9 +14,9 @@ void raise_intr(uint8_t NO) {
 
 //	printf("%x\n", jbuf);
 	uint8_t tmp[8];
-	printf("0x%x\n", cpu.eip);
 	int i;
 	for(i = 0; i < 8; ++ i) lnaddr_read(cpu.IDTR.base + NO * 0x8 + i, 1);
+	printf("0x%x\n", cpu.eip);
 	GateDesc *gde = (GateDesc*)tmp;
 	cpu.ss = gde->segment;
 	load_sreg(R_SS);
