@@ -52,7 +52,7 @@ void cpu_exec(volatile uint32_t n) {
 #endif
 
 	setjmp(jbuf);
-//	if(tyu == 1) printf("@@@\n");
+	if(tyu == 1) printf("@@@\n");
 	for(; n > 0; n --) {
 #ifdef DEBUG
 		swaddr_t eip_temp = cpu.eip;
