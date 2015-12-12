@@ -19,7 +19,6 @@ char asm_buf[128];
 /* Used with exception handling. */
 jmp_buf jbuf;
 
-//extern int tyu;
 
 void print_bin_instr(swaddr_t eip, int len) {
 	int i;
@@ -52,7 +51,6 @@ void cpu_exec(volatile uint32_t n) {
 #endif
 
 	setjmp(jbuf);
-//	if(tyu == 1) printf("@@@\n");
 	for(; n > 0; n --) {
 #ifdef DEBUG
 		swaddr_t eip_temp = cpu.eip;
