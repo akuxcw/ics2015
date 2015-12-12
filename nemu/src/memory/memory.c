@@ -19,8 +19,11 @@ hwaddr_t page_translate(lnaddr_t);
 
 uint32_t lnaddr_read(lnaddr_t addr, size_t len) {
 	hwaddr_t hwaddr;
-	if(cpu.cr._0.paging == 1) hwaddr = page_translate(addr);
-		else hwaddr = addr;
+	if(cpu.cr._0.paging == 1) {
+		hwaddr = page_translate(addr);
+		printf("%x %x\n", addr, hwaddr);
+	}
+		else hwaddr = addr;	
 	return hwaddr_read(hwaddr, len);
 }
 
