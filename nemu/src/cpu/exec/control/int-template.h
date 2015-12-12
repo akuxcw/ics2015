@@ -12,6 +12,7 @@ static void do_execute() {
 	swaddr_write(cpu.esp, 4, cpu.cs, R_SS);
 	cpu.esp -= 4;
 	swaddr_write(cpu.esp, 4, cpu.eip + len, R_SS);
+	panic("@@@");
 	print_asm_template1();
 	raise_intr(op_src->val);
 }
