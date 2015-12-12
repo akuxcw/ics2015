@@ -4,7 +4,7 @@
 
 static void do_execute() {
 	int len = 4, i;
-	for(i = 0; i < 8; ++ i) {
+	for(i = 7; i >= 0; -- i) {
 		cpu.esp += len;
 		if(i != R_ESP) cpu.gpr[i]._32 = swaddr_read(cpu.esp, len, R_SS);
 	}
