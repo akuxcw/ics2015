@@ -7,7 +7,7 @@ uint32_t lnaddr_read(lnaddr_t, size_t);
 void load_sreg(uint32_t);
 int tyu = 0;
 
-void raise_intr(uint32_t NO) {
+void raise_intr(uint8_t NO) {
 	/* TODO: Trigger an interrupt/exception with ``NO''.
 	 *	 * That is, use ``NO'' to index the IDT.
 	 *		 */
@@ -15,6 +15,7 @@ void raise_intr(uint32_t NO) {
 //	printf("%x\n", jbuf);
 	uint8_t tmp[8];
 	int i;
+	printf("0x%x\n", cpu.IDTR.base);
 	for(i = 0; i < 8; ++ i) lnaddr_read(cpu.IDTR.base + NO * 0x8 + i, 1);
 	printf("0x%x\n", cpu.eip);
 	GateDesc *gde = (GateDesc*)tmp;
