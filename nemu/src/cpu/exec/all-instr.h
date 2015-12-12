@@ -12,6 +12,7 @@
 #include "data-mov/popa.h"
 #include "data-mov/leave.h"
 #include "data-mov/ret.h"
+#include "data-mov/iret.h"
 #include "data-mov/cltd.h"
 #include "data-mov/cld.h"
 #include "data-mov/lgdt.h"
