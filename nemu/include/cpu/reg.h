@@ -3,6 +3,7 @@
 
 #include "common.h"
 #include "../../lib-common/x86-inc/cpu.h"
+#include "../../lib-common/x86-inc/mmu.h"
 
 enum { R_EAX, R_ECX, R_EDX, R_EBX, R_ESP, R_EBP, R_ESI, R_EDI };
 enum { R_AX, R_CX, R_DX, R_BX, R_SP, R_BP, R_SI, R_DI };
@@ -63,16 +64,27 @@ typedef struct {
 	union {
 		union {
 			struct {
-				uint16_t rpl	:	2;
-				uint16_t ti		:	1;
-				uint16_t index	:	13;
+				struct {
+					uint16_t rpl	:	2;
+					uint16_t ti		:	1;
+					uint16_t index	:	13;
+				};
+				SegDesc* invi;
 			};
 			uint16_t _16;
 		} sr[4];
 		struct {
-			uint16_t es, cs, ss, ds;
+			uint16_t es	:	16;
+			uint64_t	:	32;
+		   	uint16_t cs	:	16;
+			uint64_t	:	32;
+		    uint16_t ss	:	16;
+			uint64_t	:	32;
+			uint16_t ds	:	16;
+			uint64_t	:	32;
 		};
 	};
+	
 	swaddr_t eip;
 
 } CPU_state;

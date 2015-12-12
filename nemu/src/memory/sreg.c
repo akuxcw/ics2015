@@ -6,7 +6,7 @@ uint32_t lnaddr_read(hwaddr_t, size_t);
 uint32_t hwaddr_read(hwaddr_t, size_t);
 uint32_t hwaddr_write(hwaddr_t, size_t, uint32_t);
 
-lnaddr_t seg_translate(swaddr_t addr, uint8_t sreg) {
+void load_sreg(uint32_t sreg) {
 	uint8_t tmp[8]; 
 	int i;
 	for(i = 0; i < 8; ++ i) 
@@ -14,6 +14,11 @@ lnaddr_t seg_translate(swaddr_t addr, uint8_t sreg) {
 	SegDesc *segdesc = (SegDesc*)tmp;
 	Assert(segdesc->present == 1, "Segdesc is not valid! 0x%x", cpu.GDTR.base + cpu.sr[sreg].index * 8);
 	Assert(cpu.sr[sreg].index * 8 < (segdesc->limit_19_16 << 16) + segdesc->limit_15_0, "Segment overflow!");
+	cpu.sr[sreg].invi = segdesc;
+}
+
+lnaddr_t seg_translate(swaddr_t addr, uint8_t sreg) {
+	SegDesc *segdesc = cpu.sr[sreg].invi;
 	return 
 		(segdesc->base_31_24 << 24) + (segdesc->base_23_16 << 16) + 
 		segdesc->base_15_0 + addr;
