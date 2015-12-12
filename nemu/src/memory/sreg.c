@@ -10,7 +10,7 @@ lnaddr_t seg_translate(swaddr_t addr, uint8_t sreg) {
 	uint8_t tmp[8]; 
 	int i;
 	for(i = 0; i < 8; ++ i) 
-		tmp[i] = hwaddr_read(cpu.GDTR.base + cpu.sr[sreg].index * 8 + i, 1);
+		tmp[i] = lnaddr_read(cpu.GDTR.base + cpu.sr[sreg].index * 8 + i, 1);
 	SegDesc *segdesc = (SegDesc*)tmp;
 	Assert(segdesc->present == 1, "Segdesc is not valid! 0x%x", cpu.GDTR.base + cpu.sr[sreg].index * 8);
 	Assert(cpu.sr[sreg].index * 8 < (segdesc->limit_19_16 << 16) + segdesc->limit_15_0, "Segment overflow!");
