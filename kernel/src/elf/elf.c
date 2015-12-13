@@ -55,9 +55,8 @@ uint32_t loader() {
 			 * [VirtAddr + FileSiz, VirtAddr + MemSiz)
 			 */
 			
-			int i;
-			for(i = ph->p_filesz; i < ph->p_memsz; i ++) 
-				memcpy((void *)hwaddr + i, (void *)0, 1);
+//			for(i = ph->p_filesz; i < ph->p_memsz; i ++) 
+				memset((void *)hwaddr + ph->p_filesz, 0, ph->p_memsz - ph->p_filesz);
 
 #ifdef IA32_PAGE
 			/* Record the program break for future use. */
