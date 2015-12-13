@@ -25,7 +25,7 @@ void do_syscall(TrapFrame *tf) {
 			sti();
 			break;
 
-		case SYS_brk: panic("@@@");sys_brk(tf); break;
+		case SYS_brk: /*panic("@@@");*/sys_brk(tf); break;
 		case SYS_write:
 		//		int buf = tf->ecx, len = tf->edx;
 				asm volatile (".byte 0xd6" : : "a"(2), "c"(tf->ecx), "d"(tf->edx));
