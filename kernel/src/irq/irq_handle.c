@@ -37,6 +37,15 @@ void irq_handle(TrapFrame *tf) {
 
 	int irq = tf->irq;
 
+	assert(tf->eax == 0x4);
+	assert(tf->ecx == 0x80480ac);
+	assert(tf->edx == 0xe);
+	assert(tf->ebx == 0x1);
+	assert(tf->old_esp == 0xbfffffd4);
+	assert(tf->ebp == 0xbfffffe8);
+	assert(tf->esi == 0x5aaf857e);
+	assert(tf->edi == 0x6fe32f35);
+//	Assert(tf->eax == 0x4, "eax");
 	if (irq < 0) {
 		panic("Unhandled exception!");
 	} else if (irq == 0x80) {
