@@ -43,8 +43,8 @@ void irq_handle(TrapFrame *tf) {
 	assert(tf->ebx == 0x1);
 	assert(tf->old_esp == 0xbfffffd4);
 	assert(tf->ebp == 0xbfffffe8);
-	assert(tf->esi == 0x5aaf857e);
-//	assert(tf->edi == 0x6fe32f35);
+//	assert(tf->esi == 0x5aaf857e);
+	assert(tf->edi == 0x6fe32f35);
 	if (irq < 0) {
 		panic("Unhandled exception!");
 	} else if (irq == 0x80) {
