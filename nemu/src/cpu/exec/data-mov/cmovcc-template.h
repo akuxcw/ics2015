@@ -9,7 +9,7 @@
 					   print_asm_template2();\
 				   }\
 				   make_instr_helper(rm2r)
-/*
+
 #define instr cmova
 #define CMOVFLAG cpu.CF == 0 && cpu.ZF == 0
 
@@ -18,6 +18,7 @@ all_exec();
 #undef CMOVFLAG
 #undef instr
 
+/*
 #define instr cmovae
 #define CMOVFLAG cpu.CF == 0
 
