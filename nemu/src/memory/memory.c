@@ -15,12 +15,12 @@ void hwaddr_write(hwaddr_t addr, size_t len, uint32_t data) {
 	cache_write(addr, len, data);
 }
 
-hwaddr_t page_translate(lnaddr_t);
+hwaddr_t page_translate(lnaddr_t, uint32_t);
 
 uint32_t lnaddr_read(lnaddr_t addr, size_t len) {
 	hwaddr_t hwaddr;
 	if(cpu.cr._0.paging == 1) {
-		hwaddr = page_translate(addr);
+		hwaddr = page_translate(addr, len);
 //		printf("%x %x\n", addr, hwaddr);
 	}
 		else hwaddr = addr;	
@@ -29,7 +29,7 @@ uint32_t lnaddr_read(lnaddr_t addr, size_t len) {
 
 void lnaddr_write(lnaddr_t addr, size_t len, uint32_t data) {
 	hwaddr_t hwaddr;
-	if(cpu.cr._0.paging == 1) hwaddr = page_translate(addr);
+	if(cpu.cr._0.paging == 1) hwaddr = page_translate(addr, len);
 		else hwaddr = addr;
 	hwaddr_write(hwaddr, len, data);
 }
