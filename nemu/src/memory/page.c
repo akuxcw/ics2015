@@ -24,8 +24,8 @@ PTE page_read(lnaddr_t addr, uint32_t len) {
 	PDE dir_entry;
 	dir_entry.val = 
 		hwaddr_read((cpu.cr._3.page_directory_base << 12) + 4 * lnaddr.dir, 4);
-	Assert(dir_entry.present == 1, "dir_entry is not valid!  0x%x", addr);
 	Assert(lnaddr.dir + len < limit, "Cross %x %x", lnaddr.dir, len);
+	Assert(dir_entry.present == 1, "dir_entry is not valid!  0x%x", addr);
 
 	PTE pg_tbl_entry;
 	pg_tbl_entry.val = hwaddr_read((dir_entry.page_frame << 12) + 4 * lnaddr.page, 4);
