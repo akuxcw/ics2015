@@ -13,7 +13,8 @@ void ramdisk_read(uint8_t *, uint32_t, uint32_t);
 #endif
 
 #define STACK_SIZE (1 << 20)
-#define _SIZE_ (0xa0000 - 1)
+#define _SIZE_ 4096
+//(0xa0000 - 1)
 
 void create_video_mapping();
 uint32_t get_ucr3();
@@ -24,7 +25,6 @@ uint32_t loader() {
 
 	uint8_t buf[_SIZE_];
 
-	HIT_GOOD_TRAP;
 #ifdef HAS_DEVICE
 	ide_read(buf, ELF_OFFSET_IN_DISK, _SIZE_);
 #else
@@ -32,6 +32,7 @@ uint32_t loader() {
 #endif
 	elf = (void*)buf;
 
+	HIT_GOOD_TRAP;
 	/* TODO: fix the magic number with the correct one */
 	const uint32_t elf_magic = 0x464c457f;
 	uint32_t *p_magic = (void *)buf;
