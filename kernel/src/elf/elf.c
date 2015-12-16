@@ -43,7 +43,11 @@ uint32_t loader() {
 	/* Load each program segment */
 	for(cnt = 0; cnt < elf->e_phnum; ++ cnt) {
 		/* Scan the program header table, load each segment into memory */
+#ifdef HAS_DEVICE
 		ide_read(buf_, ELF_OFFSET_IN_DISK + elf->e_ehsize + cnt * elf->e_phentsize, elf->e_phentsize);
+#else
+		ramdisk_read(buf_, ELF_OFFSET_IN_DISK + elf->e_ehsize + cnt * elf->e_phentsize, elf->e_phentsize);
+#endif		
 		//ph = (void*)(buf + elf->e_ehsize + cnt * elf->e_phentsize);
 		ph = (void*)buf_;
 		if(ph->p_type == PT_LOAD) {
