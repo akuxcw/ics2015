@@ -3,4 +3,6 @@
 
 make_helper(in_b);
 
+make_helper(in_v);
+
 #endif
