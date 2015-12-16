@@ -68,11 +68,11 @@ uint32_t loader() {
 
 	volatile uint32_t entry = elf->e_entry;
 
+	HIT_GOOD_TRAP;
 #ifdef IA32_PAGE
 	mm_malloc(KOFFSET - STACK_SIZE, STACK_SIZE);
 
 #ifdef HAS_DEVICE
-	HIT_GOOD_TRAP;
 	create_video_mapping();
 #endif
 
