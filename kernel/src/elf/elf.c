@@ -64,6 +64,7 @@ uint32_t loader() {
 			 * [VirtAddr + FileSiz, VirtAddr + MemSiz)
 			 */
 			
+			Log("%x", hwaddr + ph->p_filesz);
 			memset((void *)hwaddr + ph->p_filesz, 0, ph->p_memsz - ph->p_filesz);
 
 #ifdef IA32_PAGE
