@@ -74,7 +74,7 @@ void init_cond() {
 	 * Note that the output is actually performed only when
 	 * the serial port is available in NEMU.
 	 */
-//	Log("Hello, NEMU world!");
+	Log("Hello, NEMU world!");
 
 #if defined(IA32_PAGE) && defined(HAS_DEVICE)
 	/* Write some test data to the video memory. */
@@ -83,7 +83,7 @@ void init_cond() {
 
 	/* Load the program. */
 	uint32_t eip = loader();
-	
+	HIT_GOOD_TRAP;	
 #if defined(IA32_PAGE) && defined(HAS_DEVICE)
 	/* Read data in the video memory to check whether 
 	 * the test data is written sucessfully.
