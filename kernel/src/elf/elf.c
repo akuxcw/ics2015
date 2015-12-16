@@ -22,6 +22,7 @@ uint32_t loader() {
 	Elf32_Ehdr *elf;
 	Elf32_Phdr *ph = NULL;
 
+	HIT_GOOD_TRAP;
 	uint8_t buf[_SIZE_];
 
 #ifdef HAS_DEVICE
@@ -68,7 +69,6 @@ uint32_t loader() {
 
 	volatile uint32_t entry = elf->e_entry;
 
-	HIT_GOOD_TRAP;
 #ifdef IA32_PAGE
 	mm_malloc(KOFFSET - STACK_SIZE, STACK_SIZE);
 
