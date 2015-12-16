@@ -43,7 +43,7 @@ void video_mapping_write_test() {
 void video_mapping_read_test() {
 	int i;
 	uint32_t *buf = (void *)VMEM_ADDR;
-		assert(buf[0] == 0);
+		assert(buf[SCR_SIZE / 4 - 1] == SCR_SIZE / 4 - 1);
 	for(i = 0; i < SCR_SIZE / 4; i ++) {
 		assert(buf[i] == i);
 	}
