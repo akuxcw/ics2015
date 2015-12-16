@@ -19,10 +19,14 @@ void create_video_mapping() {
 //	panic("please implement me");
 	PDE *pdir = get_updir();
 	PTE *ptable = (PTE *)va_to_pa(vptable);
+/*	int pdir_idx;
+	for(pdir_idx = 0; pdir_idx < SCR_SIZE / PT_SIZE; pdir_idx ++) {
+		pdir[pdir_idx].val = make_pde(ptable);
+	}
+*/
 	pdir[0].val = make_pde(ptable);
 	int pframe_addr;
-	for(pframe_addr = 0; pframe_addr < VMEM_ADDR; pframe_addr += PAGE_SIZE) ptable ++;
-	for(pframe_addr = VMEM_ADDR; pframe_addr < VMEM_ADDR + SCR_SIZE + PAGE_SIZE; pframe_addr += PAGE_SIZE) {
+	for(pframe_addr = 0; pframe_addr < VMEM_ADDR + SCR_SIZE + PAGE_SIZE; pframe_addr += PAGE_SIZE) {
 		ptable->val = make_pte(pframe_addr);
 		ptable ++;
 	}
@@ -40,9 +44,6 @@ void video_mapping_read_test() {
 	int i;
 	uint32_t *buf = (void *)VMEM_ADDR;
 //		assert(buf[SCR_SIZE / 4 - 1] == SCR_SIZE / 4 - 1);
-	
-//	Log("%d %d", buf[550], buf[15206]);
-
 	for(i = 0; i < SCR_SIZE / 4; i ++) {
 //		Log("%d %d", buf[i], i);
 		assert(buf[i] == buf[i]);
