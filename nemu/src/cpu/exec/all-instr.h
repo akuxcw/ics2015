@@ -27,6 +27,7 @@
 #include "control/call.h"
 #include "control/jmp.h"
 #include "control/int.h"
+#include "control/hlt.h"
 
 #include "arith/add.h"
 #include "arith/adc.h"
