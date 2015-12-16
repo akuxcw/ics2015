@@ -13,12 +13,14 @@ uint32_t is_mmio(hwaddr_t);
 
 uint32_t hwaddr_read(hwaddr_t addr, size_t len) {
 	int32_t num = is_mmio(addr);
+	if(num != -1) printf("^_^ %x\n", addr);
 	return num == -1 ? cache_read(addr, len) & (~0u >> ((4 - len) << 3)) :
 		mmio_read(num, len) & (~0u >> ((4 - len) << 3));
 }
 
 void hwaddr_write(hwaddr_t addr, size_t len, uint32_t data) {
 	int32_t num = is_mmio(addr);
+	if(num != -1) printf("^_^ %x\n", addr);
 	num == -1 ? cache_write(addr, len, data) :
 		mmio_write(num, len, data);
 }
