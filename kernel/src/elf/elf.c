@@ -49,8 +49,8 @@ uint32_t loader() {
 #else
 		ramdisk_read(buf_, ELF_OFFSET_IN_DISK + elf->e_ehsize + cnt * elf->e_phentsize, elf->e_phentsize);
 #endif		
-		//ph = (void*)(buf + elf->e_ehsize + cnt * elf->e_phentsize);
-		ph = (void*)buf_;
+		ph = (void*)(buf + elf->e_ehsize + cnt * elf->e_phentsize);
+//		ph = (void*)buf_;
 		if(ph->p_type == PT_LOAD) {
 			/* TODO: read the content of the segment from the ELF file 
 			 * to the memory region [VirtAddr, VirtAddr + FileSiz)
