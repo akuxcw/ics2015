@@ -13,8 +13,11 @@ void init_ddr3();
 void init_cache();
 void init_reg();
 void init_seg();
+#ifdef HAS_DEVICE
 void init_device();
 void init_sdl();
+#endif
+
 FILE *log_fp = NULL;
 
 static void init_log() {
@@ -42,10 +45,11 @@ void init_monitor(int argc, char *argv[]) {
 	/* Initialize the watchpoint link list. */
 	init_wp_list();
 
+#ifdef HAS_DEVICE
 	init_device();
 
 	init_sdl();
-	
+#endif
 	/* Display welcome message. */
 	welcome();
 }
