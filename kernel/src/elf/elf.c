@@ -23,7 +23,8 @@ uint32_t loader() {
 	Elf32_Ehdr *elf;
 	Elf32_Phdr *ph = NULL;
 
-	uint8_t buf[_SIZE_];
+	uint8_t buf[HEAD_SIZE];
+	uint8_t buf_[_SIZE_];
 
 #ifdef HAS_DEVICE
 	ide_read(buf, ELF_OFFSET_IN_DISK, HEAD_SIZE);
@@ -42,9 +43,9 @@ uint32_t loader() {
 	/* Load each program segment */
 	for(cnt = 0; cnt < elf->e_phnum; ++ cnt) {
 		/* Scan the program header table, load each segment into memory */
-		ide_read(buf, ELF_OFFSET_IN_DISK + elf->e_ehsize + cnt * elf->e_phentsize, elf->e_phentsize);
+		ide_read(buf_, ELF_OFFSET_IN_DISK + elf->e_ehsize + cnt * elf->e_phentsize, elf->e_phentsize);
 		//ph = (void*)(buf + elf->e_ehsize + cnt * elf->e_phentsize);
-		ph = (void*)buf;
+		ph = (void*)buf_;
 		if(ph->p_type == PT_LOAD) {
 			/* TODO: read the content of the segment from the ELF file 
 			 * to the memory region [VirtAddr, VirtAddr + FileSiz)
