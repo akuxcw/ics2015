@@ -111,6 +111,7 @@ extern const char* regsb[];
 extern const char* sregs[];
 
 static inline void init_reg() {
+	cpu.EFLAGS = 2;
 	cpu.cr._[0] = 0;
 }
 
