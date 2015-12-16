@@ -5,7 +5,7 @@
 #define VMEM_ADDR 0xa0000
 #define SCR_SIZE (320 * 200)
 
-static PTE vptable[(VMEM_ADDR + SCR_SIZE) / PAGE_SIZE] align_to_page;
+static PTE vptable[SCR_SIZE / PAGE_SIZE] align_to_page;
 
 /* Use the function to get the start address of user page directory. */
 inline PDE* get_updir();
