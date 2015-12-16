@@ -22,7 +22,6 @@ uint32_t loader() {
 	Elf32_Ehdr *elf;
 	Elf32_Phdr *ph = NULL;
 
-	HIT_GOOD_TRAP;
 	uint8_t buf[_SIZE_];
 
 #ifdef HAS_DEVICE
