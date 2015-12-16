@@ -98,7 +98,7 @@ void init_cond() {
 	 * convention of the "advanced" runtime environment. */
 	asm volatile("movl %0, %%esp" : : "i"(KOFFSET));
 #endif
-HIT_GOOD_TRAP;
+//HIT_GOOD_TRAP;
 	/* Keep the `bt' command happy. */
 	asm volatile("movl $0, %ebp");
 	asm volatile("subl $16, %esp");
