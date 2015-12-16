@@ -18,6 +18,7 @@
 #include "data-mov/lgdt.h"
 #include "data-mov/lidt.h"
 #include "data-mov/std.h"
+#include "data-mov/sti.h"
 #include "data-mov/in.h"
 #include "data-mov/out.h"
 
