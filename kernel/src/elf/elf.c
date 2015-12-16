@@ -12,9 +12,9 @@ void ide_read(uint8_t *, uint32_t, uint32_t);
 void ramdisk_read(uint8_t *, uint32_t, uint32_t);
 #endif
 
+#define HEAD_SIZE 4096
 #define STACK_SIZE (1 << 20)
-#define _SIZE_ 4096
-//(0xa0000 - 1)
+#define _SIZE_ 0xa0000 - 1
 
 void create_video_mapping();
 uint32_t get_ucr3();
@@ -26,9 +26,9 @@ uint32_t loader() {
 	uint8_t buf[_SIZE_];
 
 #ifdef HAS_DEVICE
-	ide_read(buf, ELF_OFFSET_IN_DISK, _SIZE_);
+	ide_read(buf, ELF_OFFSET_IN_DISK, HEAD_SIZE);
 #else
-	ramdisk_read(buf, ELF_OFFSET_IN_DISK, _SIZE_);
+	ramdisk_read(buf, ELF_OFFSET_IN_DISK, HEAD_SIZE);
 #endif
 	elf = (void*)buf;
 
@@ -42,7 +42,9 @@ uint32_t loader() {
 	/* Load each program segment */
 	for(cnt = 0; cnt < elf->e_phnum; ++ cnt) {
 		/* Scan the program header table, load each segment into memory */
-		ph = (void*)(buf + elf->e_ehsize + cnt * elf->e_phentsize);
+		ide_read(buf, ELF_OFFSET_IN_DISK + elf->e_ehsize + cnt * elf->e_phentsize, elf->e_phentsize);
+		//ph = (void*)(buf + elf->e_ehsize + cnt * elf->e_phentsize);
+		ph = (void*)buf;
 		if(ph->p_type == PT_LOAD) {
 			/* TODO: read the content of the segment from the ELF file 
 			 * to the memory region [VirtAddr, VirtAddr + FileSiz)
