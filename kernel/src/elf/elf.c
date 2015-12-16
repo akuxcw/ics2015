@@ -24,12 +24,12 @@ uint32_t loader() {
 
 	uint8_t buf[_SIZE_];
 
+	HIT_GOOD_TRAP;
 #ifdef HAS_DEVICE
 	ide_read(buf, ELF_OFFSET_IN_DISK, _SIZE_);
 #else
 	ramdisk_read(buf, ELF_OFFSET_IN_DISK, _SIZE_);
 #endif
-	HIT_GOOD_TRAP;
 	elf = (void*)buf;
 
 	/* TODO: fix the magic number with the correct one */
