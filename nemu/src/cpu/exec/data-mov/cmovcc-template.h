@@ -82,7 +82,7 @@ all_exec();
 	
 #undef CMOVFLAG
 #undef instr
-/*
+
 #define instr cmovne
 #define CMOVFLAG cpu.ZF == 0
 
@@ -90,7 +90,7 @@ all_exec();
 
 #undef CMOVFLAG
 #undef instr
-*/
+
 #define instr cmovns
 #define CMOVFLAG cpu.SF == 0
 
