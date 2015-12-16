@@ -18,6 +18,8 @@
 #include "data-mov/lgdt.h"
 #include "data-mov/lidt.h"
 #include "data-mov/std.h"
+#include "data-mov/in.h"
+#include "data-mov/out.h"
 
 #include "control/jcc.h"
 #include "control/call.h"
