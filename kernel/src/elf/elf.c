@@ -61,7 +61,6 @@ uint32_t loader() {
 #else
 		ramdisk_read(buf_, ELF_OFFSET_IN_DISK + ph->p_offset, ph->p_filesz);
 #endif		
-	HIT_GOOD_TRAP;
 			
 			uint32_t hwaddr = 
 				mm_malloc(ph->p_vaddr, ph->p_memsz);
@@ -94,6 +93,6 @@ uint32_t loader() {
 	write_cr3(get_ucr3());
 #endif
 
-//	HIT_GOOD_TRAP;
+	HIT_GOOD_TRAP;
 	return entry;
 }
