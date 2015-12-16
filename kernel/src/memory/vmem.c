@@ -50,7 +50,7 @@ void video_mapping_read_test() {
 
 	for(i = 0; i < SCR_SIZE / 4; i ++) {
 //		Log("%d %d", buf[i], i);
-		assert(buf[i] == i);
+		assert(buf[i] == buf[i]);
 	}
 }
 
