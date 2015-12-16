@@ -14,7 +14,8 @@ void ramdisk_read(uint8_t *, uint32_t, uint32_t);
 
 #define HEAD_SIZE 4096
 #define STACK_SIZE (1 << 20)
-#define _SIZE_ 0xa0000 - 1
+#define _SIZE_ (1 << 20)
+//0xa0000 - 1
 
 void create_video_mapping();
 uint32_t get_ucr3();
