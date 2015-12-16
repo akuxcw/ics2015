@@ -23,7 +23,7 @@ void video_mapping_write_test() {
 //	HIT_GOOD_TRAP;
 	for(i = 0; i < SCR_SIZE / 4; i ++) {
 		buf[i] = i;
-		assert(i < 320);
+		assert(0);
 	}
 }
 
