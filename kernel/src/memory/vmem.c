@@ -22,8 +22,8 @@ void video_mapping_write_test() {
 	uint32_t *buf = (void *)(VMEM_ADDR + 320 * 196);
 //	HIT_GOOD_TRAP;
 	for(i = 0; i < SCR_SIZE / 4; i ++) {
-		buf[i] = i;
 		assert(0);
+		buf[i] = i;
 	}
 }
 
