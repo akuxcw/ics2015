@@ -19,11 +19,6 @@ void create_video_mapping() {
 //	panic("please implement me");
 	PDE *pdir = get_updir();
 	PTE *ptable = (PTE *)va_to_pa(vptable);
-/*	int pdir_idx;
-	for(pdir_idx = 0; pdir_idx < SCR_SIZE / PT_SIZE; pdir_idx ++) {
-		pdir[pdir_idx].val = make_pde(ptable);
-	}
-*/
 	pdir[0].val = make_pde(ptable);
 	int pframe_addr;
 	for(pframe_addr = 0; pframe_addr < VMEM_ADDR; pframe_addr += PAGE_SIZE) ptable ++;
