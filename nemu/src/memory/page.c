@@ -29,7 +29,7 @@ PTE page_read(lnaddr_t addr, uint32_t len) {
 
 	PTE pg_tbl_entry;
 	pg_tbl_entry.val = hwaddr_read((dir_entry.page_frame << 12) + 4 * lnaddr.page, 4);
-	Assert(pg_tbl_entry.present == 1, "pg_tbl_entry is not valid!");
+	Assert(pg_tbl_entry.present == 1, "pg_tbl_entry is not valid!  0x%x", addr);
 
 //	hwaddr_t hwaddr = (pg_tbl_entry.page_frame << 12) + lnaddr.offset;
 	return pg_tbl_entry;
