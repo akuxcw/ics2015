@@ -13,8 +13,18 @@ static void sys_brk(TrapFrame *tf) {
 	tf->eax = 0;
 }
 
-void do_syscall(TrapFrame *tf) {
+static void sys_write(TrapFrame *tf) {
+#ifdef HAS_DEVICE
 	int i;
+	for(i = 0; i < tf->edx; ++ i)
+		serial_printc(*(char *)(tf->ecx + i));
+#else				
+	asm volatile (".byte 0xd6" : : "a"(2), "c"(tf->ecx), "d"(tf->edx));
+#endif
+	tf->eax = tf->edx;	
+}
+
+void do_syscall(TrapFrame *tf) {
 	switch(tf->eax) {
 		/* The ``add_irq_handle'' system call is artificial. We use it to 
 		 * let user program register its interrupt handlers. But this is 
@@ -28,13 +38,7 @@ void do_syscall(TrapFrame *tf) {
 			break;
 
 		case SYS_brk: /*panic("@@@");*/sys_brk(tf); break;
-		case SYS_write:
-		//		int buf = tf->ecx, len = tf->edx;
-		//		asm volatile (".byte 0xd6" : : "a"(2), "c"(tf->ecx), "d"(tf->edx));
-				for(i = 0; i < tf->edx; ++ i)
-					serial_printc(*(char *)(tf->ecx + i));
-				tf->eax = tf->edx;
-				break;
+		case SYS_write: sys_write(tf); break;
 
 		/* TODO: Add more system calls. */
 
