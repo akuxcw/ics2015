@@ -13,6 +13,7 @@ uint32_t is_mmio(hwaddr_t);
 
 uint32_t hwaddr_read(hwaddr_t addr, size_t len) {
 	int map_NO = is_mmio(addr);
+	if(map_NO == -1) printf("%x\n", addr);
 	return map_NO == -1 ? cache_read(addr, len) & (~0u >> ((4 - len) << 3)) :
 		mmio_read(addr, len, map_NO) & (~0u >> ((4 - len) << 3));
 }
