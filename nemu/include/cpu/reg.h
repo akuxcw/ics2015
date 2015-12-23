@@ -33,17 +33,18 @@ typedef struct {
 	union {
 		struct {
 			uint32_t CF	:	1;
-			uint32_t	:	0;
+			uint32_t	:	1;
 			uint32_t PF	:	1;
-			uint32_t	:	0;
-			uint32_t	:	0;
-			uint32_t	:	0;
+			uint32_t	:	1;
+			uint32_t	:	1;
+			uint32_t	:	1;
 			uint32_t ZF	:	1;
 			uint32_t SF	:	1;
-			uint32_t	:	0;
+			uint32_t	:	1;
 			uint32_t IF	:	1;
 			uint32_t DF	:	1;
 			uint32_t OF	:	1;
+			uint32_t	:	20;
 		};
 		uint32_t EFLAGS;
 	};
@@ -114,5 +115,7 @@ static inline void init_reg() {
 	cpu.EFLAGS = 2;
 	cpu.cr._[0] = 0;
 }
+
+//static int old_e = 0;
 
 #endif
