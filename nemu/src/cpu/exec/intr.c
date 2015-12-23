@@ -14,11 +14,11 @@ void raise_intr(uint8_t NO, uint32_t len) {
 	 *		 */
 //	int len = instr_len();
 	cpu.esp -= 4;
-	swaddr_write(cpu.esp, 4, cpu.EFLAGS, R_SS);
+	swaddr_write(cpu.esp, 4, cpu.eip + len, R_SS);
 	cpu.esp -= 4;
 	swaddr_write(cpu.esp, 4, cpu.cs, R_SS);
 	cpu.esp -= 4;
-	swaddr_write(cpu.esp, 4, cpu.eip + len, R_SS);
+	swaddr_write(cpu.esp, 4, cpu.EFLAGS, R_SS);
 	
 	uint8_t tmp[8];
 	int i;
