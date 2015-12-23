@@ -25,7 +25,7 @@ void raise_intr(uint8_t NO, uint32_t len) {
 	for(i = 0; i < 8; ++ i) tmp[i] = lnaddr_read(cpu.IDTR.base + NO * 0x8 + i, 1);
 	GateDesc *gde = (GateDesc*)tmp;
 	cpu.ss = gde->segment;
-	load_sreg(R_SS);
+	load_sreg(R_CS);
 	cpu.eip = (gde->offset_31_16 << 16) + gde->offset_15_0;
 	/* Jump back to cpu_exec() */
 	longjmp(jbuf, 1);

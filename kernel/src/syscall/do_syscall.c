@@ -21,7 +21,7 @@ static void sys_write(TrapFrame *tf) {
 #else				
 	asm volatile (".byte 0xd6" : : "a"(2), "c"(tf->ecx), "d"(tf->edx));
 #endif
-	tf->eax = tf->edx;	
+	tf->eax = tf->edx;
 }
 
 void do_syscall(TrapFrame *tf) {

@@ -17,14 +17,6 @@ extern int len;
 
 #define instr ja
 #define JMPFLAG cpu.CF == 0 && cpu.ZF == 0
-/*
-static void do_execute() {
-	if(JMPFLAG) if_exec() else else_exec();
-	print_asm_template1();
-}
-
-make_instr_helper(si)
-*/
 all_exec();
 #undef JMPFLAG
 #undef instr
