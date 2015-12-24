@@ -25,6 +25,7 @@ static void sys_write(TrapFrame *tf) {
 }
 
 void do_syscall(TrapFrame *tf) {
+	Log("%d\n", tf->eax);
 	switch(tf->eax) {
 		/* The ``add_irq_handle'' system call is artificial. We use it to 
 		 * let user program register its interrupt handlers. But this is 
