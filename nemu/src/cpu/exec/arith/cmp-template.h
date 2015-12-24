@@ -8,7 +8,6 @@ static void do_execute() {
 	if(MSB(op_dest->val) != MSB(op_src->val) && MSB(result) != MSB(op_dest->val))
 		cpu.OF = 1; else cpu.OF = 0;
 	Updata_EFLAGS(result);
-	Log_write("%x\n", cpu.ZF);
 	print_asm_template2();
 }
 
