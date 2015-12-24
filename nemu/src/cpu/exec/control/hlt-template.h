@@ -6,7 +6,7 @@
 
 static void do_execute() {
 	cpu.eip --;
-//	Assert(cpu.IF == 1,"hlt!!");
+	Assert(cpu.IF == 1,"hlt!!");
 //	while(!cpu.INTR);
 //	print_asm("hlt");
 }
