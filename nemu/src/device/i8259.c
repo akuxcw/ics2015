@@ -43,7 +43,6 @@ static void do_i8259() {
 		 * is added to the CPU_state structure.
 		 */
 		cpu.INTR = false;
-		printf("nointr");
 //		panic("uncomment the line above");
 		return;
 	}
@@ -57,6 +56,7 @@ static void do_i8259() {
 	 * is added to the CPU_state structure.
 	 */
 	cpu.INTR = true;
+	printf("intr   ");
 //	panic("uncomment the line above");
 }
 
