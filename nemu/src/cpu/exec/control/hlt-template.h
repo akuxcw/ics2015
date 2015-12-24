@@ -8,7 +8,7 @@ static void do_execute() {
 //	cpu.eip --;
 	Assert(cpu.IF == 1,"hlt!!");
 	while(!cpu.INTR);
-//	print_asm("hlt");
+	print_asm("hlt");
 }
 
 make_instr_helper(n)
