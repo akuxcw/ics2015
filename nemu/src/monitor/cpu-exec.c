@@ -84,6 +84,7 @@ void cpu_exec(volatile uint32_t n) {
 		check_wp(&nemu_state);
 
 		if(nemu_state != RUNNING) { return; }
+		if(cpu.eip == 0x8048780) printf("%d %d\n", cpu.INTR, cpu.IF);
 		if(cpu.INTR & cpu.IF) {
 			uint32_t intr_no = i8259_query_intr();
 			i8259_ack_intr();
