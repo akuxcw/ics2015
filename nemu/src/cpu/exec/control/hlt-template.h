@@ -5,9 +5,9 @@
 //void raise_intr(uint8_t, uint32_t);
 
 static void do_execute() {
-//	cpu.eip --;
-	Assert(cpu.IF == 1,"hlt!!");
-	while(!cpu.INTR);
+	cpu.eip --;
+//	Assert(cpu.IF == 1,"hlt!!");
+//	while(!cpu.INTR);
 //	print_asm("hlt");
 }
 
