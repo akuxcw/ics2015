@@ -116,6 +116,4 @@ static inline void init_reg() {
 	cpu.cr._[0] = 0;
 }
 
-//static int old_e = 0;
-
 #endif
