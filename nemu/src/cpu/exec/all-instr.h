@@ -22,6 +22,7 @@
 #include "data-mov/sti.h"
 #include "data-mov/in.h"
 #include "data-mov/out.h"
+#include "data-mov/bt.h"
 
 #include "control/jcc.h"
 #include "control/call.h"
