@@ -2,10 +2,11 @@
 
 #define instr int
 
-void raise_intr(uint8_t, uint32_t);
+void raise_intr(uint8_t/*, uint32_t*/);
 
 static void do_execute() {
-	raise_intr(op_src->val, instr_len());
+	cpu.eip += instr_len();
+	raise_intr(op_src->val/*, instr_len()*/);
 }
 
 make_instr_helper(i)

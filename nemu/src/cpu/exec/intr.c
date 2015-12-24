@@ -8,17 +8,16 @@ void swaddr_write(swaddr_t, size_t, uint32_t, uint8_t);
 
 void load_sreg(uint32_t);
 
-void raise_intr(uint8_t NO, uint32_t len) {
+void raise_intr(uint8_t NO/*, uint32_t len*/) {
 	/* TODO: Trigger an interrupt/exception with ``NO''.
 	 *	 * That is, use ``NO'' to index the IDT.
 	 *		 */
-//	int len = instr_len();
 	cpu.esp -= 4;
 	swaddr_write(cpu.esp, 4, cpu.EFLAGS, R_SS);
 	cpu.esp -= 4;
 	swaddr_write(cpu.esp, 4, cpu.cs, R_SS);
 	cpu.esp -= 4;
-	swaddr_write(cpu.esp, 4, cpu.eip + len, R_SS);
+	swaddr_write(cpu.esp, 4, cpu.eip, R_SS);
 	
 	uint8_t tmp[8];
 	int i;
