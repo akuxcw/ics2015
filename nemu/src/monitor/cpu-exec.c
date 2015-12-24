@@ -69,6 +69,7 @@ void cpu_exec(volatile uint32_t n) {
 		if(cpu.eip != 0x8048780) {
 			int instr_len = exec(cpu.eip);
 			cpu.eip += instr_len;
+			printf("'");
 		}
 		
 
