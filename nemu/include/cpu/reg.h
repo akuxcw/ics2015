@@ -89,7 +89,7 @@ typedef struct {
 		};
 	};
 	
-	bool INTR;
+	volatile bool INTR;
 	swaddr_t eip;
 
 } CPU_state;
