@@ -717,7 +717,7 @@ PAL_LoadObjectDesc(
    //
    // Load the description data
    //
-   while (fgets(buf, 256, fp) != NULL)
+   while (fgets(buf, 512, fp) != NULL)
    {
       p = strchr(buf, '=');
       if (p == NULL)
