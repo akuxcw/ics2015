@@ -162,7 +162,6 @@ PAL_Init(
    SDL_WM_SetCaption("Pal", NULL);
 #endif
 #endif
-	Log("********************");
 }
 
 VOID
@@ -574,6 +573,7 @@ main_loop() {
 #endif
    PAL_Init(wScreenWidth, wScreenHeight, fFullScreen);
 
+	Log("********************");
    //
    // Show the trademark screen and splash screen
    //
