@@ -66,6 +66,7 @@ PAL_InitGlobals(
    //
    // Open files
    //
+   Log("***********");
    Log("loading fbp.mkf");
    gpGlobals->f.fpFBP = UTIL_OpenRequiredFile("fbp.mkf");
    Log("loading mgo.mkf");
