@@ -25,6 +25,7 @@ timer_event(void) {
 
 uint32_t SDL_GetTicks() {
 	/* TODO: Return the time in millisecond. */
+	return jiffy;
 	assert(0);
 	return 0;
 }
