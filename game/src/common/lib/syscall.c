@@ -6,6 +6,7 @@ int __attribute__((__noinline__))
 syscall(int id, ...) {
 	int ret;
 	int *args = &id;
+	Log("%x %x %x %x", args[0], args[1], args[2], args[3]);	
 	asm volatile("int $0x80": "=a"(ret) : "a"(args[0]), "b"(args[1]), "c"(args[2]), "d"(args[3]));
 	return ret;
 }
@@ -21,7 +22,7 @@ int open(const char *pathname, int flags) {
 }
 
 int read(int fd, char *buf, int len) {
-//	Log("%x %x %x", fd, (int)buf, len);	
+	Log("%x %x %x", fd, (int)buf, len);	
 	return syscall(SYS_read, fd, *buf, len);
 	nemu_assert(0);
 	return 0; 
