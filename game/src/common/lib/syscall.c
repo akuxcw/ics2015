@@ -15,11 +15,13 @@ void _exit(int status) {
 }
 
 int open(const char *pathname, int flags) {
+	return syscall(SYS_open, pathname, flags);
 	nemu_assert(0);
 	return 0; 
 }
 
 int read(int fd, char *buf, int len) {
+	return syscall(SYS_read, fd, *buf, len);
 	nemu_assert(0);
 	return 0; 
 }
@@ -29,6 +31,7 @@ int write(int fd, char *buf, int len) {
 }
 
 off_t lseek(int fd, off_t offset, int whence) {
+	return syscall(SYS_lseek, fd, offset, whence);
 	nemu_assert(0);
 	return 0; 
 }
@@ -49,6 +52,7 @@ void *sbrk(int incr) {
 }
 
 int close(int fd) {
+	return syscall(SYS_close, fd);
 	nemu_assert(0);
 	return 0; 
 }
