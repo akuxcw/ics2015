@@ -66,7 +66,7 @@ int fs_read(int fd, void *buf, int len){
 	assert(FD[fd].offset + len < file_table[fd-3].size);
 	ide_read(buf, file_table[fd-3].disk_offset + FD[fd].offset, len);
 //	Log("%s", (char*)buf);
-	return len;
+	if(strlen(buf) == 0) return -1; else return strlen(buf);
 }
 
 int fs_write(int fd, void *buf, int len) {
