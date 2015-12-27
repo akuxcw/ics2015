@@ -54,6 +54,7 @@ PAL_InitGlobals(
 
 --*/
 {
+   Log("***********");
    if (gpGlobals == NULL)
    {
       gpGlobals = (LPGLOBALVARS)calloc(1, sizeof(GLOBALVARS));
@@ -66,7 +67,6 @@ PAL_InitGlobals(
    //
    // Open files
    //
-   Log("***********");
    Log("loading fbp.mkf");
    gpGlobals->f.fpFBP = UTIL_OpenRequiredFile("fbp.mkf");
    Log("loading mgo.mkf");
