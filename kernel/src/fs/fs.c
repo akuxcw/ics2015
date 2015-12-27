@@ -1,4 +1,5 @@
 #include "common.h"
+#include <string.h>
 
 typedef struct {
 	char *name;
@@ -47,11 +48,11 @@ int fs_close(int fd);
 
 int fs_open(const char *pathname, int flags) {
 	int i;
-	for(i = 0; i < NR_FILES; ++ i) if(strcmp(pathname, filetable[i]) == 0) break;
+	for(i = 0; i < NR_FILES; ++ i) if(strcmp(pathname, file_table[i].name) == 0) break;
 	assert(i < NR_FILES);
 	if(i < NR_FILES) {
 		FD[i + 3].opened = true;
-		FD[i + 3].offset = disk_offset;
+		FD[i + 3].offset = file_table[i].disk_offset;
 		return i + 3;
 	}
 	return -1;
@@ -83,4 +84,5 @@ int fs_lseek(int fd, int offset, int whence) {
 
 int fs_close(int fd) {
 	FD[fd].opened = false;
+	return 0;
 }
