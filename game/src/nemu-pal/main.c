@@ -235,8 +235,8 @@ PAL_TrademarkScreen(
    PAL_SetPalette(3, FALSE);
    PAL_RNGPlay(6, 0, 1000, 25);
    UTIL_Delay(1000);
-   PAL_FadeOut(1);
 	Log("********************");
+   PAL_FadeOut(1);
 }
 
 VOID
