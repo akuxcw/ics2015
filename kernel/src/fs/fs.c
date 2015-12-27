@@ -48,6 +48,7 @@ int fs_close(int fd);
 
 int fs_open(const char *pathname, int flags) {
 	int i;
+	Log("%s", pathname);
 	for(i = 0; i < NR_FILES; ++ i) if(strcmp(pathname, file_table[i].name) == 0) break;
 	assert(i < NR_FILES);
 	if(i < NR_FILES) {
