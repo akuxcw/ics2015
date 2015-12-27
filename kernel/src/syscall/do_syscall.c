@@ -48,9 +48,9 @@ void do_syscall(TrapFrame *tf) {
 		case SYS_open : 
 			tf->eax = fs_open((char *)tf->ebx, tf->edx); break;
 		case SYS_read : 
-			Log("%x %x %x\n", tf->ebx, tf->ecx, tf->edx);	
+			Log("%x %x %x\n", tf->ebx, tf->ecx, tf->edx);
 			tf->eax = fs_read(tf->ebx, (void *)tf->ecx, tf->edx); break;
-		case SYS_lseek : tf->eax = fs_lseek(tf->ebx, tf->ecx, tf->edx); break;
+		case SYS_lseek : tf->eax = fs_lseek(tf->ebx, tf->edx, tf->ecx); break;
 		case SYS_close : tf->eax = fs_close(tf->ebx); break;
 
 		/* TODO: Add more system calls. */
