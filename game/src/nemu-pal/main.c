@@ -114,9 +114,9 @@ PAL_Init(
 
    Log("VIDEO_Init success");
    SDL_WM_SetCaption("Loading...", NULL);
-	Log("********************");
 
    e = PAL_InitGlobals();
+	Log("********************");
    if (e != 0)
    {
       TerminateOnError("Could not initialize global data: %d.\n", e);
