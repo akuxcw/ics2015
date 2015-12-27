@@ -719,10 +719,10 @@ PAL_LoadObjectDesc(
    //
    while (fgets(buf, 512, fp) != NULL)
    {
-Log("^^^^^^^^^^^^^^");
       p = strchr(buf, '=');
       if (p == NULL)
       {
+Log("^^^^^^^^^^^^^^");
          continue;
       }
 
