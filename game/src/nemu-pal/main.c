@@ -162,6 +162,7 @@ PAL_Init(
    SDL_WM_SetCaption("Pal", NULL);
 #endif
 #endif
+	Log("********************");
 }
 
 VOID
@@ -183,7 +184,6 @@ PAL_Shutdown(
 
 --*/
 {
-	Log("********************");
    SOUND_CloseAudio();
 	Log("SOUND_CloseAudio success");
    PAL_FreeFont();
