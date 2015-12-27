@@ -720,7 +720,6 @@ PAL_LoadObjectDesc(
    while (fgets(buf, 512, fp) != NULL)
    {
       p = strchr(buf, '=');
-	Log("begin");
       if (p == NULL)
       {
          continue;
