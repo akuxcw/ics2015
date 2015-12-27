@@ -709,7 +709,6 @@ PAL_LoadObjectDesc(
    unsigned int               i;
 
    fp = fopen(lpszFileName, "r");
-Log("^^^^^^^^^^^^^^");
    if (fp == NULL)
    {
       return NULL;
@@ -718,12 +717,12 @@ Log("^^^^^^^^^^^^^^");
    //
    // Load the description data
    //
-   while (fgets(buf, 512, fp) != NULL)
+   /*while (*/fgets(buf, 512, fp); /*!= NULL)*/
    {
       p = strchr(buf, '=');
       if (p == NULL)
       {
-         continue;
+//         continue;
       }
 
       *p = '\0';
