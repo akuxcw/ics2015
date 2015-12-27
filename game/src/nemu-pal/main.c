@@ -114,6 +114,7 @@ PAL_Init(
 
    Log("VIDEO_Init success");
    SDL_WM_SetCaption("Loading...", NULL);
+	Log("********************");
 
    e = PAL_InitGlobals();
    if (e != 0)
@@ -235,7 +236,6 @@ PAL_TrademarkScreen(
    PAL_SetPalette(3, FALSE);
    PAL_RNGPlay(6, 0, 1000, 25);
    UTIL_Delay(1000);
-	Log("********************");
    PAL_FadeOut(1);
 }
 
