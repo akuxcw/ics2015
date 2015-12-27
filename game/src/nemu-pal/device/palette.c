@@ -152,7 +152,7 @@ PAL_FadeOut(
    {
       palette[i] = VIDEO_GetPalette()[i];
    }
-
+	Log("^^^^^^^^^^^^^");
    //
    // Start fading out...
    //
