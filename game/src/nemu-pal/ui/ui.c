@@ -722,10 +722,9 @@ PAL_LoadObjectDesc(
       p = strchr(buf, '=');
       if (p == NULL)
       {
-Log("^^^^^^^^^^^^^^");
          continue;
       }
-
+	Log("%s", buf);
       *p = '\0';
       p++;
 
