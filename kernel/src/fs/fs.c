@@ -53,7 +53,7 @@ int fs_open(const char *pathname, int flags) {
 	assert(i < NR_FILES);
 	if(i < NR_FILES) {
 		FD[i + 3].opened = true;
-		FD[i + 3].offset = file_table[i].disk_offset;
+		FD[i + 3].offset = 0;//file_table[i].disk_offset;
 		return i + 3;
 	}
 	return -1;
@@ -62,7 +62,7 @@ int fs_open(const char *pathname, int flags) {
 int fs_read(int fd, void *buf, int len){
 	if(!FD[fd].opened) return -1;
 	assert(FD[fd].offset + len < file_table[fd-3].size);
-	ide_read(buf, FD[fd].offset, len);
+	ide_read(buf, file_table[fd-3].disk_offset + FD[fd].offset, len);
 	return len;
 }
 
