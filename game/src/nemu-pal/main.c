@@ -573,11 +573,11 @@ main_loop() {
 #endif
    PAL_Init(wScreenWidth, wScreenHeight, fFullScreen);
 
-	Log("********************");
    //
    // Show the trademark screen and splash screen
    //
    PAL_TrademarkScreen();
+	Log("********************");
    PAL_SplashScreen();
 
    //
