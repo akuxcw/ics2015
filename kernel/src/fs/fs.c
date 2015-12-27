@@ -48,7 +48,7 @@ int fs_close(int fd);
 
 int fs_open(const char *pathname, int flags) {
 	int i;
-	Log("%s", pathname);
+//	Log("%s", pathname);
 	for(i = 0; i < NR_FILES; ++ i) if(strcmp(pathname, file_table[i].name) == 0) break;
 	assert(i < NR_FILES);
 	if(i < NR_FILES) {
@@ -61,7 +61,7 @@ int fs_open(const char *pathname, int flags) {
 
 int fs_read(int fd, void *buf, int len){
 //	Log("%s", file_table[fd-3].name);
-	Log("%x %x %x", fd, (int)buf, len);
+//	Log("%x %x %x", fd, (int)buf, len);
 	if(!FD[fd].opened) return -1;
 	if(FD[fd].offset + len > file_table[fd-3].size) return -1;
 	ide_read(buf, file_table[fd-3].disk_offset + FD[fd].offset, len);

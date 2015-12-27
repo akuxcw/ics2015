@@ -725,7 +725,7 @@ PAL_LoadObjectDesc(
 		  break;
          continue;
       }
-	Log("%d", strlen(buf));
+//	Log("%d", strlen(buf));
       *p = '\0';
       p++;
 
