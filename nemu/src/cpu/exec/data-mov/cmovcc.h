@@ -7,6 +7,8 @@ make_helper(cmova_rm2r_v);
 
 make_helper(cmove_rm2r_v);
 
+make_helper(cmovbe_rm2r_v);
+
 //make_helper(jbe_si_b);
 
 //make_helper(jl_si_b);

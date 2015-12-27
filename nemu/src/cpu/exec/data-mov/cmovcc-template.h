@@ -37,20 +37,17 @@ all_exec();
 */
 #define instr cmove
 #define CMOVFLAG cpu.ZF == 1
-
 all_exec();
-
 #undef CMOVFLAG
 #undef instr
-/*
+
 #define instr cmovbe
 #define CMOVFLAG cpu.ZF == 1 || cpu.CF == 1
-
 all_exec();
-
 #undef CMOVFLAG
 #undef instr
 
+/*
 #define instr cmovl
 #define CMOVFLAG cpu.SF != cpu.OF
 
