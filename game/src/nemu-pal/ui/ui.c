@@ -709,7 +709,7 @@ PAL_LoadObjectDesc(
    unsigned int               i;
 
    fp = fopen(lpszFileName, "r");
-
+Log("^^^^^^^^^^^^^^");
    if (fp == NULL)
    {
       return NULL;
