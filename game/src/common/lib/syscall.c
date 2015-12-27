@@ -6,7 +6,7 @@ int __attribute__((__noinline__))
 syscall(int id, ...) {
 	int ret;
 	int *args = &id;
-	Log("%x %x %x %x", args[0], args[1], args[2], args[3]);	
+//	Log("%x %x %x %x", args[0], args[1], args[2], args[3]);	
 	asm volatile("int $0x80": "=a"(ret) : "a"(args[0]), "b"(args[1]), "c"(args[2]), "d"(args[3]));
 	return ret;
 }
