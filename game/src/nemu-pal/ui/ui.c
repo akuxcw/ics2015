@@ -50,7 +50,7 @@ PAL_InitUI(
    iSize = PAL_MKFGetChunkSize(CHUNKNUM_SPRITEUI, gpGlobals->f.fpDATA);
    if (iSize < 0)
    {
-   HIT_GOOD_TRAP;
+//   HIT_GOOD_TRAP;
       return -1;
    }
 
