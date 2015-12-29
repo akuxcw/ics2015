@@ -57,7 +57,7 @@ all_exec();
 
 #undef SETFLAG
 #undef instr
-
+*/
 #define instr setle
 #define SETFLAG cpu.ZF == 1 || cpu.SF != cpu.OF
 
@@ -65,7 +65,7 @@ all_exec();
 
 #undef SETFLAG
 #undef instr
-
+/*
 #define instr setg
 #define SETFLAG cpu.ZF == 0 && cpu.SF == cpu.OF
 

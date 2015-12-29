@@ -18,6 +18,7 @@
 
 make_helper(sete_rm_b);
 make_helper(setne_rm_b);
+make_helper(setle_rm_b);
 
 #endif
 
