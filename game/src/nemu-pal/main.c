@@ -115,7 +115,6 @@ PAL_Init(
    Log("VIDEO_Init success");
    SDL_WM_SetCaption("Loading...", NULL);
 
-//	Log("********************");
    e = PAL_InitGlobals();
    if (e != 0)
    {

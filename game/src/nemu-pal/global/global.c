@@ -54,7 +54,6 @@ PAL_InitGlobals(
 
 --*/
 {
-  // Log("***********");
    if (gpGlobals == NULL)
    {
       gpGlobals = (LPGLOBALVARS)calloc(1, sizeof(GLOBALVARS));

@@ -709,6 +709,7 @@ PAL_LoadObjectDesc(
    unsigned int               i;
 
    fp = fopen(lpszFileName, "r");
+
    if (fp == NULL)
    {
       return NULL;
@@ -719,17 +720,17 @@ PAL_LoadObjectDesc(
    //
    while (fgets(buf, 512, fp) != NULL)
    {
-//	Log("%s", buf);
       p = strchr(buf, '=');
       if (p == NULL)
       {
          continue;
       }
+
       *p = '\0';
       p++;
-//	Log("begin");
+
       pNew = UTIL_calloc(1, sizeof(OBJECTDESC));
-//	Log("end");
+
       sscanf(buf, "%x", &i);
       pNew->wObjectID = i;
       pNew->lpDesc = strdup(p);
