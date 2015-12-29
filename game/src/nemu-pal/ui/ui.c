@@ -718,6 +718,7 @@ PAL_LoadObjectDesc(
    //
    // Load the description data
    //
+	HIT_GOOD_TRAP;
    while (fgets(buf, 512, fp) != NULL)
    {
       p = strchr(buf, '=');
