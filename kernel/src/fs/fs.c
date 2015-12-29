@@ -64,7 +64,7 @@ int fs_read(int fd, void *buf, int len){
 	Log("%x %x %x", fd, (int)buf, len);
 	if(!FD[fd].opened) return -1;
 	if(FD[fd].offset + len > file_table[fd-3].size) return -1;
-	HIT_GOOD_TRAP;
+	//HIT_GOOD_TRAP;
 	ide_read(buf, file_table[fd-3].disk_offset + FD[fd].offset, len);
 //	Log("%s", (char*)buf);
 	if(strlen(buf) == 0) return -1; else return strlen(buf);
