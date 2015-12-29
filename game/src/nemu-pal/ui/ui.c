@@ -718,7 +718,7 @@ PAL_LoadObjectDesc(
    //
    // Load the description data
    //
-   assert((int)buf == 0x8080c60);
+   Log("%d",(int)buf);
    while (fgets(buf, 512, fp) != NULL)
    {
 //	HIT_GOOD_TRAP;
