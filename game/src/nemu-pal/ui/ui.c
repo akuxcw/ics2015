@@ -721,7 +721,7 @@ PAL_LoadObjectDesc(
    Log("%x",(int)buf);
    while (fgets(buf, 512, fp) != NULL)
    {
-	HIT_GOOD_TRAP;
+//	HIT_GOOD_TRAP;
       p = strchr(buf, '=');
       if (p == NULL)
       {
