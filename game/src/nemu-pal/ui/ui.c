@@ -727,9 +727,9 @@ PAL_LoadObjectDesc(
       }
       *p = '\0';
       p++;
-	Log("begin");
+//	Log("begin");
       pNew = UTIL_calloc(1, sizeof(OBJECTDESC));
-	Log("end");
+//	Log("end");
       sscanf(buf, "%x", &i);
       pNew->wObjectID = i;
       pNew->lpDesc = strdup(p);
