@@ -718,7 +718,6 @@ PAL_LoadObjectDesc(
    //
    // Load the description data
    //
-	HIT_GOOD_TRAP;
    while (fgets(buf, 512, fp) != NULL)
    {
       p = strchr(buf, '=');
@@ -730,6 +729,7 @@ PAL_LoadObjectDesc(
       *p = '\0';
       p++;
 
+	HIT_GOOD_TRAP;
       pNew = UTIL_calloc(1, sizeof(OBJECTDESC));
 
       sscanf(buf, "%x", &i);
