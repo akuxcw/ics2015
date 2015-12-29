@@ -61,7 +61,7 @@ int fs_open(const char *pathname, int flags) {
 
 int fs_read(int fd, void *buf, int len){
 //	Log("%s", file_table[fd-3].name);
-	Log("%x %x %x", fd, (int)buf, len);
+//	Log("%x %x %x", fd, (int)buf, len);
 	if(!FD[fd].opened) return -1;
 	if(FD[fd].offset + len > file_table[fd-3].size) return -1;
 	//HIT_GOOD_TRAP;
