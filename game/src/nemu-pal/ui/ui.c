@@ -53,12 +53,12 @@ PAL_InitUI(
       return -1;
    }
 
+   HIT_GOOD_TRAP;
    gpSpriteUI = (LPSPRITE)calloc(1, iSize);
    if (gpSpriteUI == NULL)
    {
       return -1;
    }
-   HIT_GOOD_TRAP;
 
    PAL_MKFReadChunk(gpSpriteUI, iSize, CHUNKNUM_SPRITEUI, gpGlobals->f.fpDATA);
 
