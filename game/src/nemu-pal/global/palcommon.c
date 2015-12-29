@@ -714,7 +714,6 @@ PAL_MKFGetChunkSize(
    uiChunkCount = PAL_MKFGetChunkCount(fp);
    if (uiChunkNum >= uiChunkCount)
    {
-//	   HIT_GOOD_TRAP;
       return -1;
    }
 
@@ -724,10 +723,8 @@ PAL_MKFGetChunkSize(
    fseek(fp, 4 * uiChunkNum, SEEK_SET);
    fread(&uiOffset, sizeof(UINT), 1, fp);
    fread(&uiNextOffset, sizeof(UINT), 1, fp);
-   Log("%x %x", uiNextOffset, uiOffset);
    uiOffset = SWAP32(uiOffset);
    uiNextOffset = SWAP32(uiNextOffset);
-   Log("%x %x", uiNextOffset, uiOffset);
 
    //
    // Return the length of the chunk.
