@@ -77,8 +77,8 @@ int fs_write(int fd, void *buf, int len) {
 
 int fs_lseek(int fd, int offset, int whence) {
 	switch (whence) {
-		case SEEK_SET : HIT_GOOD_TRAP;FD[fd].offset = offset; break;
-		case SEEK_CUR : FD[fd].offset += offset; break;
+		case SEEK_SET : FD[fd].offset = offset; break;
+		case SEEK_CUR : HIT_GOOD_TRAP;FD[fd].offset += offset; break;
 		case SEEK_END : FD[fd].offset = file_table[fd-3].size + offset; break;
 		default : assert(0);
 	}
