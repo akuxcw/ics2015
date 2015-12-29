@@ -61,10 +61,12 @@ int fs_open(const char *pathname, int flags) {
 
 int fs_read(int fd, void *buf, int len){
 	if(!FD[fd].opened) return -1;
-	assert(FD[fd].offset + len <= file_table[fd-3].size);
-//	if(FD[fd].offset + len > file_table[fd-3].size) return -1;
+//	assert(FD[fd].offset + len <= file_table[fd-3].size);
+	int remain = file_table[fd-3].size - FD[fd].offset;
+	if(remain < len) len = remain;
 	ide_read(buf, file_table[fd-3].disk_offset + FD[fd].offset, len);
 	FD[fd].offset += len;
+	return len;
 	if(strlen(buf) == 0) return -1; else return strlen(buf);
 }
 
