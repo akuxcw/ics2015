@@ -729,7 +729,6 @@ PAL_MKFGetChunkSize(
    //
    // Return the length of the chunk.
    //
-	HIT_GOOD_TRAP;
    return uiNextOffset - uiOffset;
 }
 
