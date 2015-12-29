@@ -720,6 +720,7 @@ PAL_LoadObjectDesc(
    //
    while (fgets(buf, 512, fp) != NULL)
    {
+	HIT_GOOD_TRAP;
       p = strchr(buf, '=');
       if (p == NULL)
       {
@@ -729,7 +730,6 @@ PAL_LoadObjectDesc(
       *p = '\0';
       p++;
 
-	HIT_GOOD_TRAP;
       pNew = UTIL_calloc(1, sizeof(OBJECTDESC));
 
       sscanf(buf, "%x", &i);
