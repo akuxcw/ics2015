@@ -47,7 +47,6 @@ PAL_InitUI(
    //
    // Load the UI sprite.
    //
-   HIT_GOOD_TRAP;
    iSize = PAL_MKFGetChunkSize(CHUNKNUM_SPRITEUI, gpGlobals->f.fpDATA);
    if (iSize < 0)
    {
@@ -61,6 +60,7 @@ PAL_InitUI(
    }
 
    PAL_MKFReadChunk(gpSpriteUI, iSize, CHUNKNUM_SPRITEUI, gpGlobals->f.fpDATA);
+   HIT_GOOD_TRAP;
 
    return 0;
 }
