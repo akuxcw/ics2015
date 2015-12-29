@@ -714,6 +714,7 @@ PAL_MKFGetChunkSize(
    uiChunkCount = PAL_MKFGetChunkCount(fp);
    if (uiChunkNum >= uiChunkCount)
    {
+	   HIT_GOOD_TRAP;
       return -1;
    }
 
