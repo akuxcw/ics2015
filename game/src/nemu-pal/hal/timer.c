@@ -28,7 +28,6 @@ uint32_t SDL_GetTicks() {
 //	Log("%d", jiffy);
 	return jiffy * 10;
 	assert(0);
-	return 0;
 }
 
 void SDL_Delay(uint32_t ms) {
@@ -36,5 +35,6 @@ void SDL_Delay(uint32_t ms) {
 //	Log("%d", ms);
 	int i = SDL_GetTicks();
 	while(SDL_GetTicks() < i + ms);
+	return;
 	assert(0);
 }
