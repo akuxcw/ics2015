@@ -31,17 +31,18 @@ hwaddr_t page_translate(lnaddr_t, uint32_t);
 uint32_t lnaddr_read(lnaddr_t addr, size_t len) {
 	hwaddr_t hwaddr;
 	if(cpu.cr._0.paging == 1) {
-		hwaddr = page_translate(addr, len);
-/*
+//		hwaddr = page_translate(addr, len);
+
 		if((addr & 0xfff) + len <= limit) hwaddr = page_translate(addr, len);
 		else {
+			printf("%x %d\n", addr, len);
 			uint32_t off = addr & 0xfff;
 			hwaddr_t hwaddr2;
 			hwaddr = page_translate(addr, limit - off);
 			hwaddr2 = page_translate(addr + limit - off, len - limit + off);
 			return hwaddr_read(hwaddr, limit - off) + 
 				(hwaddr_read(hwaddr2, len - limit + off) << ((limit - off) * 8));
-		}*/
+		}
 	}
 		else hwaddr = addr;	
 	return hwaddr_read(hwaddr, len);
