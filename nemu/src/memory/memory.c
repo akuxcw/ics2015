@@ -26,10 +26,18 @@ void hwaddr_write(hwaddr_t addr, size_t len, uint32_t data) {
 
 hwaddr_t page_translate(lnaddr_t, uint32_t);
 
+#define limit 0x1000
+
 uint32_t lnaddr_read(lnaddr_t addr, size_t len) {
-	hwaddr_t hwaddr;
+	hwaddr_t hwaddr, hwaddr2;
 	if(cpu.cr._0.paging == 1) {
-		hwaddr = page_translate(addr, len);
+		if((addr & 0xfff) + len <= limit) hwaddr = page_translate(addr, len);
+		else {
+			hwaddr = page_translate(addr, limit - addr);
+			hwaddr2 = page_translate(addr + limit - addr, len - limit + addr);
+			return hwaddr_read(hwaddr, limit - addr) + 
+				(hwaddr_read(hwaddr2, len - limit + addr) << ((limit - addr) * 8));
+		}
 //		printf("%x %x\n", addr, hwaddr);
 	}
 		else hwaddr = addr;	
