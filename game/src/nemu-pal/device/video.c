@@ -333,12 +333,14 @@ VIDEO_Shutdown(
    }
    gpScreen = NULL;
 
+Log("1");
    if (gpScreenBak != NULL)
    {
       SDL_FreeSurface(gpScreenBak);
    }
    gpScreenBak = NULL;
 
+Log("1");
 #if SDL_VERSION_ATLEAST(2,0,0)
 
    if (gpTouchOverlay)
@@ -374,12 +376,13 @@ VIDEO_Shutdown(
    gpWindow = NULL;
 
 #endif
-
+Log("1");
    if (gpScreenReal != NULL)
    {
       SDL_FreeSurface(gpScreenReal);
    }
    gpScreenReal = NULL;
+   HIT_GOOD_TRAP;
 }
 
 VOID
