@@ -14,6 +14,7 @@
 #include "data-mov/ret.h"
 #include "data-mov/iret.h"
 #include "data-mov/cltd.h"
+#include "data-mov/cwtl.h"
 #include "data-mov/cld.h"
 #include "data-mov/cli.h"
 #include "data-mov/lgdt.h"
