@@ -35,9 +35,9 @@ uint32_t lnaddr_read(lnaddr_t addr, size_t len) {
 
 		if((addr & 0xfff) + len <= limit);// hwaddr = page_translate(addr, len);
 		else {
-			printf("%x %d\n", addr, len);
-/*			uint32_t off = addr & 0xfff;
-			hwaddr_t hwaddr2;
+			uint32_t off = addr & 0xfff;
+			printf("%x %d %x %d %d\n", addr, len, off, limit - off, len - limit + off);
+/*			hwaddr_t hwaddr2;
 			hwaddr = page_translate(addr, limit - off);
 			hwaddr2 = page_translate(addr + limit - off, len - limit + off);
 			return hwaddr_read(hwaddr, limit - off) + 
