@@ -183,23 +183,27 @@ SDL_Surface* SDL_SetVideoMode(int width, int height, int bpp, uint32_t flags) {
 }
 
 void SDL_FreeSurface(SDL_Surface *s) {
-	return;
 	if(s != NULL) {
 		if(s->format != NULL) {
 			if(s->format->palette != NULL) {
 				if(s->format->palette->colors != NULL) {
+					Log("1");
 					free(s->format->palette->colors);
 				}
+					Log("1");
 				free(s->format->palette);
 			}
 
+					Log("1");
 			free(s->format);
 		}
 		
 		if(s->pixels != NULL) {
+					Log("1");
 			free(s->pixels);
 		}
 
+					Log("1");
 		free(s);
 	}
 }
