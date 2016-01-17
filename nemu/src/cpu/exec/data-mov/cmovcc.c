@@ -14,6 +14,16 @@
 
 /* for instruction encoding overloading */
 
+make_helper_v(cmovg_rm2r)
+
+make_helper_v(cmovle_rm2r)
+
+make_helper_v(cmovl_rm2r)
+
+make_helper_v(cmovae_rm2r)
+
+make_helper_v(cmovb_rm2r)
+
 make_helper_v(cmova_rm2r)
 
 make_helper_v(cmove_rm2r)
