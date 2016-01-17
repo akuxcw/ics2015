@@ -19,7 +19,7 @@ void
 keyboard_event(void) {
 	/* TODO: Fetch the scancode and update the key states. */
 	uint8_t key_code = in_byte(0x60);
-//	printf("%x\n", key_code);
+	printf("%x\n", key_code);
 	int i;
 	for(i = 0; i < NR_KEYS; i++) {
 	    if((key_code & 0x7f) == keycode_array[i]) {
@@ -67,20 +67,6 @@ process_keys(void (*key_press_callback)(int), void (*key_release_callback)(int))
 	 * If no such key is found, the function return false.
 	 * Remember to enable interrupts before returning from the function.
 	 */
-/*	int i;
-	for(i = 0; i < NR_KEYS; ++ i) {
-		if(key_state[i] == KEY_STATE_PRESS && l_key_state[i] != KEY_STATE_PRESS) {
-			key_press_callback(i);
-			release_key(i);
-			return true;
-		}
-		if(key_state[i] == KEY_STATE_WAIT_RELEASE && l_key_state[i] != KEY_STATE_RELEASE) {
-			key_release_callback(i);
-			clear_key(i);
-			return true;
-		}
-	}
-*/	//assert(0);
 
 //	printf("*\n");
 	int i;
