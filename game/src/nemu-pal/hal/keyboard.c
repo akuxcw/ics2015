@@ -27,6 +27,7 @@ keyboard_event(void) {
 		}
 	}*/
 	char key_code = in_byte(0x60);
+	printf("%x\n", key_code);
 	bool release = (key_code & 0x80) >> 7;
 	key_code &= 0x7f;
 	int i;

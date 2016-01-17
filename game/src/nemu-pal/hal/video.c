@@ -188,23 +188,18 @@ void SDL_FreeSurface(SDL_Surface *s) {
 		if(s->format != NULL) {
 			if(s->format->palette != NULL) {
 				if(s->format->palette->colors != NULL) {
-//					Log("1");
 					free(s->format->palette->colors);
 				}
-//					Log("1");
 				free(s->format->palette);
 			}
 
-//					Log("1");
 			free(s->format);
 		}
 		
 		if(s->pixels != NULL) {
-//					Log("1");
 			free(s->pixels);
 		}
 
-//					Log("1");
 		free(s);
 	}
 }
