@@ -18,7 +18,7 @@ static int l_key_state[NR_KEYS];
 void
 keyboard_event(void) {
 	/* TODO: Fetch the scancode and update the key states. */
-	uint8_t key_code = in_byte(0x60);
+	uint32_t key_code = in_byte(0x60);
 	printf("%x\n", key_code);
 	int i;
 	for(i = 0; i < NR_KEYS; i++) {
