@@ -23,7 +23,7 @@ keyboard_event(void) {
 	int i;
 	for(i = 0; i < NR_KEYS; i++) {
 	    if((key_code & 0x7f) == keycode_array[i]) {
-			l_key_state[i] = key_state[i];
+			if(key_state[i] != l_key_state[i]) l_key_state[i] = key_state[i];
 			if(key_code & 0x80) key_state[i] = KEY_STATE_RELEASE;
 			else key_state[i] = KEY_STATE_PRESS;
 			break;
@@ -85,12 +85,12 @@ process_keys(void (*key_press_callback)(int), void (*key_release_callback)(int))
 //	printf("*\n");
 	int i;
 	for(i = 0; i < NR_KEYS; i++) {
-	    if(query_key(i) == KEY_STATE_PRESS /*&& l_key_state[i] != KEY_STATE_PRESS*/) {
+	    if(query_key(i) == KEY_STATE_PRESS && l_key_state[i] != KEY_STATE_PRESS) {
 			key_press_callback(get_keycode(i));
 			release_key(i);
 			return true;
 	    } else if(query_key(i) == KEY_STATE_RELEASE 
-				/*&& l_key_state[i] != KEY_STATE_RELEASE*/) {
+				&& l_key_state[i] != KEY_STATE_RELEASE) {
 			key_release_callback(get_keycode(i));
 			clear_key(i);
 			return true;	    
