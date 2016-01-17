@@ -48,12 +48,14 @@ query_key(int index) {
 static inline void
 release_key(int index) {
 	assert(index >= 0 && index < NR_KEYS);
+	if(key_state[index] != l_key_state[index]) l_key_state[index] = key_state[index];
 	key_state[index] = KEY_STATE_WAIT_RELEASE;
 }
 
 static inline void
 clear_key(int index) {
 	assert(index >= 0 && index < NR_KEYS);
+	if(key_state[index] != l_key_state[index]) l_key_state[index] = key_state[index];
 	key_state[index] = KEY_STATE_EMPTY;
 }
 
@@ -71,12 +73,12 @@ process_keys(void (*key_press_callback)(int), void (*key_release_callback)(int))
 //	printf("*\n");
 	int i;
 	for(i = 0; i < NR_KEYS; i++) {
-	    if(query_key(i) == KEY_STATE_PRESS /*&& l_key_state[i] != KEY_STATE_PRESS*/) {
+	    if(query_key(i) == KEY_STATE_PRESS && l_key_state[i] != KEY_STATE_PRESS) {
 			key_press_callback(get_keycode(i));
-//			release_key(i);
+			release_key(i);
 			return true;
 	    } else if(query_key(i) == KEY_STATE_RELEASE 
-				/*&& l_key_state[i] != KEY_STATE_RELEASE*/) {
+				&& l_key_state[i] != KEY_STATE_RELEASE) {
 			key_release_callback(get_keycode(i));
 			clear_key(i);
 			return true;	    
