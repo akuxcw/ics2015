@@ -82,16 +82,16 @@ process_keys(void (*key_press_callback)(int), void (*key_release_callback)(int))
 	}
 */	//assert(0);
 
-//	printf("*\n");
+	printf("*\n");
 	int i;
 	for(i = 0; i < NR_KEYS; i++) {
 	    if(query_key(i) == KEY_STATE_PRESS && l_key_state[i] != KEY_STATE_PRESS) {
 			key_press_callback(get_keycode(i));
-//			release_key(i);
+			release_key(i);
 			return true;
 	    } else if(query_key(i) == KEY_STATE_RELEASE && l_key_state[i] != KEY_STATE_RELEASE) {
 			key_release_callback(get_keycode(i));
-//			clear_key(i);
+			clear_key(i);
 			return true;	    
 		}
 	}
