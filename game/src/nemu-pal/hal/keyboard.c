@@ -18,8 +18,8 @@ static int l_key_state[NR_KEYS];
 void
 keyboard_event(void) {
 	/* TODO: Fetch the scancode and update the key states. */
+	/*
 	uint32_t key_code = in_byte(0x60);
-//	printf("%x\n", key_code);
 	int i;
 	for(i = 0; i < NR_KEYS; i++) {
 	    if((key_code & 0x7f) == keycode_array[i]) {
@@ -29,6 +29,8 @@ keyboard_event(void) {
 			break;
 	    }
 	}
+	*/
+//	printf("%x\n", key_code);
 
 //	assert(0);
 }
@@ -71,7 +73,17 @@ process_keys(void (*key_press_callback)(int), void (*key_release_callback)(int))
 	 */
 
 //	printf("*\n");
+	uint32_t key_code = in_byte(0x60);
 	int i;
+	for(i = 0; i < NR_KEYS; i++) {
+	    if((key_code & 0x7f) == keycode_array[i]) {
+			if(key_state[i] != l_key_state[i]) l_key_state[i] = key_state[i];
+			if(key_code & 0x80) key_state[i] = KEY_STATE_RELEASE;
+			else key_state[i] = KEY_STATE_PRESS;
+			break;
+	    }
+	}
+//	int i;
 	for(i = 0; i < NR_KEYS; i++) {
 	    if(query_key(i) == KEY_STATE_PRESS && l_key_state[i] != KEY_STATE_PRESS) {
 			key_press_callback(get_keycode(i));
