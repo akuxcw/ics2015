@@ -13,7 +13,7 @@ static const int keycode_array[] = {
 };
 
 static int key_state[NR_KEYS];
-static int l_key_state[NR_KEYS];
+//static int l_key_state[NR_KEYS];
 
 void
 keyboard_event(void) {
@@ -23,7 +23,7 @@ keyboard_event(void) {
 	int i;
 	for(i = 0; i < NR_KEYS; i++) {
 	    if((key_code & 0x7f) == keycode_array[i]) {
-			if(key_state[i] != l_key_state[i]) l_key_state[i] = key_state[i];
+//			if(key_state[i] != l_key_state[i]) l_key_state[i] = key_state[i];
 			if(key_code & 0x80) key_state[i] = KEY_STATE_RELEASE;
 			else key_state[i] = KEY_STATE_PRESS;
 			break;
@@ -50,14 +50,14 @@ query_key(int index) {
 static inline void
 release_key(int index) {
 	assert(index >= 0 && index < NR_KEYS);
-	if(key_state[index] != l_key_state[index]) l_key_state[index] = key_state[index];
+//	if(key_state[index] != l_key_state[index]) l_key_state[index] = key_state[index];
 	key_state[index] = KEY_STATE_WAIT_RELEASE;
 }
 
 static inline void
 clear_key(int index) {
 	assert(index >= 0 && index < NR_KEYS);
-	if(key_state[index] != l_key_state[index]) l_key_state[index] = key_state[index];
+//	if(key_state[index] != l_key_state[index]) l_key_state[index] = key_state[index];
 	key_state[index] = KEY_STATE_EMPTY;
 }
 
@@ -88,13 +88,13 @@ process_keys(void (*key_press_callback)(int), void (*key_release_callback)(int))
 	int i;
 	for(i = 0; i < NR_KEYS; i++) {
 	    if(query_key(i) == KEY_STATE_PRESS /*&& l_key_state[i] != KEY_STATE_PRESS*/) {
-			printf("%d %d\n", query_key(i), l_key_state[i]);
+//			printf("%d %d\n", query_key(i), l_key_state[i]);
 			key_press_callback(get_keycode(i));
 			release_key(i);
 			return true;
 	    } else if(query_key(i) == KEY_STATE_RELEASE 
 				/*&& l_key_state[i] != KEY_STATE_RELEASE*/) {
-			printf("%d %d\n", query_key(i), l_key_state[i]);
+//			printf("%d %d\n", query_key(i), l_key_state[i]);
 			key_release_callback(get_keycode(i));
 			clear_key(i);
 			return true;	    
